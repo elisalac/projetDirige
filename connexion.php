@@ -13,7 +13,7 @@
     <table>
       <tr>
         <td>Alias</td>
-        <td><input type="text" name="alias" value="<?= $alias ?>" required></td>
+        <td><input type="text" name="alias" required></td>
       </tr>
       <tr>
         <td>Mot de passe</td>
