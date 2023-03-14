@@ -42,7 +42,6 @@ function getPdo(){
     }
 
     function AfficherTousItem(){
-        
     }
 
     function AfficherParPrixAsc(){
