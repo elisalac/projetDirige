@@ -13,9 +13,17 @@
 <?php
     require "include/header.php";
 ?>
-<nav>
+<nav style="background-color:aliceblue; width:100%;">
     <form method="post">
         <input type="submit" value="Tous" name="tous">
+    </form>
+    <form>
+        <select name="filtre">
+            <option value="PrixAsc">Par Prix ↓</option>
+            <option value="PrixDesc">Par Prix ↑</option>
+            <option value="PoidsAsc">Par Poids ↓</option>
+            <option>Par Poids ↑</option>
+        </select>
     </form>
 </nav>
 <body>
