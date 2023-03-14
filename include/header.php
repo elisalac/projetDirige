@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <header>
-    <button></button>
-    <button></button>
-    <button></button>
-    <button></button>
+    <button>Profil</button>
+    <button>Recherche</button>
+    <button>Inventaire</button>
+    <button>Panier</button>
+    <button>Banque</button>
 </header>
 </html>
