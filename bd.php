@@ -45,4 +45,35 @@ function getPdo(){
         
     }
 
+    function AfficherParPrixAsc(){
+
+    }
+
+    function AfficherParPrixDesc(){
+        
+    }
+
+    function AfficherParPoidsAsc(){
+
+    }
+
+    function AfficherParPoidsDesc(){
+        
+    }
+
+    function AfficherParArmes(){
+
+    }
+
+    function AfficherParArmures(){
+
+    }
+
+    function AfficherParPotions(){
+
+    }
+    
+    function AfficherParSorts(){
+        
+    }
 ?>
