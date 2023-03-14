@@ -84,7 +84,7 @@ require "bd.php";
             }
             if($_SERVER['REQUEST_METHOD'] == "POST"){
                 echo "Un courriel a été envoyer à votre adresse courriel pour confirmer votre inscription";
-                EnvoyerEmail($courriel, $prenom, $nom, $pseudo, $mdp);
+                //EnvoyerEmail($courriel, $prenom, $nom, $pseudo, $mdp);
             }
         ?>
     </body>
