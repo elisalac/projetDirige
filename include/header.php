@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Recherche</title>
-</head>
-<nav>
+<header>
     <button></button>
     <button></button>
     <button></button>
     <button></button>
-    <button></button>
-</nav>
-<body>
-
-
-
-</body>
+</header>
 </html>
