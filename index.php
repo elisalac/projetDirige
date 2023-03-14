@@ -44,7 +44,7 @@
 <?php
     require "include/header.php";
 ?>
-<nav style="background-color:aliceblue; width:100%; height:25%;">
+<nav style="background-color:blue; width:100%; height:50%;">
     <form method="post">
         <input type="submit" value="Tous" name="tous">
     </form>

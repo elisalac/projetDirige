@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 
 
@@ -25,3 +25,15 @@
     </table>
   </form>
 </fieldset>
+
+
+
+<p class="erreur"> 
+  <?= $message ?>
+</p>
+<p>
+  <a href="inscrip.php">Pas encore inscrit?</a>
+  <br>
+  <br>
+  <a href="index.php"><button>Gestion des items</button></a>
+</p>
