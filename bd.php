@@ -1,9 +1,9 @@
 <?php
 function getPdo(){
-    $host    = '127.0.0.1';
-    $db      = 'InscriptionData';
-    $user    = 'elisa';
-    $pass    = 'maxeli1907';
+    $host    = '167.114.152.54';
+    $db      = 'dbdarquest2';
+    $user    = 'equipe2';
+    $pass    = 'nFCkttCNzekv';
     $charset = 'utf8';
     
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
