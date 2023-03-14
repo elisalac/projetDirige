@@ -61,8 +61,8 @@ require "bd.php";
             <input type="text" name="courriel" id="courriel" placeholder="Adresse courriel" required><br>
             <input type="submit" id="creationCompte" name="creationCompte" value="Créer le compte">
         </form>
-        <form action="login.php">
-            <input type="submit" id="retourLogin" name="retourLogin" value="Retour au login">
+        <form action="connexion.php">
+            <input type="submit" id="retourLogin" name="retourLogin" value="Déjà un compte?">
         </form>
 
         <?php
