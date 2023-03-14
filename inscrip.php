@@ -61,8 +61,8 @@ require "bd.php";
             <input type="text" name="courriel" id="courriel" placeholder="Adresse courriel" required><br>
             <input type="submit" id="creationCompte" name="creationCompte" value="Créer le compte">
         </form>
-        <form action="login.php">
-            <input type="submit" id="retourLogin" name="retourLogin" value="Retour au login">
+        <form action="connexion.php">
+            <input type="submit" id="retourLogin" name="retourLogin" value="Déjà un compte?">
         </form>
 
         <?php
@@ -84,7 +84,7 @@ require "bd.php";
             }
             if($_SERVER['REQUEST_METHOD'] == "POST"){
                 echo "Un courriel a été envoyer à votre adresse courriel pour confirmer votre inscription";
-                EnvoyerEmail($courriel, $prenom, $nom, $pseudo, $mdp);
+                //EnvoyerEmail($courriel, $prenom, $nom, $pseudo, $mdp);
             }
         ?>
     </body>
