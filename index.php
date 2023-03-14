@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
-    <header>
-        
-    </header>
+<head>
+<title>Recherche</title>
+</head>
+<body>
 
+
+
+</body>
 </html>
