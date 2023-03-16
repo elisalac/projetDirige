@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require "include/header.php";
 
 
 ?>
@@ -8,7 +8,7 @@ session_start();
 <h2>Connexion à Darquest</h2>
 
 <fieldset>
-  <legend>Veuillez vous identifer</legend>
+  <legend>Veuillez vous connecter</legend>
   <form action="connexion.php" method="post">
     <table>
       <tr>
@@ -28,12 +28,17 @@ session_start();
 
 
 
-<p class="erreur"> 
+<p class="erreur">
   <?= $message ?>
 </p>
 <p>
   <a href="inscrip.php">Pas encore inscrit?</a>
   <br>
   <br>
-  <a href="index.php"><button>Gestion des items</button></a>
+  <a href="index.php"><button>Galerie des items</button></a>
 </p>
+
+
+<?php
+#Rajouter le bas de page ici
+?>
