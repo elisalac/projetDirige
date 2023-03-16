@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $nom      = $_POST['nom'];
     $prenom   = $_POST['prenom'];
     $courriel = $_POST['courriel'];
-    $classe = $_POST['Classe'];
+    $classe = $_POST['classe'];
 
     // chiffre le mot de passe
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
@@ -31,8 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $message = "Les champs doivent tous être remplis";
   }
 }
-
-require "en-tete.php";
 
 ?>
 
@@ -65,12 +63,15 @@ require "en-tete.php";
         </tr>
         <tr>
             <td>Classe:</td>
+            <td>
             <select name="classe">
                 <option value="G">Guerrier</option>
                 <option value="P">Paladin</option>
                 <option value="B">Bandit</option>
                 <option value="M">Mage</option>
             </select>
+            </td>
+           
         </tr>
         <tr>
           <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>

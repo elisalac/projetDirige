@@ -4,7 +4,7 @@ function getPdo(){
     $host    = '167.114.152.54';
     $db      = 'dbdarquest2';
     $user    = 'equipe2';
-    $pass    = 'nFCkttCNzekv';
+    $pass    = '72ae8d4w';
     $charset = 'utf8';
     
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
