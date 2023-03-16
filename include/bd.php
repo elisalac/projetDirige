@@ -38,83 +38,83 @@ function getPdo(){
     //Fonctions afficher items index
     //Bouton tous items
     function AfficherTousItems(){
-
+        $pdo = getPdo();
     }
 
     //Liste déroulante filtre
     function AfficherParPrixAsc(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParPrixDesc(){
-        
+        $pdo = getPdo();
     }
 
     function AfficherParPoidsAsc(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParPoidsDesc(){
-        
+        $pdo = getPdo();
     }
 
     //Checkbox type items
     //1 type
     function AfficherParArmes(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmures(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParPotions(){
-
+        $pdo = getPdo();
     }
     
     function AfficherParSorts(){
-        
+        $pdo = getPdo();
     }
     
     //2 types
     function AfficherParArmesArmures(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmesPotions(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmesSorts(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmuresPotions(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmuresSorts(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParPotionsSorts(){
-
+        $pdo = getPdo();
     }
 
     //3 types
     function AfficherParArmesArmuresPotions(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmesArmuresSorts(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmesPotionsSorts(){
-
+        $pdo = getPdo();
     }
 
     function AfficherParArmuresPotionsSorts(){
-
+        $pdo = getPdo();
     }
 ?>
