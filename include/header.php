@@ -5,8 +5,9 @@
             <form method="post">
                 <input type="submit" value=" " name="profilButton" style="height:60px; width:60px; border-radius:50%">
             </form>
+            
+            <!--https://www.freecodecamp.org/news/html-drop-down-menu-how-to-add-a-drop-down-list-with-the-select-element/-->
 
-            <button>Profil</button>
             <div class="dropdown">
                 <button>Profile</button>
                 <div class="dropdown-options">
