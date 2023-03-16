@@ -79,6 +79,80 @@
         </div>
 </nav>
 <body>
+<<<<<<< Updated upstream
     
+=======
+    <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            //Bouton tous items
+            if(isset($_POST['tous'])){
+                AfficherTousItem();   
+            }
+
+            //Liste déroulante filtre
+            if(isset($_POST['filtre']) == "PrixAsc"){
+                AfficherParPrixAsc();
+            }
+            if(isset($_POST['filtre']) == "PrixDesc"){
+                AfficherParPrixDesc();
+            }
+            if(isset($_POST['filtre']) == "PoidsAsc"){
+                AfficherParPoidsAsc();
+            }
+            if(isset($_POST['filtre']) == "PoidsDesc"){
+                AfficherParPoidsDesc();
+            }
+
+            //Checkbox type items
+            //1 type
+            if(isset($_POST['checkboxArmes'])){
+                AfficherParArmes();
+            }
+            if(isset($_POST['checkboxArmures'])){
+                AfficherParArmures();
+            }
+            if(isset($_POST['checkboxPotions'])){
+                AfficherParPotions();
+            }
+            if(isset($_POST['checkboxSorts'])){
+                AfficherParSorts();
+            }
+
+            //2 types
+            if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures'])){
+                AfficherParArmesArmures();
+            }
+            if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxPotions'])){
+                AfficherParArmesPotions();
+            }
+            if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxSorts'])){
+                AfficherParArmesSorts();
+            }
+            if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions'])){
+                AfficherParArmuresPotions();
+            }
+            if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxSorts'])){
+                AfficherParArmuresSorts();
+            }
+            if(isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                AfficherParPotionsSorts();
+            }
+
+            //3 types
+            if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions'])){
+                AfficherParArmesArmuresPotions();
+            }
+            if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxSorts'])){
+                AfficherParArmesArmuresSorts();
+            }
+            if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                AfficherParArmesPotionsSorts();
+            }
+            if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                AfficherParArmuresPotionsSorts();
+            }
+        }
+    ?>
+>>>>>>> Stashed changes
 </body>
 </html>

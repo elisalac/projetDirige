@@ -61,6 +61,8 @@ function getPdo(){
         
     }
 
+    //Checkbox type items
+    //1 type
     function AfficherParArmes(){
 
     }
@@ -75,5 +77,47 @@ function getPdo(){
     
     function AfficherParSorts(){
         
+    }
+
+    //2 types
+    function AfficherParArmesArmures(){
+
+    }
+
+    function AfficherParArmesPotions(){
+
+    }
+
+    function AfficherParArmesSorts(){
+
+    }
+
+    function AfficherParArmuresPotions(){
+
+    }
+
+    function AfficherParArmuresSorts(){
+
+    }
+
+    function AfficherParPotionsSorts(){
+
+    }
+
+    //3 types
+    function AfficherParArmesArmuresPotions(){
+
+    }
+
+    function AfficherParArmesArmuresSorts(){
+
+    }
+
+    function AfficherParArmesPotionsSorts(){
+
+    }
+
+    function AfficherParArmuresPotionsSorts(){
+
     }
 ?>
