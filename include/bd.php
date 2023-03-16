@@ -135,6 +135,6 @@ function getPdo(){
 
     function AfficherParArmuresPotionsSorts(){
         //Aller chercher tout les items de type armures, potions et sorts dans la base de donnée
-        
+
     }
 ?>
