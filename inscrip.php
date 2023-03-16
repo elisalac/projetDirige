@@ -84,11 +84,11 @@ require "bd.php";
             if(isset($_POST['courriel']))
                 $courriel = $_POST['courriel'];
             
-            if($_SESSION['confirmer'] == true){
+            /*if($_SESSION['confirmer'] == true){
                 InsertInscription();
                 echo '<h3>Votre compte a été validé</h3>';
                 $_SESSION['confirmer'] = false;
-            }
+            }*/
             if($_SERVER['REQUEST_METHOD'] == "POST"){
                 echo "Un courriel a été envoyer à votre adresse courriel pour confirmer votre inscription";
                 //EnvoyerEmail($courriel, $prenom, $nom, $pseudo, $mdp);
