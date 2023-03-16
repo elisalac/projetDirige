@@ -4,7 +4,7 @@
 
 session_start();
 require_once "bd.php";
-require_once "fonctions.php";
+
 
 // affiché au bas du formulaire
 $message = "";
