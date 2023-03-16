@@ -1,10 +1,10 @@
 
 <?php
 function getPdo(){
-    $host    = '167.114.152.54';
+    $host    = '127.0.0.1';
     $db      = 'dbdarquest2';
-    $user    = 'darquest2';
-    $pass    = 'nFCkttCNzekv';
+    $user    = 'equipe2';
+    $pass    = '72ae8d4w';
     $charset = 'utf8';
     
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
