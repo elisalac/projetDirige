@@ -35,7 +35,7 @@ function getPdo(){
         }
     }
 
-    //Fonctions nav index
+    //Fonctions afficher items index
     //Bouton tous items
     function AfficherTousItem(){
 
