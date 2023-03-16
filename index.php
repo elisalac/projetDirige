@@ -1,5 +1,5 @@
 <?php
-    require "include/bd.php";
+    require "bd.php";
 ?>
 <!DOCTYPE html>
 <html>
