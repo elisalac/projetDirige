@@ -5,6 +5,19 @@
             <form action="profil.php" method="post">
                 <input type="submit" value=" " name="profilButton" style="height:60px; width:60px; border-radius:50%">
             </form>
+<<<<<<< Updated upstream
+=======
+
+            <!--https://www.freecodecamp.org/news/html-drop-down-menu-how-to-add-a-drop-down-list-with-the-select-element/-->
+            <div class="dropdown">
+                <button>Profile</button>
+                <div class="dropdown-options">
+                    <a href="Modifier Profil">Dashboard</a>
+                    <a href="#">Setting</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+>>>>>>> Stashed changes
         </div>
         <div style="position:absolute; left:1000px; top:25px;">
             <form action="index.php" method="post">
