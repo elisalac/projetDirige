@@ -32,7 +32,7 @@ function getPdo(){
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
 
         try {
-            $sql = "INSERT INTO information (nom, prenom, pseudo, motDePasse, courriel) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO profil (nom, prenom, pseudo, motDePasse, courriel) VALUES (?, ?, ?, ?, ?)";
             $stmt= $pdo->prepare($sql);
             $stmt->execute([$nom, $prenom, $pseudo, $mdp, $courriel]);
         } catch (Exception $e) {

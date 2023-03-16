@@ -9,7 +9,7 @@ require "bd.php";
         $_SESSION['courrielEnAttenteConfirmation'] = $courriel;
 
         $sujet        = "Confirmer Email";
-        $message      = "Bonjour, ". $_POST['prenom']. ". Veuillez confirmer votre inscription à l'adresse suivante: <a href='http://192.99.154.153/~elisa/Livrable1/confirmer.php'>http://192.99.154.153/~elisa/Livrable1/confirmer.php</a>";
+        $message      = "Bonjour, ". $_POST['prenom']. ". Veuillez confirmer votre inscription à l'adresse suivante: <a href=''</a>";
         $entetes      = "From: "     . "www@gmail.com" . "\r\n" .
                         "Reply-To: " . "www@gmail.com" . "\r\n" .
                         "Content-Type: text/html; charset=utf-8\r\n" .
@@ -60,6 +60,12 @@ require "bd.php";
             <input type="text" name="mdp" id="mdp" placeholder="Mot de passe" required><br>
             <input type="text" name="courriel" id="courriel" placeholder="Adresse courriel" required><br>
             <input type="submit" id="creationCompte" name="creationCompte" value="Créer le compte">
+            <select>
+                <option value=guerrier>Guerrier</option>
+                <option value=bandit>Bandit</option>
+                <option value=mage>Mage</option>
+                <option value=music>Musicien</option>
+            </select>
         </form>
         <form action="connexion.php">
             <input type="submit" id="retourLogin" name="retourLogin" value="Déjà un compte?">
