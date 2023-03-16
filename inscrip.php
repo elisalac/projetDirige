@@ -59,13 +59,13 @@ require "bd.php";
             <input type="text" name="pseudo" id="pseudo" placeholder="Pseudonyme" required><br>
             <input type="text" name="mdp" id="mdp" placeholder="Mot de passe" required><br>
             <input type="text" name="courriel" id="courriel" placeholder="Adresse courriel" required><br>
-            <input type="submit" id="creationCompte" name="creationCompte" value="Créer le compte">
+            <input type="submit" id="creationCompte" name="creationCompte" value="Créer le compte"><br>
             <select>
                 <option value=guerrier>Guerrier</option>
                 <option value=bandit>Bandit</option>
                 <option value=mage>Mage</option>
                 <option value=music>Musicien</option>
-            </select>
+            </select><br>
         </form>
         <form action="connexion.php">
             <input type="submit" id="retourLogin" name="retourLogin" value="Déjà un compte?">
