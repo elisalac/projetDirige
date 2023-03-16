@@ -2,7 +2,11 @@
 function getPdo(){
     $host    = '167.114.152.54';
     $db      = 'dbdarquest2';
+<<<<<<< HEAD
     $user    = 'equipe2';
+=======
+    $user    = 'darquest2';
+>>>>>>> parent of b3ad923 (Update bd.php)
     $pass    = 'nFCkttCNzekv';
     $charset = 'utf8';
     
