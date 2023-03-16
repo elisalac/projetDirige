@@ -2,8 +2,8 @@
 function getPdo(){
     $host    = '167.114.152.54';
     $db      = 'dbdarquest2';
-    $user    = 'equipe2';
-    $pass    = '72ae8d4w';
+    $user    = 'darquest2';
+    $pass    = 'nFCkttCNzekv';
     $charset = 'utf8';
     
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -22,7 +22,6 @@ function getPdo(){
 }
     function InsertInscription($nom,$prenom,$alias,$mdp,$courriel,$class){
         $pdo = getPdo();
-
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
 
         try {
