@@ -2,11 +2,7 @@
 function getPdo(){
     $host    = '167.114.152.54';
     $db      = 'dbdarquest2';
-<<<<<<< HEAD
     $user    = 'equipe2';
-=======
-    $user    = 'darquest2';
->>>>>>> parent of b3ad923 (Update bd.php)
     $pass    = 'nFCkttCNzekv';
     $charset = 'utf8';
     
@@ -42,83 +38,103 @@ function getPdo(){
     //Fonctions afficher items index
     //Bouton tous items
     function AfficherTousItems(){
+        //Aller chercher tout les items dans la base de donnée
+        $pdo = getPdo();
 
     }
 
     //Liste déroulante filtre
     function AfficherParPrixAsc(){
+        $pdo = getPdo();
 
     }
 
     function AfficherParPrixDesc(){
-        
+        $pdo = getPdo();
+
     }
 
     function AfficherParPoidsAsc(){
+        $pdo = getPdo();
 
     }
 
     function AfficherParPoidsDesc(){
-        
+        $pdo = getPdo();
+
     }
 
     //Checkbox type items
     //1 type
     function AfficherParArmes(){
+        //Aller chercher tout les items de type armes dans la base de donnée
 
     }
 
     function AfficherParArmures(){
+        //Aller chercher tout les items de type armures dans la base de donnée
 
     }
 
     function AfficherParPotions(){
+        //Aller chercher tout les items de type potions dans la base de donnée
 
     }
     
     function AfficherParSorts(){
-        
+        //Aller chercher tout les items de type sorts dans la base de donnée
+
     }
     
     //2 types
     function AfficherParArmesArmures(){
+        //Aller chercher tout les items de types armes et armures dans la base de donnée
 
     }
 
     function AfficherParArmesPotions(){
+        //Aller chercher tout les items de types armes et potions dans la base de donnée
 
     }
 
     function AfficherParArmesSorts(){
+        //Aller chercher tout les items de types armes et sorts dans la base de donnée
 
     }
 
     function AfficherParArmuresPotions(){
+        //Aller chercher tout les items de types armures et potions dans la base de donnée
 
     }
 
     function AfficherParArmuresSorts(){
+        //Aller chercher tout les items de types armures et sorts dans la base de donnée
 
     }
 
     function AfficherParPotionsSorts(){
+        //Aller chercher tout les items de types potions et sorts dans la base de donnée
 
     }
 
     //3 types
     function AfficherParArmesArmuresPotions(){
+        //Aller chercher tout les items de types armes, armures et potions dans la base de donnée
 
     }
 
     function AfficherParArmesArmuresSorts(){
+        //Aller chercher tout les items de types armes, armures et sorts dans la base de donnée
 
     }
 
     function AfficherParArmesPotionsSorts(){
+        //Aller chercher tout les items de type armes, potions et sorts dans la base de donnée
 
     }
 
     function AfficherParArmuresPotionsSorts(){
-
+        //Aller chercher tout les items de type armures, potions et sorts dans la base de donnée
+        
     }
 ?>
