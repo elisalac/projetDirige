@@ -20,31 +20,28 @@ function getPdo(){
         throw new \PDOException($e->getMessage(), (int)$e->getCode());
     }
 }
-    function InsertInscription(){
+    function InsertInscription($nom,$prenom,$alias,$mdp,$courriel,$class){
         $pdo = getPdo();
-
-        $nom = $_SESSION['nomEnAttenteConfirmation'];
-        $prenom = $_SESSION['prenomEnAttenteConfirmation'];
-        $pseudo = $_SESSION['pseudoEnAttenteConfirmation'];
-        $mdp = $_SESSION['passwordEnAttenteConfirmation'];
-        $courriel = $_SESSION['courrielEnAttenteConfirmation'];
 
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
 
         try {
-            $sql = "INSERT INTO information (nom, prenom, pseudo, motDePasse, courriel) VALUES (?, ?, ?, ?, ?)";
+            $sql = "CALL ajouterJoueur(?,?,?,?,?,?,?)";
             $stmt= $pdo->prepare($sql);
-            $stmt->execute([$nom, $prenom, $pseudo, $mdp, $courriel]);
+            $stmt->execute([$alias,$nom, $prenom, $courriel,"null", $hash,$class ]);
         } catch (Exception $e) {
-            echo "Erreur...";
+            echo "Le compte n'a pu être créé, veuillez recommencer";
             exit;
         }
     }
 
+    //Fonctions nav index
+    //Bouton tous items
     function AfficherTousItem(){
-        
+
     }
 
+    //Liste déroulante filtre
     function AfficherParPrixAsc(){
 
     }
@@ -78,7 +75,7 @@ function getPdo(){
     function AfficherParSorts(){
         
     }
-
+    
     //2 types
     function AfficherParArmesArmures(){
 
