@@ -1,91 +1,89 @@
 <?php
-require "bd.php";
-    function EnvoyerEmail($courriel, $prenom, $nom, $pseudo, $mdp){
-        
-        $_SESSION['nomEnAttenteConfirmation'] = $nom;
-        $_SESSION['prenomEnAttenteConfirmation'] = $prenom;
-        $_SESSION['pseudoEnAttenteConfirmation'] = $pseudo;
-        $_SESSION['passwordEnAttenteConfirmation'] = $mdp;
-        $_SESSION['courrielEnAttenteConfirmation'] = $courriel;
 
-        $sujet        = "Confirmer Email";
-        $message      = "Bonjour, ". $_POST['prenom']. ". Veuillez confirmer votre inscription à l'adresse suivante: <a href='http://192.99.154.153/~elisa/Livrable1/confirmer.php'>http://192.99.154.153/~elisa/Livrable1/confirmer.php</a>";
-        $entetes      = "From: "     . "www@gmail.com" . "\r\n" .
-                        "Reply-To: " . "www@gmail.com" . "\r\n" .
-                        "Content-Type: text/html; charset=utf-8\r\n" .
-                        "X-Mailer: PHP/'". phpversion();
+// formulaire et script d'inscription
 
-        $code = mail($courriel, $sujet, $message, $entetes);
-    }
+session_start();
+require_once "bd.php";
+
+
+// affiché au bas du formulaire
+$message = "";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+  // si le champ n'est pas vide
+  if (( strlen(trim($_POST['pseudo'])) > 0 ) &&
+      ( strlen(trim($_POST['mdp'])) > 0 ) &&
+      ( strlen(trim($_POST['nom'])) > 0 ) &&
+      ( strlen(trim($_POST['prenom'])) > 0 ) &&
+      ( strlen(trim($_POST['courriel'])) > 0 )) {
+    $pseudo   = $_POST['pseudo'];
+    $mdp      = $_POST['mdp'];
+    $nom      = $_POST['nom'];
+    $prenom   = $_POST['prenom'];
+    $courriel = $_POST['courriel'];
+    $classe = $_POST['classe'];
+
+    // chiffre le mot de passe
+    $mdp = password_hash($mdp, PASSWORD_DEFAULT);
+    InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
+  } else {
+    $message = "Les champs doivent tous être remplis";
+  }
+}
+
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Création du compte</title>
-        <style>
-            body{
-                text-align:center;
-            }
-            
-            input[type=text], input[type=password] {
-            width: 20%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-            }
 
-            input[type=submit] {
-            background-color: #006347;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            width: 10%;
-            }
+<h2>Inscription</h2>
 
-            footer{
-                text-align: center;
-                background-color: #D9F3FF;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Inscription</h1>
-        <form method="post">
-            <input type="text" name="nom" id="nom" placeholder="Nom" required><br>
-            <input type="text" name="prenom" id="prenom" placeholder="Prénom" required><br>
-            <input type="text" name="pseudo" id="pseudo" placeholder="Pseudonyme" required><br>
-            <input type="text" name="mdp" id="mdp" placeholder="Mot de passe" required><br>
-            <input type="text" name="courriel" id="courriel" placeholder="Adresse courriel" required><br>
-            <input type="submit" id="creationCompte" name="creationCompte" value="Créer le compte">
-        </form>
-        <form action="connexion.php">
-            <input type="submit" id="retourLogin" name="retourLogin" value="Déjà un compte?">
-        </form>
+  <fieldset>
+    <legend>Veuillez remplir tous les champs S.V.P.</legend>
+    <!-- pas la meilleure façon de formater un formulaire -->
+    <form action="inscrip.php" method="post">
+      <table>
+        <tr>
+          <td>Pseudonyme</td>
+          <td><input type="text" name="pseudo" required></td>
+        </tr>
+        <tr>
+          <td>Mot de passe</td>
+          <td><input type="password" name="mdp" required></td>
+        </tr>
+        <tr>
+          <td>Nom</td>
+          <td><input type="text" name="nom" required></td>
+        </tr>
+        <tr>
+          <td>Prénom</td>
+          <td><input type="text" name="prenom" required></td>
+        </tr>
+        <tr>
+          <td>Courriel</td>
+          <td><input type="email" name="courriel" required></td>
+        </tr>
+        <tr>
+            <td>Classe:</td>
+            <td>
+            <select name="classe">
+                <option value="G">Guerrier</option>
+                <option value="P">Paladin</option>
+                <option value="B">Bandit</option>
+                <option value="M">Mage</option>
+            </select>
+            </td>
+           
+        </tr>
+        <tr>
+          <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
+        </tr>
+        
+      </table>
+    </form>
+  </fieldset>
 
-        <?php
-            if(isset($_POST['nom']))
-                $nom = $_POST['nom'];
-            if(isset($_POST['prenom']))
-                $prenom = $_POST['prenom'];
-            if(isset($_POST['pseudo']))
-                $pseudo = $_POST['pseudo'];
-            if(isset($_POST['mdp']))
-                $mdp = $_POST['mdp'];
-            if(isset($_POST['courriel']))
-                $courriel = $_POST['courriel'];
-            
-            if($_SESSION['confirmer'] == true){
-                InsertInscription();
-                echo '<h3>Votre compte a été validé</h3>';
-                $_SESSION['confirmer'] = false;
-            }
-            if($_SERVER['REQUEST_METHOD'] == "POST"){
-                echo "Un courriel a été envoyer à votre adresse courriel pour confirmer votre inscription";
-                //EnvoyerEmail($courriel, $prenom, $nom, $pseudo, $mdp);
-            }
-        ?>
-    </body>
+  <div>
+    <p><span class="erreur"><?= $message ?></span></p>
+  </div>
+  </main>
+</body>
 </html>

@@ -1,40 +1,5 @@
 <?php
     require "bd.php";
-
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        //Bouton tous items
-        if(isset($_POST['tous'])){
-            AfficherTousItems();   
-        }
-
-        //Liste déroulante filtre
-        if(isset($_POST['filtre']) == "PrixAsc"){
-            AfficherParPrixAsc();
-        }
-        if(isset($_POST['filtre']) == "PrixDesc"){
-            AfficherParPrixDesc();
-        }
-        if(isset($_POST['filtre']) == "PoidsAsc"){
-            AfficherParPoidsAsc();
-        }
-        if(isset($_POST['filtre']) == "PoidsDesc"){
-            AfficherParPoidsDesc();
-        }
-
-        //Checkbox type items
-        if(isset($_POST['checkboxArmes'])){
-            AfficherParArmes();
-        }
-        if(isset($_POST['checkboxArmures'])){
-            AfficherParArmures();
-        }
-        if(isset($_POST['checkboxPotions'])){
-            AfficherParPotions();
-        }
-        if(isset($_POST['checkboxSorts'])){
-            AfficherParSorts();
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html>
