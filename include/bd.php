@@ -38,6 +38,7 @@ function getPdo(){
     //Fonctions afficher items index
     //Bouton tous items
     function AfficherTousItems(){
+        //Aller chercher tout les items de la base de donnée
         $pdo = getPdo();
     }
 
