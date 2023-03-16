@@ -3,7 +3,7 @@ function getPdo(){
     $host    = '167.114.152.54';
     $db      = 'dbdarquest2';
     $user    = 'equipe2';
-    $pass    = 'nFCkttCNzekv';
+    $pass    = '72ae8d4w';
     $charset = 'utf8';
     
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -28,7 +28,7 @@ function getPdo(){
         try {
             $sql = "CALL ajouterJoueur(?,?,?,?,?,?,?)";
             $stmt= $pdo->prepare($sql);
-            $stmt->execute([$alias,$nom, $prenom, $courriel,"null", $hash,$class ]);
+            $stmt->execute([$alias,$nom, $prenom, $courriel,'null', $hash,$class ]);
         } catch (Exception $e) {
             echo "Le compte n'a pu être créé, veuillez recommencer";
             exit;
@@ -38,31 +38,37 @@ function getPdo(){
     //Fonctions afficher items index
     //Bouton tous items
     function AfficherTousItems(){
-        //Aller chercher tout les items de la base de donnée
+        //Aller chercher tout les items dans la base de donnée
         $pdo = getPdo();
+
     }
 
     //Liste déroulante filtre
     function AfficherParPrixAsc(){
+        $pdo = getPdo();
 
     }
 
     function AfficherParPrixDesc(){
-        
+        $pdo = getPdo();
+
     }
 
     function AfficherParPoidsAsc(){
+        $pdo = getPdo();
 
     }
 
     function AfficherParPoidsDesc(){
-        
+        $pdo = getPdo();
+
     }
 
     //Checkbox type items
     //1 type
     function AfficherParArmes(){
-        //Aller chercher tout les items de type armes
+        //Aller chercher tout les items de type armes dans la base de donnée
+        $pdo = getPdo();
 
     }
 
@@ -117,7 +123,7 @@ function getPdo(){
     function AfficherParPotionsSorts(){
         //Aller chercher tout les items de types potions et sorts dans la base de donnée
         $pdo = getPdo();
-
+        
     }
 
     //3 types
