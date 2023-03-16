@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <header style="padding:15px;">
+    <header>
         <button>Profil</button>
         <button>Recherche</button>
         <button>Inventaire</button>
