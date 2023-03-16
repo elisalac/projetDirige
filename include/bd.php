@@ -2,11 +2,7 @@
 function getPdo(){
     $host    = '167.114.152.54';
     $db      = 'dbdarquest2';
-<<<<<<< HEAD
     $user    = 'equipe2';
-=======
-    $user    = 'darquest2';
->>>>>>> parent of b3ad923 (Update bd.php)
     $pass    = 'nFCkttCNzekv';
     $charset = 'utf8';
     
@@ -42,7 +38,8 @@ function getPdo(){
     //Fonctions afficher items index
     //Bouton tous items
     function AfficherTousItems(){
-
+        //Aller chercher tout les items de la base de donnée
+        $pdo = getPdo();
     }
 
     //Liste déroulante filtre
