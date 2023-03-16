@@ -24,11 +24,17 @@ function getPdo(){
         $pdo = getPdo();
 
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
-
+        $nul = 'null';
         try {
             $sql = "CALL ajouterJoueur(?,?,?,?,?,?,?)";
             $stmt= $pdo->prepare($sql);
-            $stmt->execute([$alias,$nom, $prenom, $courriel,'null', $hash,$class ]);
+            $stmt ->bindParam(1,$alias);
+            $stmt ->bindParam(2,$nom);
+            $stmt ->bindParam(3,$courriel);
+            $stmt ->bindParam(4,$nul);
+            $stmt ->bindParam(5,$hash);
+            $stmt ->bindParam(6,$class);
+            $stmt->execute();
         } catch (Exception $e) {
             echo "Le compte n'a pu être créé, veuillez recommencer";
             exit;
