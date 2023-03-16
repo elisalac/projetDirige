@@ -28,7 +28,7 @@ function getPdo(){
         try {
             $sql = "CALL ajouterJoueur(?,?,?,?,?,?,?)";
             $stmt= $pdo->prepare($sql);
-            $stmt->execute([$alias,$nom, $prenom, $courriel,"null", $hash,$class ]);
+            $stmt->execute([$alias,$nom, $prenom, $courriel,'null', $hash,$class ]);
         } catch (Exception $e) {
             echo "Le compte n'a pu être créé, veuillez recommencer";
             exit;
