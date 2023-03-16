@@ -37,7 +37,7 @@ function getPdo(){
 
     //Fonctions afficher items index
     //Bouton tous items
-    function AfficherTousItem(){
+    function AfficherTousItems(){
 
     }
 

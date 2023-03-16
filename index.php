@@ -4,7 +4,7 @@
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         //Bouton tous items
         if(isset($_POST['tous'])){
-            AfficherTousItem();   
+            AfficherTousItems();   
         }
 
         //Liste déroulante filtre
@@ -83,7 +83,7 @@
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             //Bouton tous items
             if(isset($_POST['tous'])){
-                AfficherTousItem();   
+                AfficherTousItems();   
             }
 
             //Liste déroulante filtre
