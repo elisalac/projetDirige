@@ -42,7 +42,7 @@ require "bd.php";
             padding: 14px 20px;
             margin: 8px 0;
             border: none;
-            width: 10%;
+            width: 15%;
             }
 
             footer{
