@@ -1,40 +1,5 @@
 <?php
     require "bd.php";
-
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-        //Bouton tous items
-        if(isset($_POST['tous'])){
-            AfficherTousItem();   
-        }
-
-        //Liste déroulante filtre
-        if(isset($_POST['filtre']) == "PrixAsc"){
-            AfficherParPrixAsc();
-        }
-        if(isset($_POST['filtre']) == "PrixDesc"){
-            AfficherParPrixDesc();
-        }
-        if(isset($_POST['filtre']) == "PoidsAsc"){
-            AfficherParPoidsAsc();
-        }
-        if(isset($_POST['filtre']) == "PoidsDesc"){
-            AfficherParPoidsDesc();
-        }
-
-        //Checkbox type items
-        if(isset($_POST['checkboxArmes'])){
-            AfficherParArmes();
-        }
-        if(isset($_POST['checkboxArmures'])){
-            AfficherParArmures();
-        }
-        if(isset($_POST['checkboxPotions'])){
-            AfficherParPotions();
-        }
-        if(isset($_POST['checkboxSorts'])){
-            AfficherParSorts();
-        }
-    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,12 +10,12 @@
     require "include/header.php";
 ?>
 <nav style="background-color:aliceblue; width:100%; padding:20px">
-    <div style="display:inline-block; padding-left:10px; padding-right:10px;">
+    <div style="display:inline-block; padding-left:10px; padding-right:10px; height:100%">
         <form method="post">
             <input type="submit" value="Tous" name="tous">
         </form>
     </div>
-    <div style="display:inline-block; padding-left:10px; padding-right:10px;">
+    <div style="display:inline-block; padding-left:10px; padding-right:10px; height:100%">
         <form method="post">
             <select name="filtre">
                 <option value="PrixAsc">Par Prix ↓</option>
@@ -79,6 +44,41 @@
         </div>
 </nav>
 <body>
-    
+    <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            //Bouton tous items
+            if(isset($_POST['tous'])){
+                AfficherTousItem();   
+            }
+
+            //Liste déroulante filtre
+            if(isset($_POST['filtre']) == "PrixAsc"){
+                AfficherParPrixAsc();
+            }
+            if(isset($_POST['filtre']) == "PrixDesc"){
+                AfficherParPrixDesc();
+            }
+            if(isset($_POST['filtre']) == "PoidsAsc"){
+                AfficherParPoidsAsc();
+            }
+            if(isset($_POST['filtre']) == "PoidsDesc"){
+                AfficherParPoidsDesc();
+            }
+
+            //Checkbox type items
+            if(isset($_POST['checkboxArmes'])){
+                AfficherParArmes();
+            }
+            if(isset($_POST['checkboxArmures'])){
+                AfficherParArmures();
+            }
+            if(isset($_POST['checkboxPotions'])){
+                AfficherParPotions();
+            }
+            if(isset($_POST['checkboxSorts'])){
+                AfficherParSorts();
+            }
+        }
+    ?>
 </body>
 </html>
