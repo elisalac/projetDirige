@@ -26,7 +26,7 @@ function getPdo(){
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
         $nul = 'null';
         try {
-            $sql = 'CALL ajouterJoueur(?,?,?,?,?,?,?)';
+            $sql = 'CALL ajouterJoueur()';
             $stmt= $pdo->prepare($sql);
             $stmt ->bindParam(1,$alias,PDO::PARAM_STR);
             $stmt ->bindParam(2,$nom,PDO::PARAM_STR);
