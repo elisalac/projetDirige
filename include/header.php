@@ -1,19 +1,61 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <style>
+            .dropdown {
+            display: inline-block;
+            position: relative;
+            }
+
+            button:hover{
+            background-color:#ddd;
+            }
+
+            .dropdown-options {
+            display: none;
+            position: absolute;
+            overflow: auto;
+            background-color:#fff;
+            border-radius:5px;
+            box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+            }
+
+            .dropdown:hover .dropdown-options {
+            display: block;
+            }
+
+            .dropdown-options a {
+            display: block;
+            color: #000000;
+            padding: 5px;
+            text-decoration: none;
+            padding:20px 40px;
+            }
+
+            .dropdown-options a:hover {
+            color: #0a0a23;
+            background-color: #ddd;
+            border-radius:5px;
+            }
+        </style>
+    </head>
     <header style="height:75px; width:100%;">
         <div style="position:absolute; left:15px; top:10px;">
-            <form method="post">
-                <input type="submit" value=" " name="profilButton" style="height:60px; width:60px; border-radius:50%">
-            </form>
-            
             <!--https://www.freecodecamp.org/news/html-drop-down-menu-how-to-add-a-drop-down-list-with-the-select-element/-->
 
             <div class="dropdown">
-                <button>Profile</button>
+                <button style="height:60px; width:60px; border-radius:50%"></button>
                 <div class="dropdown-options">
-                    <a href="Modifier Profil">Dashboard</a>
-                    <a href="#">Setting</a>
-                    <a href="#">Logout</a>
+                    <?php
+                        if(isset($_SESSION['id'])){
+                            echo '<a href="profil.php">Modifier votre profil</a>';
+                            echo '<a href="stats.php">Statistiques</a>';
+                            echo '<a href="logout.php">Déconnecter</a>';
+                        }
+                        else{
+                            echo '<a href="connexion.php">Connexion</a>';
+                        }
+                    ?>
                 </div>
             </div>
         </div>
