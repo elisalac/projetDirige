@@ -1,6 +1,9 @@
 <?php
     require "include/bd.php";
-    //require "include/auth.php";
+    
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,6 +12,7 @@
 </head>
 <?php
     require "include/header.php";
+
 ?>
 <nav style="background-color:aliceblue; width:100%; padding:20px">
     <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px;">
