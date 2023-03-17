@@ -44,7 +44,7 @@
             <!--https://www.freecodecamp.org/news/html-drop-down-menu-how-to-add-a-drop-down-list-with-the-select-element/-->
 
             <div class="dropdown">
-                <button style="height:60px; width:60px; border-radius:50%"></button>
+                <button style="height:60px; width:60px; border-radius:50%; border:0px;"></button>
                 <div class="dropdown-options">
                     <?php
                         if(isset($_SESSION['id'])){
@@ -84,6 +84,5 @@
                 echo '</div>';
             }
         ?>
-        
     </header>
 </html>

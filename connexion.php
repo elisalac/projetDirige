@@ -25,10 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
         else if(password_verify($mdp,$range['mdp']))
         {
-          $_SESSION["alias"]=$pseudo;
+          $_SESSION["alias"]=$alias;
           $_SESSION["usagerValide"]=true;
           $_SESSION['id']=$range['idJoueur'];
           $_SESSION['motDePasse']=$mdp;
+          echo $_SESSION['id'];
           header('Location:index.php');
         }
         else
