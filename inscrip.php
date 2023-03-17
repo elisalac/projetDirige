@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // chiffre le mot de passe
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
-    header("connexion.php");
+    header("Location: connexion.php");
     exit;
   } else {
     $message = "Les champs doivent tous être remplis";
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <tr>
           <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
         </tr>
-        
+        <p class="message">Déjà un compte? <a href="connexion.php">Connectez-vous</a></p>
       </table>
     </form>
   </fieldset>
