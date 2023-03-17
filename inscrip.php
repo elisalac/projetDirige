@@ -3,7 +3,7 @@
 // formulaire et script d'inscription
 
 session_start();
-require_once "bd.php";
+require_once "include/bd.php";
 
 
 // affiché au bas du formulaire
@@ -27,18 +27,25 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // chiffre le mot de passe
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
+    header("Location: connexion.php");
+    exit;
   } else {
     $message = "Les champs doivent tous être remplis";
   }
 }
 
 ?>
-
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+  </head>
+<body>
 <h2>Inscription</h2>
 
   <fieldset>
-    <legend>Veuillez remplir tous les champs S.V.P.</legend>
-    <!-- pas la meilleure façon de formater un formulaire -->
+    <legend>Veuillez remplir tous les champs!</legend>
     <form action="inscrip.php" method="post">
       <table>
         <tr>
@@ -76,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <tr>
           <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
         </tr>
-        
+        <p class="message">Déjà un compte? <a href="connexion.php">Connectez-vous</a></p>        
       </table>
     </form>
   </fieldset>

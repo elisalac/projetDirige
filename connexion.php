@@ -1,8 +1,21 @@
 <?php
 session_start();
-
-
-
+require "include/bd.php";
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+  $id = membreValide($_POST['alias'], $_POST['mdp']);
+  $pseudo = $_POST['alias'];
+  // si les données de connexion sont valides
+  if ($id !== false) {
+    // on récupère les données du membre et on les met dans la session
+    $membre = getMembre($id);
+    $_SESSION['pseudo'] = $membre['alias'];
+    $_SESSION['id']     = $membre['idJoueur'];
+    header('Location: index.php');
+    exit;
+  } else {
+    $message = "Données de connexion invalides";
+  }
+}
 ?>
 
 <h2>Connexion à Darquest</h2>
@@ -25,12 +38,6 @@ session_start();
     </table>
   </form>
 </fieldset>
-
-
-
-<p class="erreur"> 
-  <?= $message ?>
-</p>
 <p>
   <a href="inscrip.php">Pas encore inscrit?</a>
   <br>

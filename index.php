@@ -1,5 +1,6 @@
 <?php
-    require "bd.php";
+    require "include/bd.php";
+    //require "include/auth.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,12 +11,12 @@
     require "include/header.php";
 ?>
 <nav style="background-color:aliceblue; width:100%; padding:20px">
-    <div style="display:inline-block; padding-left:10px; padding-right:10px;">
+    <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px;">
         <form method="post">
             <input type="submit" value="Tous" name="tous">
         </form>
     </div>
-    <div style="display:inline-block; padding-left:10px; padding-right:10px;">
+    <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px;">
         <form method="post">
             <select name="filtre">
                 <option value="PrixAsc">Par Prix ↓</option>
@@ -27,7 +28,7 @@
     </div>
     <div style="display:inline-block; padding-left:10px; padding-right:10px;">
         <form method="post">
-            <label>Types</label>
+            <label style="text-decoration:underline; font-size:20px;">Types</label>
             <br>
             <label for="checkboxArmes">Armes</label>
             <input type="checkbox" id="checkboxArmes" name="checkboxArmes">
@@ -41,7 +42,7 @@
             <label for="checkboxSorts">Sorts</label>
             <input type="checkbox" id="checkboxSorts" name="checkboxSorts">
         </form>
-        </div>
+    </div>
 </nav>
 <body>
     <?php
