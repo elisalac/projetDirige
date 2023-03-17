@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // chiffre le mot de passe
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
-    echo '<script type = "text/javascript">toastr.success("Inscription faite avec succès!")</script>';
+    header("connexion.php");
+    exit;
   } else {
     $message = "Les champs doivent tous être remplis";
   }
