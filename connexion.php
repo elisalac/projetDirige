@@ -2,8 +2,8 @@
 session_start();
 require "include/bd.php";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  $id = membreValide($_POST['pseudo'], $_POST['mdp']);
-  $pseudo = $_POST['pseudo'];
+  $id = membreValide($_POST['alias'], $_POST['mdp']);
+  $pseudo = $_POST['alias'];
   // si les données de connexion sont valides
   if ($id !== false) {
     // on récupère les données du membre et on les met dans la session
