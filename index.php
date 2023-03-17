@@ -1,5 +1,6 @@
 <?php
     require "include/bd.php";
+    require "include/auth.php";
 ?>
 <!DOCTYPE html>
 <html>
