@@ -1,6 +1,5 @@
 <?php
     require "include/bd.php";
-    //require "include/auth.php";
     
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();

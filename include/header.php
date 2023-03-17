@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,25 +59,31 @@
                 </div>
             </div>
         </div>
-        <div style="position:absolute; left:1100px; top:25px;">
+        <div style="position:absolute; left:700px; top:25px;">
             <form action="index.php" method="post">
-                <input type="submit" value="Recherche" name="rechercheButton" style="width:100px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">
+                <input type="submit" value="Recherche" name="rechercheButton" style="width:150px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">
             </form> 
         </div>
-        <div style="position:absolute; left:1300px; top:25px;">
-            <form action="inventaire.php" method="post">
-                <input type="submit" value="Inventaire" name="inventaireButton" style="width:100px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">
-            </form>
-        </div>
-        <div style="position:absolute; left:1500px; top:25px;">
-            <form action="panier.php" method="post">
-                <input type="submit" value="Panier" name="panierButton" style="width:100px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">
-            </form>
-        </div>
-        <div style="position:absolute; left:1700px; top:25px;">
-            <form action="banque.php" method="post">
-                <input type="submit" value="Banque" name="BanqueButton" style="width:100px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">
-            </form>
-        </div>
+        <?php
+            if(isset($_SESSION['id'])){
+                
+                echo '<div style="position:absolute; left:900px; top:25px;">';
+                echo    '<form action="inventaire.php" method="post">';
+                echo        '<input type="submit" value="Inventaire" name="inventaireButton" style="width:150px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">';
+                echo    '</form>';
+                echo '</div>';
+                echo '<div style="position:absolute; left:1100px; top:25px;">';
+                echo    '<form action="panier.php" method="post">';
+                echo        '<input type="submit" value="Panier" name="panierButton" style="width:150px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">';
+                echo    '</form>';
+                echo '</div>';
+                echo '<div style="position:absolute; left:1300px; top:25px;">';
+                echo    '<form action="banque.php" method="post">';
+                echo        '<input type="submit" value="Banque" name="BanqueButton" style="width:150px; height:35px; font-size:15px; background-color:darkseagreen; border:0px;">';
+                echo    '</form>';
+                echo '</div>';
+            }
+        ?>
+        
     </header>
 </html>
