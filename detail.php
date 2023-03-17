@@ -1,7 +1,7 @@
 <?php
 session_start();
-require "include/en-tete.php";
-require "bd.php";
+require "include/header.php";
+require "include/bd.php";
 
 ?>
 
