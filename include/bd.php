@@ -22,9 +22,10 @@ function getPdo(){
 }
     function InsertInscription($nom,$prenom,$alias,$mdp,$courriel,$class){
         $pdo = getPdo();
-
-        $hash = password_hash($mdp, PASSWORD_DEFAULT);
-        $nul = 'allo';
+     
+        
+        try {
+            $nul = 'allo';
             $sql = 'CALL ajouterJoueur(?,?,?,?,?,?,?)';
             $stmt= $pdo->prepare($sql);
             $stmt ->bindParam(1,$alias,PDO::PARAM_STR);
@@ -32,12 +33,9 @@ function getPdo(){
             $stmt ->bindParam(3,$prenom,PDO::PARAM_STR);
             $stmt ->bindParam(4,$courriel,PDO::PARAM_STR);
             $stmt ->bindParam(5,$nul,PDO::PARAM_STR);
-            $stmt ->bindParam(6,$hash,PDO::PARAM_STR);
+            $stmt ->bindParam(6,$mdp,PDO::PARAM_STR);
             $stmt ->bindParam(7,$class,PDO::PARAM_STR);
             $stmt->execute();
-        
-        try {
-            
         } catch (Exception $e) {
             echo "Le compte n'a pu être créé, veuillez recommencer";
             exit;
