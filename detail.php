@@ -3,6 +3,9 @@ session_start();
 require "include/header.php";
 require "include/bd.php";
 
+$item = AfficherInformationItem($_SESSION['idItem'])
+
+#foreach($item as $range)
 ?>
 
 
