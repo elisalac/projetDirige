@@ -24,9 +24,7 @@ function getPdo(){
         $pdo = getPdo();
 
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
-        
-        try {
-            $nul = 'allo';
+        $nul = 'allo';
             $sql = 'CALL ajouterJoueur(?,?,?,?,?,?,?)';
             $stmt= $pdo->prepare($sql);
             $stmt ->bindParam(1,$alias,PDO::PARAM_STR);
@@ -37,6 +35,9 @@ function getPdo(){
             $stmt ->bindParam(6,$hash,PDO::PARAM_STR);
             $stmt ->bindParam(7,$class,PDO::PARAM_STR);
             $stmt->execute();
+        
+        try {
+            
         } catch (Exception $e) {
             echo "Le compte n'a pu être créé, veuillez recommencer";
             exit;
