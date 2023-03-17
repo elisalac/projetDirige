@@ -8,10 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   if ($id !== false) {
     // on récupère les données du membre et on les met dans la session
     $membre = getMembre($id);
-    $_SESSION['pseudo'] = $membre['pseudo'];
-    $_SESSION['id']     = $membre['id'];
-    $_SESSION['nom']    = $membre['nom'];
-    $_SESSION['prenom'] = $membre['prenom'];
+    $_SESSION['pseudo'] = $membre['alias'];
+    $_SESSION['id']     = $membre['idJoueur'];
     header('Location: index.php');
     exit;
   } else {
