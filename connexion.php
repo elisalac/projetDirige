@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+require "include/bd.php";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   $id = membreValide($_POST['pseudo'], $_POST['mdp']);
   $pseudo = $_POST['pseudo'];
