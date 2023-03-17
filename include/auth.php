@@ -4,8 +4,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
   session_start();
 }
 
-if ( empty($_SESSION['nom']) ) {
-  header('Location: login.php');
+if ( empty($_SESSION['id']) ) {
+  header('Location: connexion.php');
 }
 
 ?>
