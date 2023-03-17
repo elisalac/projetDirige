@@ -27,18 +27,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // chiffre le mot de passe
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
+    echo '<script type = "text/javascript">toastr.success("Inscription faite avec succès!")</script>';
   } else {
     $message = "Les champs doivent tous être remplis";
   }
 }
 
 ?>
-
+<html>
+  <head>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+  </head>
+<body>
 <h2>Inscription</h2>
 
   <fieldset>
     <legend>Veuillez remplir tous les champs S.V.P.</legend>
-    <!-- pas la meilleure façon de formater un formulaire -->
     <form action="inscrip.php" method="post">
       <table>
         <tr>

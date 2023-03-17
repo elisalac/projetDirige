@@ -24,15 +24,16 @@ function getPdo(){
         $pdo = getPdo();
 
         $hash = password_hash($mdp, PASSWORD_DEFAULT);
-        $nul = 'null';
+        
         try {
-            $sql = 'CALL ajouterJoueur()';
+            $nul = 'allo';
+            $sql = 'CALL ajouterJoueur(?,?,?,?,?,?,?)';
             $stmt= $pdo->prepare($sql);
             $stmt ->bindParam(1,$alias,PDO::PARAM_STR);
             $stmt ->bindParam(2,$nom,PDO::PARAM_STR);
             $stmt ->bindParam(3,$prenom,PDO::PARAM_STR);
             $stmt ->bindParam(4,$courriel,PDO::PARAM_STR);
-            $stmt ->bindParam(5,$nul,PDO::PARAM_NULL);
+            $stmt ->bindParam(5,$nul,PDO::PARAM_STR);
             $stmt ->bindParam(6,$hash,PDO::PARAM_STR);
             $stmt ->bindParam(7,$class,PDO::PARAM_STR);
             $stmt->execute();
