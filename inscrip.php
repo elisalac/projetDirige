@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 <h2>Inscription</h2>
 
   <fieldset>
-    <legend>Veuillez remplir tous les champs S.V.P.</legend>
+    <legend>Veuillez remplir tous les champs!</legend>
     <form action="inscrip.php" method="post">
       <table>
         <tr>
@@ -83,13 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <tr>
           <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
         </tr>
-        <tr>
-          <td>
-          <p class="message">Déjà un compte? <a href="connexion.php">Connectez-vous</a></p>
-          </td>
-
-        </tr>
-        
+        <p class="message">Déjà un compte? <a href="connexion.php">Connectez-vous</a></p>        
       </table>
     </form>
   </fieldset>

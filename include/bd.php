@@ -41,6 +41,30 @@ function getPdo(){
             exit;
         }
     }
+    function membreValide($pseudo, $mdp) {
+        $pdo = getPdo();
+        try {
+          $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE pseudo = ?";
+          $stmt= $pdo->prepare($sql);
+          $stmt->execute([$pseudo]);
+          $membre = $stmt->fetch();
+      
+          if ($membre && password_verify($mdp, $membre['mdp'])) {
+            return $membre['idJoueur'];
+          } else {
+            return false;
+          }
+        } catch (Exception $e) {
+          echo '<script type = "text/javascript">toastr.error("Compte invalide!")</script>';
+        }
+      }
+      function getMembre($id) {
+        $pdo = getPdo();
+        $sql = "SELECT * FROM Joueurs WHERE idJoueur=$id";
+        $stmt = $pdo->query($sql);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row;
+      }
 
     //Fonctions afficher items index
     //Bouton tous items
