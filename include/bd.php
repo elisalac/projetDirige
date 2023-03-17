@@ -60,7 +60,7 @@ function getPdo(){
       }
       function getMembre($id) {
         $pdo = getPdo();
-        $sql = "SELECT * FROM Joueurs WHERE idJoueur=$id";
+        $sql = "SELECT * FROM Joueurs WHERE idJoueur='$id'";
         $stmt = $pdo->query($sql);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;
