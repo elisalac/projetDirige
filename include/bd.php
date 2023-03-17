@@ -41,19 +41,15 @@ function getPdo(){
             exit;
         }
     }
-    function membreValide($pseudo, $mdp) {
+    function membreValide($pseudo) {
         $pdo = getPdo();
         try {
-          $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE pseudo = ?";
+          $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ?";
           $stmt= $pdo->prepare($sql);
           $stmt->execute([$pseudo]);
-          $membre = $stmt->fetch();
+          return $stmt;
       
-          if ($membre && password_verify($mdp, $membre['mdp'])) {
-            return $membre['idJoueur'];
-          } else {
-            return false;
-          }
+        
         } catch (Exception $e) {
           echo '<script type = "text/javascript">toastr.error("Compte invalide!")</script>';
         }
