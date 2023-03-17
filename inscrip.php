@@ -83,7 +83,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <tr>
           <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
         </tr>
-        <p class="message">Déjà un compte? <a href="connexion.php">Connectez-vous</a></p>
+        <tr>
+          <td>
+          <p class="message">Déjà un compte? <a href="connexion.php">Connectez-vous</a></p>
+          </td>
+
+        </tr>
+        
       </table>
     </form>
   </fieldset>
