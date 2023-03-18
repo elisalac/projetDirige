@@ -18,6 +18,7 @@
             background-color:#fff;
             border-radius:5px;
             box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+            z-index: 2;
             }
 
             .dropdown:hover .dropdown-options {
@@ -44,7 +45,7 @@
             <!--https://www.freecodecamp.org/news/html-drop-down-menu-how-to-add-a-drop-down-list-with-the-select-element/-->
 
             <div class="dropdown">
-                <button style="height:60px; width:60px; border-radius:50%"></button>
+                <button style="height:60px; width:60px; border-radius:50%; border:0px;"></button>
                 <div class="dropdown-options">
                     <?php
                         if(isset($_SESSION['id'])){
@@ -84,6 +85,5 @@
                 echo '</div>';
             }
         ?>
-        
     </header>
 </html>

@@ -14,12 +14,12 @@
     require "include/header.php";
 ?>
 <nav style="background-color:aliceblue; width:100%; padding:20px">
-    <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px;">
+    <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px; z-index:1;">
         <form method="post">
             <input type="submit" value="Tous" name="tous">
         </form>
     </div>
-    <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px;">
+    <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px; z-index:1;">
         <form method="post">
             <select name="filtre">
                 <option value="PrixAsc">Par Prix ↓</option>
