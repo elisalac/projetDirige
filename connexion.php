@@ -1,25 +1,53 @@
 <?php
 session_start();
+
 require "include/bd.php";
+
+$id = "";
+$message = "";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  $id = membreValide($_POST['alias'], $_POST['mdp']);
-  $pseudo = $_POST['alias'];
-  // si les données de connexion sont valides
-  if ($id !== false) {
-    // on récupère les données du membre et on les met dans la session
-    $membre = getMembre($id);
-    $_SESSION['pseudo'] = $membre['alias'];
-    $_SESSION['id']     = $membre['idJoueur'];
-    header('Location: index.php');
-    exit;
-  } else {
+  
+  if(isset($_POST["conne"]))
+  {
+    $mdp = $_POST['mdp'];
+    $alias =trim($_POST['alias']);
+    $id = membreValide($alias);
+    foreach($id as $range)
+    {
+      if(empty($alias))
+        {
+        $message="<h4 style='color:red'><b>Le pseudonyme est vide!</b></h4>";
+        break;
+        }
+        if($range['flagEmail']==0)
+        {
+          $message="<h4 style='color:red'><b>Votre compte n'est pas vérifier</b></h4>";
+        }
+        else if(password_verify($mdp,$range['mdp']))
+        {
+          $_SESSION["alias"]=$alias;
+          $_SESSION["usagerValide"]=true;
+          $_SESSION['id']=$range['idJoueur'];
+          $_SESSION['motDePasse']=$mdp;
+          echo $_SESSION['id'];
+          header('Location:index.php');
+        }
+        else
+        {
+          $message="<h4 style='color:red'><b>Données de connexion invalides!</b></h4>";
+        }
+    }
+  }
+   else {
     $message = "Données de connexion invalides";
   }
 }
 ?>
 
 <h2>Connexion à Darquest</h2>
-
+<?php
+ echo $message; 
+?>
 <fieldset>
   <legend>Veuillez vous identifer</legend>
   <form action="connexion.php" method="post">
@@ -33,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <td><input type="password" name="mdp" required></td>
       </tr>
       <tr>
-        <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
+        <td colspan="2" style="text-align: center;"><input type="submit" value="Valider" name="conne"></td>
       </tr>
     </table>
   </form>
