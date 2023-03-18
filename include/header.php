@@ -18,6 +18,7 @@
             background-color:#fff;
             border-radius:5px;
             box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+            z-index: 2;
             }
 
             .dropdown:hover .dropdown-options {
