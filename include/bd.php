@@ -70,6 +70,22 @@ function AfficherTousItems()
 {
     //Aller chercher tout les items dans la base de donnée
     $pdo = getPdo();
+    $stmt = $pdo->query('SELECT * FROM Items i INNER JOIN Inventaire  inv ON i.idItem = inv.idItem ORDER BY typeItem');
+    echo $_FILES['imageFichier']['name'];
+    while ($row = $stmt->fetch()){
+        echo '<article>';
+        echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItem=' . $row['idItem'] . '">';
+        echo '<img src="images/' . $row['image'] . '" style="max-width: 200px; max-height: 150px;">';
+        echo '<p>' . $row['nom'] . '</p>';
+        $nbEtoile = MoyenneEtoiles();
+        for(int i = 0; i < $nbEtoile; i++){
+            echo '<img src="images/etoile.png" style="">';
+        }
+        echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
+        echo '<p> Nombre en inventaire: ' . $row['qteInventaire'] . '</p>';
+        echo '<button>'
+        echo '</a>';
+    }
 }
 
 //Liste déroulante filtre
