@@ -64,140 +64,30 @@ function getMembre($id)
     return $row;
 }
 
-//Fonctions afficher items index
-//Bouton tous items
-function AfficherTousItems()
-{
-    //Aller chercher tout les items dans la base de donnée
-    $pdo = getPdo();
-    $stmt = $pdo->query('SELECT * FROM Items i INNER JOIN Inventaire  inv ON i.idItem = inv.idItem ORDER BY typeItem');
-    echo $_FILES['imageFichier']['name'];
-    while ($row = $stmt->fetch()){
+function AfficherItems($statement){
+    while ($row = $statement->fetch()){
+        echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItem=' . $row['idItems'] . '">';
         echo '<article>';
-        echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItem=' . $row['idItem'] . '">';
         echo '<img src="images/' . $row['image'] . '" style="max-width: 200px; max-height: 150px;">';
         echo '<p>' . $row['nom'] . '</p>';
-        $nbEtoile = MoyenneEtoiles();
-        for(int i = 0; i < $nbEtoile; i++){
-            echo '<img src="images/etoile.png" style="">';
-        }
+        //$nbEtoile = MoyenneEtoiles();
+        //for($i = 0; $i < 4; $i++){
+        //    echo '<img src="images/etoile.png" style="">';
+        //}
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
         echo '<p> Nombre en inventaire: ' . $row['qteInventaire'] . '</p>';
-        echo '<button>'
+        echo '<form method="post">';
+        echo '<input type="submit" value="Acheter" name="acheterButton">';
+        echo '</form>';
+        echo '<form method="post">';
+        echo '<input type="submit" value="Vendre" name="vendreButton">';
+        echo '</form>';
+        echo '<p> Prix: ' . $row['prixUnitaire'] . '$</p>';
+        echo '<p>Poids: ' .$row['poids'] . '</p>';
+        echo '</article>';
         echo '</a>';
     }
 }
-
-//Liste déroulante filtre
-function AfficherParPrixAsc()
-{
-    $pdo = getPdo();
-}
-
-function AfficherParPrixDesc()
-{
-    $pdo = getPdo();
-}
-
-function AfficherParPoidsAsc()
-{
-    $pdo = getPdo();
-}
-
-function AfficherParPoidsDesc()
-{
-    $pdo = getPdo();
-}
-
-//Checkbox type items
-//1 type
-function AfficherParArmes()
-{
-    //Aller chercher tout les items de type armes dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmures()
-{
-    //Aller chercher tout les items de type armures dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParPotions()
-{
-    //Aller chercher tout les items de type potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParSorts()
-{
-    //Aller chercher tout les items de type sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-//2 types
-function AfficherParArmesArmures()
-{
-    //Aller chercher tout les items de types armes et armures dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesPotions()
-{
-    //Aller chercher tout les items de types armes et potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesSorts()
-{
-    //Aller chercher tout les items de types armes et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmuresPotions()
-{
-    //Aller chercher tout les items de types armures et potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmuresSorts()
-{
-    //Aller chercher tout les items de types armures et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParPotionsSorts()
-{
-    //Aller chercher tout les items de types potions et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-//3 types
-function AfficherParArmesArmuresPotions()
-{
-    //Aller chercher tout les items de types armes, armures et potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesArmuresSorts()
-{
-    //Aller chercher tout les items de types armes, armures et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesPotionsSorts()
-{
-    //Aller chercher tout les items de type armes, potions et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmuresPotionsSorts()
-{
-    //Aller chercher tout les items de type armures, potions et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-
 
 function AfficherInformationItem($idItem)
 {
