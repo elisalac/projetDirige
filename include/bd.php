@@ -198,13 +198,27 @@ function AfficherParArmuresPotionsSorts()
 }
 
 
-
-function AfficherInformationItem($idItem)
+function VerifierIdPourtypeItem($idItem)
 {
-    //Faire comme gestimages
-    $pdo = getPdo();
-    $sql = "SELECT * FROM Items WHERE idItem = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$idItem]);
-    return $stmt;
+
 }
+
+function AfficherDetailArme()
+{
+
+}
+
+function AfficherDetailSort()
+{
+
+}
+function AfficherDetailPotion()
+{
+
+}
+function AfficherDetailArmures()
+{
+
+}
+
+
