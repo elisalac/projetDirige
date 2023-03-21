@@ -207,22 +207,79 @@ function VerifierIdPourtypeItem($idItem)
     return $stmt;
 }
 
-function AfficherDetailArme()
+function AfficherDetailArme($idItem)
 {
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Armes WHERE idImage = ?";
+    if(VerifierIdPourtypeItem($idItem) == 'A')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
 
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Efficacité de l'arme: ". $row['efficacité'] . "<br>" ."<br>";
+            echo "Description de l'arme: ". $row['description'] . "<br>" ."<br>";
+            echo "Genre de l'arme: ". $row['genre'] . "<br>" ."<br>";
+        }
+    }
 }
 
-function AfficherDetailSort()
+function AfficherDetailArmures($idItem)
 {
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Armures WHERE idImage = ?";
+    if(VerifierIdPourtypeItem($idItem) == 'R')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
 
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Taille de l'arme: ". $row['taille'] . "<br>" ."<br>";
+            echo "Matiere de l'arme: ". $row['matiere'] . "<br>" ."<br>";
+        }
+    }
 }
-function AfficherDetailPotion()
+function AfficherDetailPotion($idItem)
 {
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Potions WHERE idImage = ?";
+    if(VerifierIdPourtypeItem($idItem) == 'P')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
 
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Effet attendu: ". $row['effetAttenu'] . "<br>" ."<br>";
+            echo "Durée de l'effet: ". $row['durée'] . "<br>" ."<br>";
+        }
+    }
 }
-function AfficherDetailArmures()
+function AfficherDetailSorts($idItem)
 {
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Sorts WHERE idImage = ?";
+    if(VerifierIdPourtypeItem($idItem) == 'S')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
 
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "est Instantané: ". $row['estInstantané'] . "<br>" ."<br>";
+            echo "Point de dégats: ". $row['nombreDégatss'] . "<br>" ."<br>";
+        }
+    }
 }
 
 
