@@ -200,7 +200,11 @@ function AfficherParArmuresPotionsSorts()
 
 function VerifierIdPourtypeItem($idItem)
 {
-
+    // Aller chercher à l'aide du ID 
+    $pdo = getPdo();
+    $sql = "SELECT typeItem from Items WHERE idItems = ?";
+    $stmt = $pdo->query($sql);
+    return $stmt;
 }
 
 function AfficherDetailArme()
