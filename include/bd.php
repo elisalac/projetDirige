@@ -75,15 +75,25 @@ function AfficherItems($statement){
         //    echo '<img src="images/etoile.png" style="">';
         //}
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
-        echo '<p> Nombre en inventaire: ' . $row['qteInventaire'] . '</p>';
+        if(isset($_SESSION['id'])){
+            echo '<p> Nombre en inventaire: ' . $row['qteInventaire'] . '</p>';
+        }
+        echo '<div class="containerButton">';
+        echo '<div class="acheterContainerButton">';
         echo '<form method="post">';
         echo '<input type="submit" value="Acheter" name="acheterButton">';
         echo '</form>';
-        echo '<form method="post">';
-        echo '<input type="submit" value="Vendre" name="vendreButton">';
-        echo '</form>';
+        echo '</div>';
+        if($row['qteInventaire'] != 0){
+            echo '<div class="vendreContainerButton">';
+            echo '<form method="post">';
+            echo '<input type="submit" value="Vendre" name="vendreButton">';
+            echo '</form>';
+            echo '</div>';
+        }
+        echo '</div>';
         echo '<p> Prix: ' . $row['prixUnitaire'] . '$</p>';
-        echo '<p>Poids: ' .$row['poids'] . '</p>';
+        //echo '<p>Poids: ' .$row['poids'] . '</p>';
         echo '</article>';
         echo '</a>';
     }

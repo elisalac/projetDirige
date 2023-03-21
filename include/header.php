@@ -58,15 +58,15 @@
                 </div>
             </div>
         </div>
-        <div id="buttonRecherche" style="position:absolute; left:700px; top:25px;">
-            <form action="index.php" method="post">
-                <input type="submit" value="Recherche" name="rechercheButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
-            </form> 
-        </div>
         <?php
             if(isset($_SESSION['id'])){
                 
-                echo '<div id="buttonInv" style="position:absolute; left:900px; top:25px;">
+                echo '<div id="buttonRecherche" style="position:absolute; left:700px; top:25px;">
+                        <form action="index.php" method="post">
+                            <input type="submit" value="Recherche" name="rechercheButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
+                        </form> 
+                    </div>
+                    <div id="buttonInv" style="position:absolute; left:900px; top:25px;">
                         <form action="inventaire.php" method="post">
                             <input type="submit" value="Inventaire" name="inventaireButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
                         </form>
@@ -80,6 +80,13 @@
                         <form action="banque.php" method="post">
                             <input type="submit" value="Banque" name="BanqueButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
                         </form>
+                    </div>';
+            }
+            else{
+                echo '<div id="buttonRecherche" style="position:absolute; left:1300px; top:25px;">
+                        <form action="index.php" method="post">
+                            <input type="submit" value="Recherche" name="rechercheButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
+                        </form> 
                     </div>';
             }
         ?>
