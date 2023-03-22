@@ -17,12 +17,12 @@
 
             .listeItemGrid{
                 display: inline-grid;
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: repeat(5, 1fr);
                 grid-auto-rows: 1fr;
                 grid-column-gap: 15px;
                 grid-row-gap: 5px;
                 max-width: 500px;
-                margin-left:3%;
+                margin-left:15px;
                 margin-top: 15px;
             }
 
