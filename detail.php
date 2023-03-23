@@ -2,7 +2,7 @@
 session_start();
 require "include/header.php";
 require "include/bd.php";
-header('Location: http://167.114.152.54/~darquest2/detail.php?idItems=' . $_POST['idItems']);
+
 
 // faire une verification de c'est quelle item avant de pouvoir essayer c'est quoi mettre la fonctionm qui verifie ele id
 
