@@ -378,7 +378,7 @@
                     }
                     $statement= getPdo()->query($sql);
                 }
-                AfficherTousItems($statement);
+                AfficherItems($statement);
         ?>
     </body>
 </html>

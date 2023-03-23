@@ -66,7 +66,7 @@ function getMembre($id)
 
 //Fonctions afficher items index
 //Bouton tous items
-function AfficherTousItems($statement)
+function AfficherItems($statement)
 {
     //Aller chercher tout les items dans la base de donnée
     //echo $_FILES['imageFichier']['name'];
