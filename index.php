@@ -374,8 +374,8 @@
                             }
                         }
                     }
-                    $statement= getPdo()->query($sql);
                 }
+                $statement= getPdo()->query($sql);
                 AfficherItems($statement);
             ?>
         </div>
