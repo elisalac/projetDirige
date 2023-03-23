@@ -106,7 +106,7 @@
         <div class="listeItemGrid">
             <?php
                 
-                $statement= getPdo()->query('SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ORDER BY typeItem');
+                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ORDER BY typeItem';
                 if($_SERVER['REQUEST_METHOD'] == "POST"){
                     
                     //Bouton tous items
