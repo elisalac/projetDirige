@@ -104,121 +104,16 @@ function AfficherItems($statement)
     }
 }
 
-<<<<<<< HEAD
 function AfficherInformationItem($idItem)
-=======
-//Liste déroulante filtre
-function AfficherParPrixAsc()
 {
+    // Aller chercher à l'aide du ID 
     $pdo = getPdo();
+    $sql = "SELECT typeItem from Items WHERE idItems = ?";
+    $stmt = $pdo->query($sql);
+    return $stmt;
 }
-
-function AfficherParPrixDesc()
-{
-    $pdo = getPdo();
-}
-
-function AfficherParPoidsAsc()
-{
-    $pdo = getPdo();
-}
-
-function AfficherParPoidsDesc()
-{
-    $pdo = getPdo();
-}
-
-//Checkbox type items
-//1 type
-function AfficherParArmes()
-{
-    //Aller chercher tout les items de type armes dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmures()
-{
-    //Aller chercher tout les items de type armures dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParPotions()
-{
-    //Aller chercher tout les items de type potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParSorts()
-{
-    //Aller chercher tout les items de type sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-//2 types
-function AfficherParArmesArmures()
-{
-    //Aller chercher tout les items de types armes et armures dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesPotions()
-{
-    //Aller chercher tout les items de types armes et potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesSorts()
-{
-    //Aller chercher tout les items de types armes et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmuresPotions()
-{
-    //Aller chercher tout les items de types armures et potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmuresSorts()
-{
-    //Aller chercher tout les items de types armures et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParPotionsSorts()
-{
-    //Aller chercher tout les items de types potions et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-//3 types
-function AfficherParArmesArmuresPotions()
-{
-    //Aller chercher tout les items de types armes, armures et potions dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesArmuresSorts()
-{
-    //Aller chercher tout les items de types armes, armures et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmesPotionsSorts()
-{
-    //Aller chercher tout les items de type armes, potions et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
-function AfficherParArmuresPotionsSorts()
-{
-    //Aller chercher tout les items de type armures, potions et sorts dans la base de donnée
-    $pdo = getPdo();
-}
-
 
 function VerifierIdPourtypeItem($idItem)
->>>>>>> detail
 {
     // Aller chercher à l'aide du ID 
     $pdo = getPdo();
@@ -301,5 +196,6 @@ function AfficherDetailSorts($idItem)
         }
     }
 }
+
 
 
