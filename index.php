@@ -81,10 +81,8 @@
                     <option value="PoidsAsc">Par Poids ↓</option>
                     <option value="PoidsDesc">Par Poids ↑</option>
                 </select>
-            </form>
         </div>
         <div style="display:inline-block; padding-left:10px; padding-right:10px; color:white;">
-            <form method="post">
                 <label style="text-decoration:underline; font-size:20px;">Types</label>
                 <br>
                 <label for="checkboxArmes">Armes</label>
@@ -379,6 +377,7 @@
                     $statement= getPdo()->query($sql);
                 }
                 AfficherItems($statement);
-        ?>
+            ?>
+        </div>
     </body>
 </html>

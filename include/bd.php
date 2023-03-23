@@ -71,11 +71,12 @@ function AfficherItems($statement)
     //Aller chercher tout les items dans la base de donnée
     //echo $_FILES['imageFichier']['name'];
     while ($row = $statement->fetch()){
+        echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItem=' . $row['idItems'] . '">';
         echo '<article>';
-        echo '<img src="images/' . $row['image'] . '" style="width: 200px; height: 150px;">';
+        echo '<img src="images/' . $row['image'] . '" style="max-width: 200px; max-height: 150px;">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
-        //for(int i = 0; i < $nbEtoile; i++){
+        //for($i = 0; $i < 4; $i++){
         //    echo '<img src="images/etoile.png" style="">';
         //}
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
