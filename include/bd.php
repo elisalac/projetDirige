@@ -71,9 +71,9 @@ function AfficherItems($statement)
     //Aller chercher tout les items dans la base de donnée
     //echo $_FILES['imageFichier']['name'];
     while ($row = $statement->fetch()){
-        echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItem=' . $row['idItems'] . '">';
+        echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
         echo '<article>';
-        echo '<img src="images/' . $row['image'] . '" style="max-width: 200px; max-height: 150px;">';
+        echo '<img src="images/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
         //for($i = 0; $i < 4; $i++){
@@ -89,7 +89,7 @@ function AfficherItems($statement)
         echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
         echo '</form>';
         echo '</div>';
-        if($row['qteInventaire'] != 0){
+        if($row['qteInventaire'] != 0 && isset($_SESSION['id'])){
             echo '<div class="vendreContainerButton">';
             echo '<form method="post">';
             echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
@@ -97,7 +97,7 @@ function AfficherItems($statement)
             echo '</div>';
         }
         echo '</div>';
-        echo '<p> Prix: ' . $row['prixUnitaire'] . '$</p>';
+        echo '<p> Prix: ' . $row['prixUnitaire'] . ' Or</p>';
         //echo '<p>Poids: ' .$row['poids'] . '</p>';
         echo '</article>';
         echo '</a>';
