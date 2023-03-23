@@ -3,7 +3,7 @@ session_start();
 require "include/header.php";
 require "include/bd.php";
 
-$item = ($_SESSION['idItem']) // faire une verification de c'est quelle item avant de pouvoir essayer c'est quoi mettre la fonctionm qui verifie ele id
+// faire une verification de c'est quelle item avant de pouvoir essayer c'est quoi mettre la fonctionm qui verifie ele id
 
 #foreach($item as $range)
 ?>
@@ -20,7 +20,7 @@ $item = ($_SESSION['idItem']) // faire une verification de c'est quelle item ava
 </head>
 
 <body>
-
+<p>Allo</p>
 </body>
 
 </html>
