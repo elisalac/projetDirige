@@ -66,7 +66,10 @@ function getMembre($id)
 
 //Fonctions afficher items index
 //Bouton tous items
-function AfficherItems($statement){
+function AfficherItems($statement)
+{
+    //Aller chercher tout les items dans la base de donnée
+    //echo $_FILES['imageFichier']['name'];
     while ($row = $statement->fetch()){
         echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItem=' . $row['idItems'] . '">';
         echo '<article>';
