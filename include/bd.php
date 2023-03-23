@@ -64,6 +64,8 @@ function getMembre($id)
     return $row;
 }
 
+//Fonctions afficher items index
+//Bouton tous items
 function AfficherItems($statement){
     while ($row = $statement->fetch()){
         echo '<a href="http://http://167.114.152.54/~darquest2/detail.php?idItem=' . $row['idItems'] . '">';
@@ -81,13 +83,13 @@ function AfficherItems($statement){
         echo '<div class="containerButton">';
         echo '<div class="acheterContainerButton">';
         echo '<form method="post">';
-        echo '<input type="submit" value="Acheter" name="acheterButton">';
+        echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
         echo '</form>';
         echo '</div>';
         if($row['qteInventaire'] != 0){
             echo '<div class="vendreContainerButton">';
             echo '<form method="post">';
-            echo '<input type="submit" value="Vendre" name="vendreButton">';
+            echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
             echo '</form>';
             echo '</div>';
         }
