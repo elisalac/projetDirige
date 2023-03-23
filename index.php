@@ -47,7 +47,8 @@
 
             p{
                 color:white;
-                margin:25px;
+                margin:20px;
+                font-size: 20px;
             }
 
             .containerButton{
@@ -66,15 +67,15 @@
     <?php
         require "include/header.php";
     ?>
-    <nav style="background-color:#302f3f; width:100%; padding:20px">
-        <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px; z-index:1;">
+    <nav style="background-color:#302f3f; width:98.6%; padding:20px; padding-right:0px;">
+        <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px; z-index:1;">
             <form method="post">
-                <input type="submit" value="Tous" name="tous">
+                <input type="submit" value="Tous" name="tous" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
             </form>
         </div>
-        <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:40px; z-index:1;">
+        <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px; z-index:1;">
             <form method="post">
-                <select name="filtre" style="margin-bottom:5px">
+                <select name="filtre" style="margin-bottom:5px; width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
                     <option value="PrixAsc">Par Prix ↓</option>
                     <option value="PrixDesc">Par Prix ↑</option>
                     <option value="PoidsAsc">Par Poids ↓</option>
@@ -95,10 +96,11 @@
                 <br>
                 <label for="checkboxSorts">Sorts</label>
                 <input type="checkbox" id="checkboxSorts" name="checkboxSorts">
-                <br>
-                <input type="submit" value="Appliquer" style="margin-top:5px">
-            </form>
-        </div>
+          </div> 
+            <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px;"> 
+                <input type="submit" value="Appliquer" style="margin-top:5px; width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">  
+            </div>
+        </form>
     </nav>
     <body>
         <div class="listeItemGrid">
@@ -127,6 +129,7 @@
                             $sql = 'SELECT * FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ORDER BY poids DESC';
                         }
                     }
+
                     //Checkbox type items
                     //1 type
                     if(isset($_POST['checkboxArmes'])){
