@@ -58,9 +58,16 @@ if($type === 'A')
     }
     
 }
-if($typeItem === 'R')
+if($type === 'R')
 {
     $detailArmure =  AfficherDetailArmures($idItem);
+    while($infoArmure = $detailArmure->fetch())
+    {
+       // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Taille de l'arme: ". $infoArmure['taille'] . "<br>" ."<br>";
+            echo "Matiere de l'arme: ". $infoArmure['matiere'] . "<br>" ."<br>";
+    }
     
 }
 if($typeItem === 'P')
