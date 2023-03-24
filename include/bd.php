@@ -113,6 +113,7 @@ function AfficherInformationItem($idItem)
     $pdo = getPdo();
     $sql = "SELECT typeItem from Items WHERE idItems = ?";
     $stmt = $pdo->query($sql);
+    $stmt->execute([$idItem]);
     return $stmt;
 }
 
@@ -122,6 +123,7 @@ function VerifierIdPourtypeItem($idItem)
     $pdo = getPdo();
     $sql = "SELECT typeItem from Items WHERE idItems = ?";
     $stmt = $pdo->query($sql);
+    $stmt->execute([$idItem]);
     return $stmt;
 }
 
