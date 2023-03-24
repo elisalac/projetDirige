@@ -64,15 +64,17 @@ function getMembre($id)
     return $row;
 }
 
+function MoyenneEtoiles($idItem){
+
+}
+
 //Fonctions afficher items index
-//Bouton tous items
 function AfficherItems($statement)
 {
     //Aller chercher tout les items dans la base de donnée
-    //echo $_FILES['imageFichier']['name'];
     while ($row = $statement->fetch()){
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
-        if(VerifierIdPourtypeItem($row['idItems']) == 'S'){
+        if($row['typeItem'] == 'S'){
             echo '<article style = "border: solid lightgreen 1px;
             padding: 0.5em;
             margin-bottom: 20px;
@@ -87,11 +89,11 @@ function AfficherItems($statement)
             height:450px;
             width: 250px;">';
         }
-        echo '<img src="images/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
+        echo '<img src="images/items/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
         //for($i = 0; $i < 4; $i++){
-        //    echo '<img src="images/etoile.png" style="">';
+        //    echo '<img src="images/etoiles/" style="">';
         //}
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
         if(isset($_SESSION['id'])){
@@ -134,34 +136,75 @@ function AfficherDetailArme($idItem)
 {
     $pdo = getPdo();
     $sql = "SELECT * FROM Armes WHERE idImage = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$idItem]);
-    return $stmt;
+    if(VerifierIdPourtypeItem($idItem) == 'A')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
+
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Efficacité de l'arme: ". $row['efficacité'] . "<br>" ."<br>";
+            echo "Description de l'arme: ". $row['description'] . "<br>" ."<br>";
+            echo "Genre de l'arme: ". $row['genre'] . "<br>" ."<br>";
+        }
+    }
 }
 
 function AfficherDetailArmures($idItem)
 {
     $pdo = getPdo();
     $sql = "SELECT * FROM Armures WHERE idImage = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$idItem]);
-    return $stmt;
+    if(VerifierIdPourtypeItem($idItem) == 'R')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
+
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Taille de l'arme: ". $row['taille'] . "<br>" ."<br>";
+            echo "Matiere de l'arme: ". $row['matiere'] . "<br>" ."<br>";
+        }
+    }
 }
 function AfficherDetailPotion($idItem)
 {
     $pdo = getPdo();
     $sql = "SELECT * FROM Potions WHERE idImage = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$idItem]);
-    return $stmt;
+    if(VerifierIdPourtypeItem($idItem) == 'P')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
+
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Effet attendu: ". $row['effetAttenu'] . "<br>" ."<br>";
+            echo "Durée de l'effet: ". $row['durée'] . "<br>" ."<br>";
+        }
+    }
 }
 function AfficherDetailSorts($idItem)
 {
     $pdo = getPdo();
     $sql = "SELECT * FROM Sorts WHERE idImage = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$idItem]);
-    return $stmt;
+    if(VerifierIdPourtypeItem($idItem) == 'S')
+    {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
+
+        while($row = $stmt->fetch(PDO::FETCH_BOTH))
+        {
+            // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "est Instantané: ". $row['estInstantané'] . "<br>" ."<br>";
+            echo "Point de dégats: ". $row['nombreDégatss'] . "<br>" ."<br>";
+        }
+    }
 }
 
 
