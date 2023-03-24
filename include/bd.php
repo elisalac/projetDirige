@@ -64,15 +64,17 @@ function getMembre($id)
     return $row;
 }
 
+function MoyenneEtoiles($idItem){
+
+}
+
 //Fonctions afficher items index
-//Bouton tous items
 function AfficherItems($statement)
 {
     //Aller chercher tout les items dans la base de donnée
-    //echo $_FILES['imageFichier']['name'];
     while ($row = $statement->fetch()){
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
-        if(VerifierIdPourtypeItem($row['idItems']) == 'S'){
+        if($row['typeItem'] == 'S'){
             echo '<article style = "border: solid lightgreen 1px;
             padding: 0.5em;
             margin-bottom: 20px;
@@ -87,11 +89,11 @@ function AfficherItems($statement)
             height:450px;
             width: 250px;">';
         }
-        echo '<img src="images/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
+        echo '<img src="images/items/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
         //for($i = 0; $i < 4; $i++){
-        //    echo '<img src="images/etoile.png" style="">';
+        //    echo '<img src="images/etoiles/" style="">';
         //}
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
         if(isset($_SESSION['id'])){
