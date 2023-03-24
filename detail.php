@@ -28,7 +28,8 @@ $_SESSION['idItems'] = $idItem;
 
 
 <?php
-
+/// Faire comme gestimage pour afficher les info de la table Items pour qu'il fusionne avec les info des items
+// précis faire un inner join
 
 $typeItem = VerifierIdPourtypeItem($idItem);
 $type = "";
@@ -72,12 +73,26 @@ if($type === 'R')
 }
 if($typeItem === 'P')
 {
-    $detalPotion = AfficherDetailPotion($idItem);
+    $detailPotion = AfficherDetailPotion($idItem);
+    while($infoPotion = $detailPotion->fetch())
+    {
+        // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "Effet attendu: ". $infoPotion['effetAttenu'] . "<br>" ."<br>";
+            echo "Durée de l'effet: ". $infoPotion['durée'] . "<br>" ."<br>";
+    }
     
 }
 if($typeItem === 'S')
 {
     $detailSort = AfficherDetailSorts($idItem);
+    while($infoSort = $detailSort->fetch())
+    {
+        // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+            echo "est Instantané: ". $infoSort['estInstantané'] . "<br>" ."<br>";
+            echo "Point de dégats: ". $infoSort['nombreDégatss'] . "<br>" ."<br>";
+    }
     
 }
 
