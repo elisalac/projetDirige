@@ -72,9 +72,22 @@ function AfficherItems($statement)
     //echo $_FILES['imageFichier']['name'];
     while ($row = $statement->fetch()){
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
-        echo '<article>';
+        if(VerifierIdPourtypeItem($row['idItems']) == 'S'){
+            echo '<article style = "border: solid lightgreen 1px;
+            padding: 0.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            height:450px;
+            width: 250px;">';
+        } else{
+            echo '<article style="border: solid white 1px;
+            padding: 0.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            height:450px;
+            width: 250px;">';
+        }
         echo '<img src="images/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
-        echo '<p>' . $row['idItems'] . '</p>';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
         //for($i = 0; $i < 4; $i++){

@@ -26,15 +26,6 @@
                 margin-top: 15px;
             }
 
-            article{
-                border: solid white 1px;
-                padding: 0.5em;
-                margin-bottom: 20px;
-                text-align: center;
-                height:450px;
-                width: 250px;
-            }
-
             a{
                 color:white;
                 font-size: 25px;
@@ -105,7 +96,6 @@
     <body>
         <div class="listeItemGrid">
             <?php
-                
                 $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ORDER BY typeItem';
                 if($_SERVER['REQUEST_METHOD'] == "POST"){
                     
