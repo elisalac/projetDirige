@@ -51,7 +51,6 @@ if($type === 'A')
     {
         // Quand on va avoir fait un folder_image il faudrat afficher les images 
             // le  nom de l'item
-
             echo "ALLOOOOOOOO";
             echo "Efficacité de l'arme: ". $infoArme['efficacité'] . "<br>" ."<br>";
             echo "Description de l'arme: ". $infoArme['description'] . "<br>" ."<br>";
@@ -59,17 +58,17 @@ if($type === 'A')
     }
     
 }
-if($typeItem == 'R')
+if($typeItem === 'R')
 {
     $detailArmure =  AfficherDetailArmures($idItem);
     
 }
-if($typeItem == 'P')
+if($typeItem === 'P')
 {
     $detalPotion = AfficherDetailPotion($idItem);
     
 }
-if($typeItem == 'S')
+if($typeItem === 'S')
 {
     $detailSort = AfficherDetailSorts($idItem);
     
