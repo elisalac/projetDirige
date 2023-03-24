@@ -120,22 +120,12 @@ function AfficherItems($statement)
     }
 }
 
-function AfficherInformationItem($idItem)
-{
-    // Aller chercher à l'aide du ID 
-    $pdo = getPdo();
-    $sql = "SELECT typeItem from Items WHERE idItems = ?";
-    $stmt = $pdo->query($sql);
-    $stmt->execute([$idItem]);
-    return $stmt;
-}
-
 function VerifierIdPourtypeItem($idItem)
 {
     // Aller chercher à l'aide du ID 
     $pdo = getPdo();
     $sql = "SELECT typeItem from Items WHERE idItems = ?";
-    $stmt = $pdo->query($sql);
+    $stmt = $pdo->prepare($sql);
     $stmt->execute([$idItem]);
     return $stmt;
 }
