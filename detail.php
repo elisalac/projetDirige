@@ -31,29 +31,48 @@ $_SESSION['idItems'] = $idItem;
 
 
 $typeItem = VerifierIdPourtypeItem($idItem);
+$type = "";
 while($range = $typeItem->fetch())
 {
     echo $range['typeItem'] . "<br>";
+    $type = $range['typeItem'];
    # echo "<p>ALLO</p>";
 }
 
-if($typeItem == 'A')
+
+
+echo "".$type."";
+
+if($type === 'A')
 {
+    
     $detailArme =  AfficherDetailArme($idItem);
-    echo "<p>ALLO</p>";
+    while($infoArme = $detailArme->fetch())
+    {
+        // Quand on va avoir fait un folder_image il faudrat afficher les images 
+            // le  nom de l'item
+
+            echo "ALLOOOOOOOO";
+            echo "Efficacité de l'arme: ". $infoArme['efficacité'] . "<br>" ."<br>";
+            echo "Description de l'arme: ". $infoArme['description'] . "<br>" ."<br>";
+            echo "Genre de l'arme: ". $infoArme['genre'] . "<br>" ."<br>";
+    }
+    
 }
 if($typeItem == 'R')
 {
-    $detailArmure =  AfficherDetailArme($idItem);
-    AfficherDetailArmures($idItem);
+    $detailArmure =  AfficherDetailArmures($idItem);
+    
 }
 if($typeItem == 'P')
 {
-    AfficherDetailPotion($idItem);
+    $detalPotion = AfficherDetailPotion($idItem);
+    
 }
 if($typeItem == 'S')
 {
-    AfficherDetailSorts($idItem);
+    $detailSort = AfficherDetailSorts($idItem);
+    
 }
 
 ?>

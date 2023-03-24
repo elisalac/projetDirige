@@ -133,7 +133,7 @@ function VerifierIdPourtypeItem($idItem)
 function AfficherDetailArme($idItem)
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Armes WHERE idImage = ?";
+    $sql = "SELECT * FROM Armes WHERE idItem = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idItem]);
     return $stmt;
@@ -142,7 +142,7 @@ function AfficherDetailArme($idItem)
 function AfficherDetailArmures($idItem)
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Armures WHERE idImage = ?";
+    $sql = "SELECT * FROM Armures WHERE idItem = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idItem]);
     return $stmt;
@@ -150,7 +150,7 @@ function AfficherDetailArmures($idItem)
 function AfficherDetailPotion($idItem)
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Potions WHERE idImage = ?";
+    $sql = "SELECT * FROM Potions WHERE idItem = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idItem]);
     return $stmt;
@@ -158,7 +158,7 @@ function AfficherDetailPotion($idItem)
 function AfficherDetailSorts($idItem)
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Sorts WHERE idImage = ?";
+    $sql = "SELECT * FROM Sorts WHERE idItem = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idItem]);
     return $stmt;
