@@ -207,5 +207,14 @@ function AfficherDetailSorts($idItem)
     }
 }
 
+function GetPanierJoueur($idjoueur)
+{
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Panier where idJoueur=?";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$idjoueur]);
+    return $stmt;
+}
+
 
 
