@@ -89,7 +89,7 @@ function AfficherItems($statement)
             height:450px;
             width: 250px;">';
         }
-        echo '<img src="images/items/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
+        echo '<img src="images/Items/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
         //for($i = 0; $i < 4; $i++){
