@@ -53,7 +53,7 @@ while($row = $infoItem->fetch())
     echo "<br>";
     echo "<img src='images/Items/". $row['image'] ."' width='200' height='150'>";
     echo "<br>";
-    echo " Poids en livres : ". $row['poids'] . "";
+    echo " Poids: ". $row['poids'] . " lbs";
     echo "</div>";
 }
 
@@ -76,8 +76,8 @@ if($type === 'R')
     $detailArmure =  AfficherDetailArmures($idItem);
     while($infoArmure = $detailArmure->fetch())
     {
-            echo "Taille de l'arme: ". $infoArmure['taille'] . "<br>" ."<br>";
-            echo "Matiere de l'arme: ". $infoArmure['matiere'] . "<br>" ."<br>";
+            echo "Taille de l'armure: ". $infoArmure['taille'] . "<br>" ."<br>";
+            echo "Matiere de l'armure: ". $infoArmure['matiere'] . "<br>" ."<br>";
     }
     
 }
