@@ -126,11 +126,20 @@ function AfficherItems($statement)
         }
         echo '<div class="containerButton">';
         if(isset($_SESSION['id'])){
-            echo '<div class="acheterContainerButton">';
-            echo '<form method="post">';
-            echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
-            echo '</form>';
-            echo '</div>';
+            if($row['typeItem'] == 'A' || $row['typeItem'] == 'R' || $row['typeItem'] == 'P'){
+                echo '<div class="acheterContainerButton">';
+                echo '<form method="post">';
+                echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '</form>';
+                echo '</div>';
+            }
+            if($row['typeItem'] == 'S' && VerifierTypeJoueur($_SESSION['id']) == 'M'){
+                echo '<div class="acheterContainerButton">';
+                echo '<form method="post">';
+                echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '</form>';
+                echo '</div>';
+            }
         }
         //if($row['qteInventaire'] != 0 && isset($_SESSION['id'])){
         //    echo '<div class="vendreContainerButton">';
@@ -146,6 +155,16 @@ function AfficherItems($statement)
     }
 }
 
+function VerifierTypeJoueur($idJoueur){
+    $pdo = getPdo();
+    $sql = "SELECT typeJoueur FROM Joueurs WHERE idJoueur = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idJoueur]);
+    while ($row = $stmt->fetch()){
+        return $row['typeJoueur'];
+    }
+}
+
 function VerifierIdPourtypeItem($idItem)
 {
     // Aller chercher à l'aide du ID 
@@ -153,7 +172,9 @@ function VerifierIdPourtypeItem($idItem)
     $sql = "SELECT typeItem from Items WHERE idItems = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idItem]);
-    return $stmt;
+    while ($row = $stmt->fetch()){
+        return $row['typeItem'];
+    }
 }
 
 function AfficherDetailArme($idItem)

@@ -47,8 +47,8 @@
                 <div class="dropdown-options">
                     <?php
                         if(isset($_SESSION['id'])){
-                            echo '<a href="profil.php">Modifier votre profil</a>';
-                            echo '<a href="stats.php">Statistiques</a>';
+                            //echo '<a href="profil.php">Modifier votre profil</a>';
+                            //echo '<a href="stats.php">Statistiques</a>';
                             echo '<a href="logout.php">Déconnecter</a>';
                         }
                         else{
@@ -60,7 +60,6 @@
         </div>
         <?php
             if(isset($_SESSION['id'])){
-                
                 echo '<div id="buttonRecherche" style="position:absolute; left:700px; top:25px;">
                         <form action="index.php" method="post">
                             <input type="submit" value="Recherche" name="rechercheButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
