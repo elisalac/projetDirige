@@ -5,37 +5,28 @@ require "include/bd.php";
 
 $id = "";
 $message = "";
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   
+  $message = "";
   if(isset($_POST["conne"]))
   {
     $mdp = trim($_POST['mdp']);
     $alias =trim($_POST['alias']);
     $id = membreValide($alias, $mdp);
-    $membre = getMembre($id);
-    if(empty($alias))
-        {
-          $message="<h4 style='color:red'><b>Le pseudonyme est vide!</b></h4>";
-          exit;
-        }
-        else if(password_verify($mdp,$membre['mdp']))
-        {
-          $_SESSION['alias']=$membre['alias'];
-          $_SESSION['usagerValide']=true;
-          $_SESSION['id']=$range['idJoueur'];
-          $_SESSION['motDePasse']=$membre['mdp'];
-          header('Location:index.php');
-          exit;
-        }
-        else
-        {
-          $message="<h4 style='color:red'><b>Données de connexion invalides!</b></h4>";
-        }
+    if($id !== false){
+      $membre = getMembre($id);
+        $_SESSION['alias']=$membre['alias'];
+        $_SESSION['usagerValide']=true;
+        $_SESSION['id']=$membre['idJoueur'];
+        $_SESSION['motDePasse']=$membre['mdp'];
+        header('Location:index.php');
+        exit;
+    } else {
+      $message = '<p style="color:red;">Données de connexion invalides';
     }
   }
-   else {
-    $message = "Données de connexion invalides";
-  }
+}
 ?>
 
 <h2>Connexion à Darquest</h2>

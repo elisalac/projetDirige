@@ -65,11 +65,11 @@ function membreValide($pseudo, $mdp)
 {
     $pdo = getPdo();
     try {
-        $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ? AND mdp = ?";
+        $sql = "SELECT alias, Joueurs.idJoueur, typeJoueur, mdp FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$pseudo, $mdp]);
+        $stmt->execute([$pseudo]);
         $membre = $stmt->fetch();
-        if ($membre && password_verify($mdp, $membre['mdp'])){
+        if (password_verify($mdp, $membre['mdp'])){
             return $membre['idJoueur'];
         } else{
             return false;
@@ -80,6 +80,9 @@ function membreValide($pseudo, $mdp)
 }
 function getMembre($id)
 {
+    if($id == false){
+        header('Location: connexion.php');
+    }
     $pdo = getPdo();
     $sql = "SELECT * FROM Joueurs WHERE idJoueur=$id";
     $stmt = $pdo->query($sql);
