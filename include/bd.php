@@ -89,7 +89,6 @@ function MoyenneEtoiles($idItem){
 //Fonctions afficher items index
 function AfficherItems($statement)
 {
-    //Aller chercher tout les items dans la base de donnée
     while ($row = $statement->fetch()){
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
         if($row['typeItem'] == 'S'){
