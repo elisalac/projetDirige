@@ -51,7 +51,7 @@ while($row = $infoItem->fetch())
     echo "<br>";
     echo " Prix : ". $row['prixUnitaire'] . "";
     echo "<br>";
-    echo "<img src='images/". $row['image'] ."' width='200' height='150'>";
+    echo "<img src='images/Items/". $row['image'] ."' width='200' height='150'>";
     echo "<br>";
     echo " Poids en livres : ". $row['poids'] . "";
     echo "</div>";
