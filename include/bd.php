@@ -44,9 +44,21 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
     }
 }
 
-function AcheterItem($idItem, $idjoueur, $nombre){
-    $nul = 'allo';
-    $sql = 'CALL';
+function AjouterPanier($idItem, $idjoueur){
+    $pdo = getPdo();
+    $nombre = 1;
+    try{
+        $nul = 'allo';
+        $sql = 'CALL AjouterPanier(?,?,?)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
+        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
+        $stmt->bindParam(3, $nombre, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (Exception $e){
+        echo "";
+        exit;
+    }
 }
 
 function membreValide($pseudo)
@@ -95,7 +107,7 @@ function AfficherItems($statement)
             height:450px;
             width: 250px;">';
         }
-        echo '<img src="images/Items/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
+        echo '<img src="images/Items/' . $row['image'] . '" style="max-width: 200px; max-height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
         //for($i = 0; $i < 4; $i++){
@@ -113,13 +125,13 @@ function AfficherItems($statement)
             echo '</form>';
             echo '</div>';
         }
-        if($row['qteInventaire'] != 0 && isset($_SESSION['id'])){
-            echo '<div class="vendreContainerButton">';
-            echo '<form method="post">';
-            echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
-            echo '</form>';
-            echo '</div>';
-        }
+        //if($row['qteInventaire'] != 0 && isset($_SESSION['id'])){
+        //    echo '<div class="vendreContainerButton">';
+        //    echo '<form method="post">';
+        //    echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+        //    echo '</form>';
+        //    echo '</div>';
+        //}
         echo '</div>';
         echo '<p> Prix: ' . $row['prixUnitaire'] . ' Or</p>';
         echo '</article>';
