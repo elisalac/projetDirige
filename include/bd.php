@@ -175,3 +175,16 @@ function GetPanierJoueur($idjoueur)
     return $stmt;
 }
 
+
+
+
+
+
+function AfficherInfoItem($idItem)
+{
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Items where idItems = ?";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$idItem]);
+    return $stmt;
+}

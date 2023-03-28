@@ -37,12 +37,27 @@ while($range = $typeItem->fetch())
 {
     echo $range['typeItem'] . "<br>";
     $type = $range['typeItem'];
-   # echo "<p>ALLO</p>";
 }
 
 
+$infoItem = AfficherInfoItem($idItem);
+$item = "";
+while($row = $infoItem->fetch())
+{
+    echo "<div>";
+    echo "Nom de l'item : ". $row['nom'] . "";
+    echo "<br>";
+    echo " Quantité en stock : ". $row['qteStock'] . "";
+    echo "<br>";
+    echo " Prix : ". $row['prixUnitaire'] . "";
+    echo "<br>";
+    echo "<img src='images/". $row['image'] ."' width='200' height='150'>";
+    echo "<br>";
+    echo " Poids en livres : ". $row['poids'] . "";
+    echo "</div>";
+}
 
-echo "".$type."";
+// echo "".$type."";
 
 if($type === 'A')
 {
@@ -50,9 +65,6 @@ if($type === 'A')
     $detailArme =  AfficherDetailArme($idItem);
     while($infoArme = $detailArme->fetch())
     {
-        // Quand on va avoir fait un folder_image il faudrat afficher les images 
-            // le  nom de l'item
-            echo "ALLOOOOOOOO";
             echo "Efficacité de l'arme: ". $infoArme['efficacité'] . "<br>" ."<br>";
             echo "Description de l'arme: ". $infoArme['description'] . "<br>" ."<br>";
             echo "Genre de l'arme: ". $infoArme['genre'] . "<br>" ."<br>";
@@ -64,39 +76,32 @@ if($type === 'R')
     $detailArmure =  AfficherDetailArmures($idItem);
     while($infoArmure = $detailArmure->fetch())
     {
-       // Quand on va avoir fait un folder_image il faudrat afficher les images 
-            // le  nom de l'item
             echo "Taille de l'arme: ". $infoArmure['taille'] . "<br>" ."<br>";
             echo "Matiere de l'arme: ". $infoArmure['matiere'] . "<br>" ."<br>";
     }
     
 }
-if($typeItem === 'P')
+if($type === 'P')
 {
     $detailPotion = AfficherDetailPotion($idItem);
     while($infoPotion = $detailPotion->fetch())
     {
-        // Quand on va avoir fait un folder_image il faudrat afficher les images 
-            // le  nom de l'item
-            echo "Effet attendu: ". $infoPotion['effetAttenu'] . "<br>" ."<br>";
+            echo "Effet attendu: ". $infoPotion['effetAttendu'] . "<br>" ."<br>";
             echo "Durée de l'effet: ". $infoPotion['durée'] . "<br>" ."<br>";
     }
     
 }
-if($typeItem === 'S')
+if($type === 'S')
 {
     $detailSort = AfficherDetailSorts($idItem);
     while($infoSort = $detailSort->fetch())
     {
-        // Quand on va avoir fait un folder_image il faudrat afficher les images 
-            // le  nom de l'item
             echo "est Instantané: ". $infoSort['estInstantané'] . "<br>" ."<br>";
-            echo "Point de dégats: ". $infoSort['nombreDégatss'] . "<br>" ."<br>";
+            echo "Point de dégats: ". $infoSort['nombreDégats'] . "<br>" ."<br>";
     }
     
 }
 
 ?>
 </body>
-
 </html>
