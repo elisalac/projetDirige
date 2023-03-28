@@ -12,23 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $mdp = trim($_POST['mdp']);
     $alias =trim($_POST['alias']);
     $id = membreValide($alias, $mdp);
-    foreach($id as $range)
-    {
-      if(empty($alias))
+    $membre = getMembre($id);
+    if(empty($alias))
         {
-        $message="<h4 style='color:red'><b>Le pseudonyme est vide!</b></h4>";
-        break;
+          $message="<h4 style='color:red'><b>Le pseudonyme est vide!</b></h4>";
+          exit;
         }
-        if($range['flagEmail']==0)
+        else if(password_verify($mdp,$membre['mdp']))
         {
-          $message="<h4 style='color:red'><b>Votre compte n'est pas vérifier</b></h4>";
-        }
-        else if(password_verify($mdp,$range['mdp']))
-        {
-          $_SESSION["alias"]=$alias;
-          $_SESSION["usagerValide"]=true;
+          $_SESSION['alias']=$membre['alias'];
+          $_SESSION['usagerValide']=true;
           $_SESSION['id']=$range['idJoueur'];
-          $_SESSION['motDePasse']=$mdp;
+          $_SESSION['motDePasse']=$membre['mdp'];
           header('Location:index.php');
           exit;
         }
@@ -41,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
    else {
     $message = "Données de connexion invalides";
   }
-}
 ?>
 
 <h2>Connexion à Darquest</h2>

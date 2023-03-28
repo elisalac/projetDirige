@@ -68,7 +68,12 @@ function membreValide($pseudo, $mdp)
         $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ? AND mdp = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$pseudo, $mdp]);
-        return $stmt;
+        $membre = $stmt->fetch();
+        if ($membre && password_verify($mdp, $membre['mdp'])){
+            return $membre['idJoueur'];
+        } else{
+            return false;
+        }
     } catch (Exception $e) {
         die("Erreur dans membreValide() - bd.php");
     }
@@ -76,7 +81,7 @@ function membreValide($pseudo, $mdp)
 function getMembre($id)
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Joueurs WHERE idJoueur='$id'";
+    $sql = "SELECT * FROM Joueurs WHERE idJoueur=$id";
     $stmt = $pdo->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
