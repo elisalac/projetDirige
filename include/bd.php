@@ -43,9 +43,6 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
         exit;
     }
 }
-<<<<<<< Updated upstream
-function membreValide($pseudo)
-=======
 
 function AjouterPanier($idItem, $idjoueur){
     $pdo = getPdo();
@@ -100,18 +97,23 @@ function AfficherSolde($idjoueur)
     return $row;
 }
 function membreValide($pseudo, $mdp)
->>>>>>> Stashed changes
 {
     $pdo = getPdo();
     try {
-        $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ?";
+        $sql = "SELECT alias, Joueurs.idJoueur, typeJoueur, mdp FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$pseudo]);
-        return $stmt;
+        $membre = $stmt->fetch();
+        if (password_verify($mdp, $membre['mdp'])){
+            return $membre['idJoueur'];
+        } else{
+            return false;
+        }
     } catch (Exception $e) {
-        echo '<script type = "text/javascript">toastr.error("Compte invalide!")</script>';
+        die("Erreur dans membreValide() - bd.php");
     }
 }
+
 function getMembre($id)
 {
     $pdo = getPdo();
@@ -231,4 +233,5 @@ function GetPanierJoueur($idjoueur)
     $stmt->execute([$idjoueur]);
     return $stmt;
 }
+
 
