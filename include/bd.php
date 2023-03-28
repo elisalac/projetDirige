@@ -43,7 +43,64 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
         exit;
     }
 }
+<<<<<<< Updated upstream
 function membreValide($pseudo)
+=======
+
+function AjouterPanier($idItem, $idjoueur){
+    $pdo = getPdo();
+    $nombre = 1;
+    try{
+        $nul = 'allo';
+        $sql = 'CALL AjouterPanier(?,?,?)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
+        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
+        $stmt->bindParam(3, $nombre, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (Exception $e){
+        echo "";
+        exit;
+    }
+}
+
+function ModifierPanier($idjoueur){
+    $pdo = getPdo();
+    try{
+        $sql = 'CALL ModifierPanier(?,?)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
+        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (Exception $e){
+        echo "Heyyyyyyy";
+        exit;
+    }
+}
+
+function RetirerPanier($idjoueur,$idItem){
+    $pdo = getPdo();
+    try{
+        $sql = 'CALL RetirerPanier(?,?)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $idjoueur, PDO::PARAM_INT);
+        $stmt->bindParam(2, $idItem, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (Exception $e){
+        echo "Heyyyyyyy";
+        exit;
+    }
+}
+function AfficherSolde($idjoueur)
+{
+    $pdo = getPdo();
+    $sql = "SELECT AfficherSolde($idjoueur) AS Solde";
+    $stmt = $pdo->query($sql);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row;
+}
+function membreValide($pseudo, $mdp)
+>>>>>>> Stashed changes
 {
     $pdo = getPdo();
     try {
