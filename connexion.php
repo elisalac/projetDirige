@@ -5,41 +5,26 @@ require "include/bd.php";
 
 $id = "";
 $message = "";
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
   
+  $message = "";
   if(isset($_POST["conne"]))
   {
-    $mdp = $_POST['mdp'];
+    $mdp = trim($_POST['mdp']);
     $alias =trim($_POST['alias']);
-    $id = membreValide($alias);
-    foreach($id as $range)
-    {
-      if(empty($alias))
-        {
-        $message="<h4 style='color:red'><b>Le pseudonyme est vide!</b></h4>";
-        break;
-        }
-        if($range['flagEmail']==0)
-        {
-          $message="<h4 style='color:red'><b>Votre compte n'est pas vérifier</b></h4>";
-        }
-        else if(password_verify($mdp,$range['mdp']))
-        {
-          $_SESSION["alias"]=$alias;
-          $_SESSION["usagerValide"]=true;
-          $_SESSION['id']=$range['idJoueur'];
-          $_SESSION['motDePasse']=$mdp;
-          echo $_SESSION['id'];
-          header('Location:index.php');
-        }
-        else
-        {
-          $message="<h4 style='color:red'><b>Données de connexion invalides!</b></h4>";
-        }
+    $id = membreValide($alias, $mdp);
+    if($id !== false){
+      $membre = getMembre($id);
+        $_SESSION['alias']=$membre['alias'];
+        $_SESSION['usagerValide']=true;
+        $_SESSION['id']=$membre['idJoueur'];
+        $_SESSION['motDePasse']=$membre['mdp'];
+        header('Location:index.php');
+        exit;
+    } else {
+      $message = '<p style="color:red;">Données de connexion invalides';
     }
-  }
-   else {
-    $message = "Données de connexion invalides";
   }
 }
 ?>

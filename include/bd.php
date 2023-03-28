@@ -96,6 +96,7 @@ function AfficherSolde($idjoueur)
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
 }
+
 function membreValide($pseudo, $mdp)
 {
     $pdo = getPdo();
@@ -116,8 +117,11 @@ function membreValide($pseudo, $mdp)
 
 function getMembre($id)
 {
+    if($id == false){
+        header('Location: connexion.php');
+    }
     $pdo = getPdo();
-    $sql = "SELECT * FROM Joueurs WHERE idJoueur='$id'";
+    $sql = "SELECT * FROM Joueurs WHERE idJoueur=$id";
     $stmt = $pdo->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
@@ -130,7 +134,6 @@ function MoyenneEtoiles($idItem){
 //Fonctions afficher items index
 function AfficherItems($statement)
 {
-    //Aller chercher tout les items dans la base de donnée
     while ($row = $statement->fetch()){
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
         if($row['typeItem'] == 'S'){
@@ -148,7 +151,7 @@ function AfficherItems($statement)
             height:450px;
             width: 250px;">';
         }
-        echo '<img src="images/items/' . $row['image'] . '" style="width: 200px; height: 150px; border:1px white">';
+        echo '<img src="images/Items/' . $row['image'] . '" style="max-width: 200px; max-height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
         //for($i = 0; $i < 4; $i++){
@@ -160,24 +163,42 @@ function AfficherItems($statement)
         }
         echo '<div class="containerButton">';
         if(isset($_SESSION['id'])){
-            echo '<div class="acheterContainerButton">';
-            echo '<form method="post">';
-            echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
-            echo '</form>';
-            echo '</div>';
+            if($row['typeItem'] == 'A' || $row['typeItem'] == 'R' || $row['typeItem'] == 'P'){
+                echo '<div class="acheterContainerButton">';
+                echo '<form method="post">';
+                echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '</form>';
+                echo '</div>';
+            }
+            if($row['typeItem'] == 'S' && VerifierTypeJoueur($_SESSION['id']) == 'M'){
+                echo '<div class="acheterContainerButton">';
+                echo '<form method="post">';
+                echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '</form>';
+                echo '</div>';
+            }
         }
-        if($row['qteInventaire'] != 0 && isset($_SESSION['id'])){
-            echo '<div class="vendreContainerButton">';
-            echo '<form method="post">';
-            echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
-            echo '</form>';
-            echo '</div>';
-        }
+        //if($row['qteInventaire'] != 0 && isset($_SESSION['id'])){
+        //    echo '<div class="vendreContainerButton">';
+        //    echo '<form method="post">';
+        //    echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+        //    echo '</form>';
+        //    echo '</div>';
+        //}
         echo '</div>';
         echo '<p> Prix: ' . $row['prixUnitaire'] . ' Or</p>';
-        //echo '<p>Poids: ' .$row['poids'] . '</p>';
         echo '</article>';
         echo '</a>';
+    }
+}
+
+function VerifierTypeJoueur($idJoueur){
+    $pdo = getPdo();
+    $sql = "SELECT typeJoueur FROM Joueurs WHERE idJoueur = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idJoueur]);
+    while ($row = $stmt->fetch()){
+        return $row['typeJoueur'];
     }
 }
 
@@ -188,7 +209,9 @@ function VerifierIdPourtypeItem($idItem)
     $sql = "SELECT typeItem from Items WHERE idItems = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idItem]);
-    return $stmt;
+    while ($row = $stmt->fetch()){
+        return $row['typeItem'];
+    }
 }
 
 function AfficherDetailArme($idItem)
@@ -228,10 +251,27 @@ function AfficherDetailSorts($idItem)
 function GetPanierJoueur($idjoueur)
 {
     $pdo = getPdo();
+
     $sql = "SELECT idItem,IdItem,image,qteItem,idJoueur FROM Panier INNER JOIN Items ON Items.idItems = Panier.IdItem where idJoueur=?";
+=======
+    $sql = "SELECT idItem,IdItem,image,qteItem,idJoueur,nom,prixUnitaire FROM Panier INNER JOIN Items ON Items.idItems = Panier.IdItem where idJoueur=?";
+
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$idjoueur]);
     return $stmt;
 }
 
+
+
+
+
+
+function AfficherInfoItem($idItem)
+{
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Items where idItems = ?";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$idItem]);
+    return $stmt;
+}
 
