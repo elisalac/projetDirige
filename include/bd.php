@@ -43,6 +43,12 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
         exit;
     }
 }
+
+function AcheterItem($idItem, $idjoueur, $nombre){
+    $nul = 'allo';
+    $sql = 'CALL';
+}
+
 function membreValide($pseudo)
 {
     $pdo = getPdo();
@@ -116,7 +122,6 @@ function AfficherItems($statement)
         }
         echo '</div>';
         echo '<p> Prix: ' . $row['prixUnitaire'] . ' Or</p>';
-        //echo '<p>Poids: ' .$row['poids'] . '</p>';
         echo '</article>';
         echo '</a>';
     }
