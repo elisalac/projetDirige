@@ -61,16 +61,16 @@ function AjouterPanier($idItem, $idjoueur){
     }
 }
 
-function membreValide($pseudo)
+function membreValide($pseudo, $mdp)
 {
     $pdo = getPdo();
     try {
-        $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ?";
+        $sql = "SELECT * FROM Profil INNER JOIN Joueurs ON Joueurs.idJoueur = Profil.idJoueur WHERE alias = ? AND mdp = ?";
         $stmt = $pdo->prepare($sql);
-        $stmt->execute([$pseudo]);
+        $stmt->execute([$pseudo, $mdp]);
         return $stmt;
     } catch (Exception $e) {
-        echo '<script type = "text/javascript">toastr.error("Compte invalide!")</script>';
+        die("Erreur dans membreValide() - bd.php");
     }
 }
 function getMembre($id)
