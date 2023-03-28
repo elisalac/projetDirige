@@ -14,11 +14,7 @@
        foreach($panier as $range)
        {
            echo "<tr>";
-<<<<<<< Updated upstream
-               echo "<td>".$range['idItem']."</td>";
-=======
                echo "<td>".$range['image']."</td><td>".$range['IdItem']."</td>";
->>>>>>> Stashed changes
            echo "</tr>";
        }
     echo "</table>";

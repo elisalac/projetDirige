@@ -9,9 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   
   if(isset($_POST["conne"]))
   {
-    $mdp = $_POST['mdp'];
+    $mdp = trim($_POST['mdp']);
     $alias =trim($_POST['alias']);
-    $id = membreValide($alias);
+    $id = membreValide($alias, $mdp);
     foreach($id as $range)
     {
       if(empty($alias))
@@ -29,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
           $_SESSION["usagerValide"]=true;
           $_SESSION['id']=$range['idJoueur'];
           $_SESSION['motDePasse']=$mdp;
-          echo $_SESSION['id'];
           header('Location:index.php');
+          exit;
         }
         else
         {
