@@ -212,3 +212,12 @@ function AfficherInfoItem($idItem)
     $stmt->execute([$idItem]);
     return $stmt;
 }
+
+function AfficherInventaireJoueur($idJoueur)
+{
+	$pdo = getPdo();
+    $sql = "SELECT * FROM Inventaire WHERE idJoueur = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idJoueur]);
+    return $stmt;
+}
