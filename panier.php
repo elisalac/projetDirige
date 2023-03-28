@@ -14,7 +14,7 @@
        foreach($panier as $range)
        {
            echo "<tr>";
-               echo "<td>".$range['image']."</td><td>".$range['IdItem']."</td>";
+           echo "<td>"."<img src='images/Items/". $range['image'] ."' width='200' height='150'>"."</td><td>".$range['nom']."</td>";
            echo "</tr>";
        }
     echo "</table>";

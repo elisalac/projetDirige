@@ -185,7 +185,7 @@ function AfficherDetailSorts($idItem)
 function GetPanierJoueur($idjoueur)
 {
     $pdo = getPdo();
-    $sql = "SELECT idItem,IdItem,image,qteItem,idJoueur FROM Panier INNER JOIN Items ON Items.idItems = Panier.IdItem where idJoueur=?";
+    $sql = "SELECT idItem,IdItem,image,qteItem,idJoueur,nom,prixUnitaire FROM Panier INNER JOIN Items ON Items.idItems = Panier.IdItem where idJoueur=?";
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$idjoueur]);
     return $stmt;
