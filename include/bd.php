@@ -97,7 +97,11 @@ function MoyenneEtoiles($idItem){
 //Fonctions afficher items index
 function AfficherItems($statement)
 {
+    
     while ($row = $statement->fetch()){
+        if(isset($_POST['acheterButton'])){
+            AjouterPanier($row['idItems'], $_SESSION['id']);
+        }
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
         if($row['typeItem'] == 'S'){
             echo '<article style = "border: solid lightgreen 1px;
