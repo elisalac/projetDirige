@@ -20,6 +20,8 @@
         <style>
             body{
                 text-align: center;
+                background-color: #3f3e53;
+                color:white;
             }
             img{
                 max-width: 200px;
@@ -41,7 +43,7 @@
             $item = "";
             while($row = $infoItem->fetch())
             {
-                echo "<div>";
+                echo "<div style='margin-top:75px'>";
                 echo "<img src='images/Items/". $row['image'] ."'>";
                 echo "<br>";
                 echo "<p>Nom de l'item : ". $row['nom'] . "</p>";
