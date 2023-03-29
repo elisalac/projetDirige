@@ -36,12 +36,7 @@
             // précis faire un inner join
 
             $typeItem = VerifierIdPourtypeItem($idItem);
-            $type = "";
-            while($range = $typeItem->fetch())
-            {
-                $type = $range['typeItem'];
-            }
-
+            
             $infoItem = AfficherInfoItem($idItem);
             $item = "";
             while($row = $infoItem->fetch())
@@ -56,7 +51,7 @@
                 echo "</div>";
             }
 
-            if($type === 'A')
+            if($typeItem === 'A')
             {
                 $detailArme =  AfficherDetailArme($idItem);
                 while($infoArme = $detailArme->fetch())
@@ -67,7 +62,7 @@
                 }
             }
 
-            if($type === 'R')
+            if($typeItem === 'R')
             {
                 $detailArmure =  AfficherDetailArmures($idItem);
                 while($infoArmure = $detailArmure->fetch())
@@ -77,7 +72,7 @@
                 }
             }
 
-            if($type === 'P')
+            if($typeItem === 'P')
             {
                 $detailPotion = AfficherDetailPotion($idItem);
                 while($infoPotion = $detailPotion->fetch())
@@ -87,7 +82,7 @@
                 }
             }
 
-            if($type === 'S')
+            if($typeItem === 'S')
             {
                 $detailSort = AfficherDetailSorts($idItem);
                 while($infoSort = $detailSort->fetch())
