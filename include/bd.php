@@ -232,7 +232,7 @@ function GetPanierJoueur($idjoueur)
 function AfficherInfoItem($idItem)
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Items where idItems = ?";
+    $sql = "SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem, Items.poids FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Items.idItems = ?";
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$idItem]);
     return $stmt;

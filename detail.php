@@ -24,11 +24,15 @@
                 color:white;
             }
             img{
-                max-width: 200px;
-                max-height: 350px;
+                max-width: 150px;
+                max-height: 300px;
             }
             p{
-                font-size: 25px;
+                font-size: 20px;
+                margin:15px;
+            }
+            u{
+                font-size: 22px;
             }
         </style>
     </head>
@@ -43,14 +47,18 @@
             $item = "";
             while($row = $infoItem->fetch())
             {
-                echo "<div style='margin-top:75px'>";
+                $nbInventaire = $row['qteInventaire'];
+                echo "<hr>";
+                echo "<div style='margin-top:15px'>";
                 echo "<img src='images/Items/". $row['image'] ."'>";
-                echo "<br>";
-                echo "<p>Nom de l'item : ". $row['nom'] . "</p>";
-                echo "<p>Quantité en stock : ". $row['qteStock'] . "</p>";
-                echo "<p>Prix : ". $row['prixUnitaire'] . "</p>";
-                echo "<p>Poids: ". $row['poids'] . " lbs</p>";
-                echo "</div>";
+                echo "<p style='font-size:23px'>". $row['nom'] . "</p>";
+                echo "<p><u>Quantité en stock:</u> ". $row['qteStock'] . "</p>";
+                if(isset($_SESSION['id'])){
+                    echo '<p><u>Nombre en inventaire:</u> ' . $row['qteInventaire'] . '</p>';
+                }
+                echo "<p><u>Prix:</u> ". $row['prixUnitaire'] . " Or</p>";
+                echo "<p><u>Poids:</u> ". $row['poids'] . " lbs</p>";
+                
             }
 
             if($typeItem === 'A')
@@ -58,9 +66,10 @@
                 $detailArme =  AfficherDetailArme($idItem);
                 while($infoArme = $detailArme->fetch())
                 {
-                        echo "<p>Efficacité de l'arme: ". $infoArme['efficacité'] . "</p>";
-                        echo "<p>Description de l'arme: ". $infoArme['description'] . "</p>";
-                        echo "<p>Genre de l'arme: ". $infoArme['genre'] . "</p>";
+                        echo "<p><u>Efficacité de l'arme:</u> ". $infoArme['efficacité'] . "</p>";
+                        echo "<p><u>Description de l'arme:</u> ". $infoArme['description'] . "</p>";
+                        echo "<p><u>Genre de l'arme:</u> ". $infoArme['genre'] . "</p>";
+                        echo "</div>";
                 }
             }
 
@@ -69,8 +78,9 @@
                 $detailArmure =  AfficherDetailArmures($idItem);
                 while($infoArmure = $detailArmure->fetch())
                 {
-                        echo "<p>Taille de l'armure: ". $infoArmure['taille'] . "</p>";
-                        echo "<p>Matiere de l'armure: ". $infoArmure['matiere'] . "</p>";
+                        echo "<p><u>Taille de l'armure:</u> ". $infoArmure['taille'] . "</p>";
+                        echo "<p><u>Matiere de l'armure:</u> ". $infoArmure['matiere'] . "</p>";
+                        echo "</div>";
                 }
             }
 
@@ -79,8 +89,9 @@
                 $detailPotion = AfficherDetailPotion($idItem);
                 while($infoPotion = $detailPotion->fetch())
                 {
-                        echo "<p>Effet attendu: ". $infoPotion['effetAttendu'] . "</p>";
-                        echo "<p>Durée de l'effet: ". $infoPotion['durée'] . "</p>";
+                        echo "<p><u>Effet attendu:</u> ". $infoPotion['effetAttendu'] . "</p>";
+                        echo "<p><u>Durée de l'effet:</u> ". $infoPotion['durée'] . "</p>";
+                        echo "</div>";
                 }
             }
 
@@ -89,9 +100,23 @@
                 $detailSort = AfficherDetailSorts($idItem);
                 while($infoSort = $detailSort->fetch())
                 {
-                        echo "<p>est Instantané: ". $infoSort['estInstantané'] . "</p>";
-                        echo "<p>Point de dégats: ". $infoSort['nombreDégats'] . "</p>";
+                    if($infoSort['estInstantané'] == 'o'){
+                        echo "<p><u>Est Instantané:</u> Oui</p>";
+                    }
+                    if($infoSort['estInstantané'] == 'n'){
+                        echo "<p><u>Est Instantané:</u> Non</p>";
+                    }
+                        echo "<p><u>Point de dégats:</u> ". $infoSort['nombreDégats'] . "</p>";
+                        echo "</div>";
                 }
+            }
+
+            if($nbInventaire != 0 && isset($_SESSION['id'])){
+                echo '<div class="vendreContainerButton">';
+                echo '<form method="post">';
+                echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '</form>';
+                echo '</div>';
             }
         ?>
     </body>
