@@ -6,12 +6,27 @@
 ?>
 <!DOCTYPE html>
 <html>
-    <body>
     bruh
     <?php
     
-    
+    $infoItem = AfficherInfoItem($idItem);
+    while($row = $infoItem->fetch())
+    {
+        echo "<div>";
+        echo "Nom de l'item : ". $row['nom'] . "";
+        echo "<br>";
+        echo "<img src='images/Items/". $row['image'] ."' width='200' height='150'>";
+        echo "<br>";
+        echo "</div>";
+    }
+    $itemInv = AfficherInventaireJoueur($idItem);
+    while($row = $itemInv->fetch())
+    {
+        echo "<div>";
+        echo " Quantité dans l'inventaire : ". $row['qteInventaire'] . "";
+        echo "<br>";
+        echo "</div>";
+    }
     
     ?>
-    </body>
 </html>
