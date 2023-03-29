@@ -61,12 +61,13 @@ function AjouterPanier($idItem, $idjoueur){
     }
 }
 
-function ModifierPanier($idjoueur){
+function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
     $pdo = getPdo();
     try{
         $sql = 'CALL ModifierPanier(?,?)';
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
+        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
         $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
         $stmt->execute();
     } catch (Exception $e){
@@ -251,9 +252,6 @@ function AfficherDetailSorts($idItem)
 function GetPanierJoueur($idjoueur)
 {
     $pdo = getPdo();
-
-    $sql = "SELECT idItem,IdItem,image,qteItem,idJoueur FROM Panier INNER JOIN Items ON Items.idItems = Panier.IdItem where idJoueur=?";
-=======
     $sql = "SELECT idItem,IdItem,image,qteItem,idJoueur,nom,prixUnitaire FROM Panier INNER JOIN Items ON Items.idItems = Panier.IdItem where idJoueur=?";
 
     $stmt= $pdo->prepare($sql);
