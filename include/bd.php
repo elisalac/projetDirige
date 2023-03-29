@@ -135,7 +135,11 @@ function MoyenneEtoiles($idItem){
 //Fonctions afficher items index
 function AfficherItems($statement)
 {
+    
     while ($row = $statement->fetch()){
+        if(isset($_POST['acheterButton'])){
+            AjouterPanier($row['idItems'], $_SESSION['id']);
+        }
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
         if($row['typeItem'] == 'S'){
             echo '<article style = "border: solid lightgreen 1px;
@@ -267,7 +271,7 @@ function GetPanierJoueur($idjoueur)
 function AfficherInfoItem($idItem)
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Items where idItems = ?";
+    $sql = "SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem, Items.poids FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Items.idItems = ?";
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$idItem]);
     return $stmt;
