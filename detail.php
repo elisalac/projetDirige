@@ -45,6 +45,7 @@
             
             $infoItem = AfficherInfoItem($idItem);
             $item = "";
+            $nbInventaire = "";
             while($row = $infoItem->fetch())
             {
                 $nbInventaire = $row['qteInventaire'];
