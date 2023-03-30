@@ -27,6 +27,7 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
 
 
     try {
+        /*ferergv*/
         $nul = 'allo';
         $sql = 'CALL ajouterJoueur(?,?,?,?,?,?,?)';
         $stmt = $pdo->prepare($sql);
@@ -48,15 +49,32 @@ function AjouterPanier($idItem, $idjoueur){
     $pdo = getPdo();
     $nombre = 1;
     try{
-        $nul = 'allo';
-        $sql = 'CALL AjouterPanier(?,?,?)';
+        $sql = 'SELECT AjouterPanier(?,?,?)';
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
-        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
-        $stmt->bindParam(3, $nombre, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute([$idItem,$idjoueur,$nombre]);
+
+        while($row = $stmt->fetch())
+        {
+            if($row['Erreur']==1)
+            {
+                echo "La quantité en stock de l'item est invalide.";
+            }
+            else if($row['Erreur'] == 2)
+            {
+                echo "L'item n'est pas disponible en ce moment.";
+            }
+            else if($row['Erreur'] == 3)
+            {
+                echo "Vous n'avez pas les fonds nécessaire.";
+            }
+            else
+            {
+                echo "Ajout fait avec succès!";
+            }
+
+        }
     } catch (Exception $e){
-        echo "";
+        echo "Erreur";
         exit;
     }
 }
@@ -68,14 +86,26 @@ function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
         $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
-        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
+        $stmt->bindParam(3, $nouvelleQte, PDO::PARAM_INT);
         $stmt->execute();
     } catch (Exception $e){
         echo "Heyyyyyyy";
         exit;
     }
 }
-
+function PayerPanier($idJoueur)
+{
+    $pdo = getPdo();
+    try{
+        $sql = 'CALL PayerPanier(?)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $idJoueur, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (Exception $e){
+        echo "Heyyyyyyy";
+        exit;
+    }
+}
 function RetirerPanier($idjoueur,$idItem){
     $pdo = getPdo();
     try{
@@ -136,7 +166,7 @@ function AfficherItems($statement)
 {
     
     while ($row = $statement->fetch()){
-        if(isset($_POST['acheterButton'])){
+        if(isset($_POST[$row['idItems'].'Ajouter'])){
             AjouterPanier($row['idItems'], $_SESSION['id']);
         }
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
@@ -170,7 +200,7 @@ function AfficherItems($statement)
             if($row['typeItem'] == 'A' || $row['typeItem'] == 'R' || $row['typeItem'] == 'P'){
                 echo '<div class="acheterContainerButton">';
                 echo '<form method="post">';
-                echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '<input type="submit" value="Acheter" name="'.$row['idItems'].'Ajouter" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
                 echo '</form>';
                 echo '</div>';
             }
@@ -272,5 +302,14 @@ function AfficherInfoItem($idItem)
     $sql = "SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem, Items.poids FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Items.idItems = ?";
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$idItem]);
+    return $stmt;
+}
+
+function AfficherInventaireJoueur($idJoueur)
+{
+	$pdo = getPdo();
+    $sql = "SELECT Items.nom, Items.image, Inventaire.idItems, Inventaire.qteInventaire FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE idJoueur = ? ORDER BY Items.typeItem";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$idJoueur]);
     return $stmt;
 }
