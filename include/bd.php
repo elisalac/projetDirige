@@ -49,15 +49,32 @@ function AjouterPanier($idItem, $idjoueur){
     $pdo = getPdo();
     $nombre = 1;
     try{
-        $nul = 'allo';
-        $sql = 'CALL AjouterPanier(?,?,?)';
+        $sql = 'SELECT AjouterPanier(?,?,?)';
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
-        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
-        $stmt->bindParam(3, $nombre, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute([$idItem,$idjoueur,$nombre]);
+
+        while($row = $stmt->fetch())
+        {
+            if($row['Erreur']==1)
+            {
+                echo "La quantité en stock de l'item est invalide.";
+            }
+            else if($row['Erreur'] == 2)
+            {
+                echo "L'item n'est pas disponible en ce moment.";
+            }
+            else if($row['Erreur'] == 3)
+            {
+                echo "Vous n'avez pas les fonds nécessaire.";
+            }
+            else
+            {
+                echo "Ajout fait avec succès!";
+            }
+
+        }
     } catch (Exception $e){
-        echo "";
+        echo "Erreur";
         exit;
     }
 }
