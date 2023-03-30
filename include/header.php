@@ -102,7 +102,7 @@
                     </div>';
             }
             else{
-                echo '<div id="buttonRecherche" style="position:absolute; left:1300px; top:25px;">
+                echo '<div id="buttonRecherche" style="position:absolute; left:85vw; top:25px;">
                         <form action="index.php" method="post">
                             <input type="submit" value="Recherche" name="rechercheButton" class="buttonHeader">
                         </form> 
