@@ -318,7 +318,7 @@ function AfficherInventaireJoueur($idJoueur)
 function getMembreInscription()
 {
     $pdo = getPdo();
-    $sql = "SELECT * FROM Joueurs"; // faire un leftouterjoin avec profil pour get le css
+    $sql = "SELECT Joueurs.alias, Joueurs.typeJoueur, Joueurs.idJoueur, Profil.courriel FROM Joueurs LEFT OUTER JOIN Profil ON Joueurs.idJoueur = Profil.idJoueur"; // faire un leftouterjoin avec profil pour get le css
     $stmt = $pdo->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
