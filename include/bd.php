@@ -82,7 +82,7 @@ function PayerPanier($idJoueur)
     try{
         $sql = 'CALL PayerPanier(?)';
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $idjoueur, PDO::PARAM_INT);
+        $stmt->bindParam(1, $idJoueur, PDO::PARAM_INT);
         $stmt->execute();
     } catch (Exception $e){
         echo "Heyyyyyyy";
