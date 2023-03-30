@@ -291,7 +291,7 @@ function AfficherInfoItem($idItem)
 function AfficherInventaireJoueur($idJoueur)
 {
 	$pdo = getPdo();
-    $sql = "SELECT * FROM Inventaire WHERE idJoueur = ?";
+    $sql = "SELECT Items.nom, Items.image, Inventaire.idItems, Inventaire.qteInventaire FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE idJoueur = ? ORDER BY Items.typeItem";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$idJoueur]);
     return $stmt;
