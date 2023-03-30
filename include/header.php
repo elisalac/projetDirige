@@ -7,8 +7,17 @@
             position: relative;
             }
 
+            button{
+                height:60px; 
+                width:60px; 
+                border-radius:50%; 
+                border:0px; 
+                background-image: url('images/profil/default_profil.png');
+            }
+
             button:hover{
                 background-color:#ddd;
+                background-image: url('images/profil/default_profil.png');
             }
 
             .dropdown-options {
@@ -43,7 +52,7 @@
     <header style="height:75px; width:100%;">
         <div style="position:absolute; left:15px; top:10px;">
             <div class="dropdown">
-                <button style="height:60px; width:60px; border-radius:50%; border:0px;"></button>
+                <button></button>
                 <div class="dropdown-options">
                     <?php
                         if(isset($_SESSION['id'])){
