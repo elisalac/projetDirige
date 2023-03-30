@@ -136,7 +136,7 @@ function AfficherItems($statement)
 {
     
     while ($row = $statement->fetch()){
-        if(isset($_POST['acheterButton'])){
+        if(isset($_POST[$row['idItems'].'Ajouter'])){
             AjouterPanier($row['idItems'], $_SESSION['id']);
         }
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
@@ -170,7 +170,7 @@ function AfficherItems($statement)
             if($row['typeItem'] == 'A' || $row['typeItem'] == 'R' || $row['typeItem'] == 'P'){
                 echo '<div class="acheterContainerButton">';
                 echo '<form method="post">';
-                echo '<input type="submit" value="Acheter" name="acheterButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '<input type="submit" value="Acheter" name="'.$row['idItems'].'Ajouter" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
                 echo '</form>';
                 echo '</div>';
             }
