@@ -44,6 +44,19 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
     }
 }
 
+function PayerPanier($idJoueur)
+{
+    $pdo = getPdo();
+    try{
+        $sql = 'CALL PayerPanier(?)';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(1, $idjoueur, PDO::PARAM_INT);
+        $stmt->execute();
+    } catch (Exception $e){
+        echo "Heyyyyyyy";
+        exit;
+    }
+}
 function AjouterPanier($idItem, $idjoueur){
     $pdo = getPdo();
     $nombre = 1;
@@ -68,7 +81,7 @@ function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
         $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
-        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
+        $stmt->bindParam(3, $idjoueur, PDO::PARAM_INT);
         $stmt->execute();
     } catch (Exception $e){
         echo "Heyyyyyyy";
