@@ -61,11 +61,6 @@
     </head>
     <?php
         require "include/header.php";
-        if (!empty($_POST['filtre'])) {
-            $dropDownVal = $_POST['filtre'];
-        } else {
-            $dropDownVal = "";
-        }
     ?>
     <nav style="background-color:#302f3f; width:98.6%; padding:20px; padding-right:0px;">
         <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px; z-index:1;">
@@ -97,9 +92,9 @@
                 <br>
                 <label for="checkboxSorts">Sorts</label>
                 <input type="checkbox" id="checkboxSorts" name="checkboxSorts" <?php if(isset($_POST['checkboxSorts'])) echo "checked='checked'"; ?>>
-          </div> 
+          </div>
             <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px;"> 
-                <input type="submit" value="Appliquer" style="margin-top:5px; width:150px; height:35px; font-size:15px; background-color:white; border:0px;">  
+                <input type="submit" value="Appliquer" style="margin-top:5px; width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">  
             </div>
         </form>
     </nav>
