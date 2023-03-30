@@ -61,6 +61,11 @@
     </head>
     <?php
         require "include/header.php";
+        if (!empty($_POST['filtre'])) {
+            $dropDownVal = $_POST['filtre'];
+        } else {
+            $dropDownVal = "";
+        }
     ?>
     <nav style="background-color:#302f3f; width:98.6%; padding:20px; padding-right:0px;">
         <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px; z-index:1;">
@@ -71,26 +76,27 @@
         <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px; z-index:1;">
             <form method="post">
                 <select name="filtre" style="margin-bottom:5px; width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
-                    <option value="PrixAsc">Par Prix ↓</option>
-                    <option value="PrixDesc">Par Prix ↑</option>
-                    <option value="PoidsAsc">Par Poids ↓</option>
-                    <option value="PoidsDesc">Par Poids ↑</option>
+                    <option>Aucun filtre</option>
+                    <option value="PrixAsc" <?php if($dropDownVal == "PrixAsc") echo 'selected="selected"'; ?>>Par Prix ↓</option>
+                    <option value="PrixDesc" <?php if($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Par Prix ↑</option>
+                    <option value="PoidsAsc" <?php if($dropDownVal == "PoidsAsc") echo 'selected="selected"'; ?>>Par Poids ↓</option>
+                    <option value="PoidsDesc" <?php if($dropDownVal == "PoidsDesc") echo 'selected="selected"'; ?>>Par Poids ↑</option>
                 </select>
         </div>
         <div style="display:inline-block; padding-left:10px; padding-right:10px; color:white;">
                 <label style="text-decoration:underline; font-size:20px;">Types</label>
                 <br>
                 <label for="checkboxArmes">Armes</label>
-                <input type="checkbox" id="checkboxArmes" name="checkboxArmes">
+                <input type="checkbox" id="checkboxArmes" name="checkboxArmes" <?php if(isset($_POST['checkboxArmes'])) echo "checked='checked'"; ?>>
                 <br>
                 <label for="checkboxArmures">Armures</label>
-                <input type="checkbox" id="checkboxArmures" name="checkboxArmures">
+                <input type="checkbox" id="checkboxArmures" name="checkboxArmures" <?php if(isset($_POST['checkboxArmures'])) echo "checked='checked'"; ?>>
                 <br>
                 <label for="checkboxPotions">Potions</label>
-                <input type="checkbox" id="checkboxPotions" name="checkboxPotions">
+                <input type="checkbox" id="checkboxPotions" name="checkboxPotions" <?php if(isset($_POST['checkboxPotions'])) echo "checked='checked'"; ?>>
                 <br>
                 <label for="checkboxSorts">Sorts</label>
-                <input type="checkbox" id="checkboxSorts" name="checkboxSorts">
+                <input type="checkbox" id="checkboxSorts" name="checkboxSorts" <?php if(isset($_POST['checkboxSorts'])) echo "checked='checked'"; ?>>
           </div> 
             <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px;"> 
                 <input type="submit" value="Appliquer" style="margin-top:5px; width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">  

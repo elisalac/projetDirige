@@ -6,7 +6,6 @@
 ?>
 <!DOCTYPE html>
 <html>
-    bruh
     <?php
     
     $infoItem = AfficherInfoItem($idItem);
@@ -19,7 +18,7 @@
         echo "<br>";
         echo "</div>";
     }
-    $itemInv = AfficherInventaireJoueur($idItem);
+    $itemInv = AfficherInventaireJoueur($idJoueur);
     while($row = $itemInv->fetch())
     {
         echo "<div>";
