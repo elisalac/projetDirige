@@ -26,9 +26,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     // chiffre le mot de passe
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
-    InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
-    header("Location: connexion.php");
-    exit;
+    $membreIns = getMembreInscription();
+    if($membreIns['alias'] == $pseudo)
+    {
+        $message = "<p>L'alias est déjà utilisé</p>";
+    }
+    else
+    {
+      InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
+      header("Location: connexion.php");
+      exit;
+    }
+    
+    
   } else {
     $message = "Les champs doivent tous être remplis";
   }

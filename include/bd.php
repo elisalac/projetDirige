@@ -296,3 +296,13 @@ function AfficherInventaireJoueur($idJoueur)
     $stmt->execute([$idJoueur]);
     return $stmt;
 }
+
+
+function getMembreInscription()
+{
+    $pdo = getPdo();
+    $sql = "SELECT * FROM Joueurs"; // faire un leftouterjoin avec profil pour get le css
+    $stmt = $pdo->query($sql);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row;
+}
