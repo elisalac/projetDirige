@@ -12,7 +12,7 @@
                 width:60px; 
                 border-radius:50%; 
                 border:0px; 
-                background-image: url('images/profil/default_profil.png');
+                background: url('images\profil\default_profil.png');
             }
 
             button:hover{
