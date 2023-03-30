@@ -7,17 +7,18 @@
             position: relative;
             }
 
-            button{
+            #buttonProfil{
                 height:60px; 
                 width:60px; 
                 border-radius:50%; 
-                border:0px; 
-                background: url('images\profil\default_profil.png');
+                border:1px black solid; 
+                background: url('images/profil/default_profil.png') 0px 4px no-repeat;
+                background-color:#ddd;
             }
 
-            button:hover{
+            #buttonProfil:hover{
+                background: url('images/profil/default_profil.png') 0px 4px no-repeat;
                 background-color:#ddd;
-                background-image: url('images/profil/default_profil.png');
             }
 
             .dropdown-options {
@@ -47,12 +48,22 @@
             background-color: #ddd;
             border-radius:5px;
             }
+
+            .buttonHeader{
+                width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;
+            }
+
+            @media only screen and (max-width: 900px) {
+                input[type=submit]{
+                    width:100px;
+                }   
+            }
         </style>
     </head>
     <header style="height:75px; width:100%;">
         <div style="position:absolute; left:15px; top:10px;">
             <div class="dropdown">
-                <button></button>
+                <button id="buttonProfil"></button>
                 <div class="dropdown-options">
                     <?php
                         if(isset($_SESSION['id'])){
@@ -69,31 +80,31 @@
         </div>
         <?php
             if(isset($_SESSION['id'])){
-                echo '<div id="buttonRecherche" style="position:absolute; left:700px; top:25px;">
+                echo '<div id="buttonRecherche" style="position:absolute; left:40vw; top:25px;">
                         <form action="index.php" method="post">
-                            <input type="submit" value="Recherche" name="rechercheButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
+                            <input type="submit" value="Recherche" name="rechercheButton" class="buttonHeader">
                         </form> 
                     </div>
-                    <div id="buttonInv" style="position:absolute; left:900px; top:25px;">
+                    <div id="buttonInv" style="position:absolute; left:55vw; top:25px;">
                         <form action="inventaire.php" method="post">
-                            <input type="submit" value="Inventaire" name="inventaireButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
+                            <input type="submit" value="Inventaire" name="inventaireButton" class="buttonHeader">
                         </form>
                     </div>
-                    <div id="buttonPanier" style="position:absolute; left:1100px; top:25px;">
+                    <div id="buttonPanier" style="position:absolute; left:70vw; top:25px;">
                         <form action="panier.php" method="post">
-                            <input type="submit" value="Panier" name="panierButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
+                            <input type="submit" value="Panier" name="panierButton" class="buttonHeader">
                         </form>
                     </div>
-                    <div id="buttonBanque" style="position:absolute; left:1300px; top:25px;">
+                    <div id="buttonBanque" style="position:absolute; left:85vw; top:25px;">
                         <form action="banque.php" method="post">
-                            <input type="submit" value="Banque" name="BanqueButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
+                            <input type="submit" value="Banque" name="BanqueButton" class="buttonHeader">
                         </form>
                     </div>';
             }
             else{
                 echo '<div id="buttonRecherche" style="position:absolute; left:1300px; top:25px;">
                         <form action="index.php" method="post">
-                            <input type="submit" value="Recherche" name="rechercheButton" style="width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">
+                            <input type="submit" value="Recherche" name="rechercheButton" class="buttonHeader">
                         </form> 
                     </div>';
             }

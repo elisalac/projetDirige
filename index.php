@@ -57,6 +57,31 @@
                 grid-column-start: 3;
                 grid-column-end: 4;
             }
+
+            @media only screen and (min-width: 1800px) {
+                .listeItemGrid{
+                    display: inline-grid;
+                    grid-template-columns: repeat(6, 1fr);
+                    grid-auto-rows: 1fr;
+                    grid-column-gap: 15px;
+                    grid-row-gap: 5px;
+                    max-width: 500px;
+                    margin-left:3vw;
+                    margin-top: 15px;
+                }
+            }
+            @media only screen and (max-width: 900px) {
+                .listeItemGrid{
+                    display: inline-grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-auto-rows: 1fr;
+                    grid-column-gap: 15px;
+                    grid-row-gap: 5px;
+                    max-width: 500px;
+                    margin-left:3vw;
+                    margin-top: 15px;
+                }   
+            }
         </style>
     </head>
     <?php
