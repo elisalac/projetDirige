@@ -6,7 +6,6 @@
 ?>
 <!DOCTYPE html>
 <html>
-    bruh
     <?php
     
     $infoItem = AfficherInfoItem($idItem);
