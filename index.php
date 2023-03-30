@@ -61,6 +61,11 @@
     </head>
     <?php
         require "include/header.php";
+        if (!empty($_POST['filtre'])) {
+            $dropDownVal = $_POST['filtre'];
+        } else {
+            $dropDownVal = "";
+        }
     ?>
     <nav style="background-color:#302f3f; width:98.6%; padding:20px; padding-right:0px;">
         <div style="display:inline-block; padding-left:10px; padding-right:10px; position:relative; bottom:30px; z-index:1;">
