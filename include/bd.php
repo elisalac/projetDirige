@@ -41,7 +41,6 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
         $stmt->execute();
     } catch (Exception $e) {
         echo "Le compte n'a pu être créé, veuillez recommencer";
-        exit;
     }
 }
 
