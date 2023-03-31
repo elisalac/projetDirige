@@ -28,21 +28,29 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     $membreIns = getMembreInscription();
     
-    if($membreIns['alias'] == $pseudo)
-    {
-        $message = "<p>L'alias est déjà utilisé</p>";
-    }
+    
     if($membreIns['courriel'] == $courriel)
     {
-      $message = "<p>Le courriel est déjà utilisé</p>";
+      echo "<p>Le courriel est déjà utilisé</p>";
     }
+    if($membreIns['alias'] == $pseudo)
+    {
+        echo "<p>L'alias est déjà utilisé</p>";
+    }
+    else if($membreIns['alias'] != $pseudo && $membreIns['courriel'] != $courriel)
+    {
+      InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
+      header("Location: connexion.php");
+      exit;
+    }
+    /*
     else
     {
       InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
       header("Location: connexion.php");
       exit;
     }
-    
+    */
     
   } else {
     $message = "Les champs doivent tous être remplis";
@@ -65,32 +73,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       <table>
         <tr>
           <td>Pseudonyme</td>
-          <td><input type="text" name="pseudo" required></td>
+          <td><input type="text" name="pseudo" required value="<?php echo isset($_POST['pseudo']) ? $_POST['pseudo'] : '' ?>"></td>
         </tr>
         <tr>
           <td>Mot de passe</td>
-          <td><input type="password" name="mdp" required></td>
+          <td><input type="password" name="mdp" required value="<?php echo isset($_POST['mdp']) ? $_POST['mdp'] : '' ?>"></td>
         </tr>
         <tr>
           <td>Nom</td>
-          <td><input type="text" name="nom" required></td>
+          <td><input type="text" name="nom" required value="<?php echo isset($_POST['nom']) ? $_POST['nom'] : '' ?>"></td>
         </tr>
         <tr>
           <td>Prénom</td>
-          <td><input type="text" name="prenom" required></td>
+          <td><input type="text" name="prenom" required value="<?php echo isset($_POST['prenom']) ? $_POST['prenom'] : '' ?>"></td>
         </tr>
         <tr>
           <td>Courriel</td>
-          <td><input type="email" name="courriel" required></td>
+          <td><input type="email" name="courriel" required value="<?php echo isset($_POST['courriel']) ? $_POST['courriel'] : '' ?>"></td>
         </tr>
         <tr>
             <td>Classe:</td>
             <td>
             <select name="classe">
-                <option value="G">Guerrier</option>
-                <option value="P">Paladin</option>
-                <option value="B">Bandit</option>
-                <option value="M">Mage</option>
+                <option value="G" <?php if($_POST['classe'] == "G") echo 'selected="selected"'; ?>>Guerrier</option>
+                <option value="P"<?php if($_POST['classe'] == "P") echo 'selected="selected"'; ?>>Paladin</option>
+                <option value="B"<?php if($_POST['classe'] == "B") echo 'selected="selected"'; ?>>Bandit</option>
+                <option value="M"<?php if($_POST['classe'] == "M") echo 'selected="selected"'; ?>>Mage</option>
             </select>
             </td>
            
