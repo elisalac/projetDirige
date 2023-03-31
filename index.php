@@ -58,6 +58,31 @@
                 grid-column-end: 4;
             }
 
+            /*.checkboxCSS{
+                display:inline-block;
+                width:25px;
+                height:19px;
+                margin: 0 5px -4px 0;
+             }
+            .checkboxCSS:before,
+            .checkboxCSS:after {
+                @include transition(all .3s ease-in-out);
+                content: "";
+                position: absolute;
+                z-index: 1;
+                background: transparent;
+                border: 2px solid white; 
+            }
+            .checkboxCSS:after {
+            z-index: 0;
+            border: none;
+            }
+            .checkboxCSS:checked,
+            .checkboxCSS:before {
+            @include transform(rotateY(180deg));
+            background: white;
+            }*/
+
             @media only screen and (min-width: 1800px) {
                 .listeItemGrid{
                     display: inline-grid;
@@ -112,7 +137,7 @@
                 <label style="text-decoration:underline; font-size:20px;">Types</label>
                 <br>
                 <label for="checkboxArmes">Armes</label>
-                <input type="checkbox" id="checkboxArmes" name="checkboxArmes" <?php if(isset($_POST['checkboxArmes'])) echo "checked='checked'"; ?>>
+                <input type="checkbox" id="checkboxArmes" name="checkboxArmes" class="checkboxCSS"<?php if(isset($_POST['checkboxArmes'])) echo "checked='checked'"; ?>>
                 <br>
                 <label for="checkboxArmures">Armures</label>
                 <input type="checkbox" id="checkboxArmures" name="checkboxArmures" <?php if(isset($_POST['checkboxArmures'])) echo "checked='checked'"; ?>>
@@ -396,6 +421,23 @@
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
                                 $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids DESC';
+                            }
+                        }
+                    }
+                    if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids, prixUnitaire';
+                        if(!empty($_POST['filtre'])){
+                            if($_POST['filtre'] == "PrixAsc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire';
+                            }
+                            if($_POST['filtre'] == "PrixDesc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire DESC';
+                            }
+                            if($_POST['filtre'] == "PoidsAsc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids';
+                            }
+                            if($_POST['filtre'] == "PoidsDesc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }

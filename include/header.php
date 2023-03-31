@@ -49,8 +49,41 @@
             border-radius:5px;
             }
 
-            .buttonHeader{
-                width:150px; height:35px; font-size:15px; background-color:white; border:0px;
+            .buttonHeader {
+            width:150px;
+            height:50px;
+            --b: 3px;   /* border thickness */
+            --s: .45em; /* size of the corner */
+            --color: white;
+            
+            padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+            color: var(--color);
+            --_p: var(--s);
+            background:
+                conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+                var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+            transition: .3s linear, color 0s, background-color 0s;
+            outline: var(--b) solid #0000;
+            outline-offset: .6em;
+            font-size: 16px;
+
+            border: 0;
+
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            }
+
+            .buttonHeader:hover,
+            .buttonHeader:focus-visible{
+            --_p: 0px;
+            outline-color: var(--color);
+            outline-offset: .05em;
+            }
+
+            .buttonHeader:active {
+            background: var(--color);
+            color: #fff;
             }
 
             @media only screen and (max-width: 900px) {
@@ -80,29 +113,29 @@
         </div>
         <?php
             if(isset($_SESSION['id'])){
-                echo '<div id="buttonRecherche" style="position:absolute; left:40vw; top:25px;">
+                echo '<div id="buttonRecherche" style="position:absolute; left:40vw; top:15px;">
                         <form action="index.php" method="post">
                             <input type="submit" value="Recherche" name="rechercheButton" class="buttonHeader">
                         </form> 
                     </div>
-                    <div id="buttonInv" style="position:absolute; left:55vw; top:25px;">
+                    <div id="buttonInv" style="position:absolute; left:55vw; top:15px;">
                         <form action="inventaire.php" method="post">
                             <input type="submit" value="Inventaire" name="inventaireButton" class="buttonHeader">
                         </form>
                     </div>
-                    <div id="buttonPanier" style="position:absolute; left:70vw; top:25px;">
+                    <div id="buttonPanier" style="position:absolute; left:70vw; top:15px;">
                         <form action="panier.php" method="post">
                             <input type="submit" value="Panier" name="panierButton" class="buttonHeader">
                         </form>
                     </div>
-                    <div id="buttonBanque" style="position:absolute; left:85vw; top:25px;">
+                    <div id="buttonBanque" style="position:absolute; left:85vw; top:15px;">
                         <form action="banque.php" method="post">
                             <input type="submit" value="Banque" name="BanqueButton" class="buttonHeader">
                         </form>
                     </div>';
             }
             else{
-                echo '<div id="buttonRecherche" style="position:absolute; left:85vw; top:25px;">
+                echo '<div id="buttonRecherche" style="position:absolute; left:85vw; top:15px;">
                         <form action="index.php" method="post">
                             <input type="submit" value="Recherche" name="rechercheButton" class="buttonHeader">
                         </form> 
