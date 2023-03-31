@@ -47,7 +47,7 @@ function AjouterPanier($idItem, $idjoueur){
     $pdo = getPdo();
     $nombre = 1;
     try{
-        $sql = 'SELECT AjouterPanier(?,?,?)';
+        $sql = 'SELECT AjouterPanier(?,?,?) as Erreur';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idItem,$idjoueur,$nombre]);
 
