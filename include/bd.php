@@ -47,7 +47,7 @@ function AjouterPanier($idItem, $idjoueur){
     $pdo = getPdo();
     $nombre = 1;
     try{
-        $sql = 'SELECT AjouterPanier(?,?,?)';
+        $sql = 'SELECT AjouterPanier(?,?,?) as Erreur';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idItem,$idjoueur,$nombre]);
 
@@ -80,12 +80,25 @@ function AjouterPanier($idItem, $idjoueur){
 function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
     $pdo = getPdo();
     try{
-        $sql = 'CALL ModifierPanier(?,?)';
+        $sql = 'SELECT ModifierPanier(?,?) as Erreur';
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(1, $idItem, PDO::PARAM_INT);
-        $stmt->bindParam(2, $idjoueur, PDO::PARAM_INT);
-        $stmt->bindParam(3, $nouvelleQte, PDO::PARAM_INT);
-        $stmt->execute();
+        $stmt->execute([$idjoueur,$idItem,$nouvelleQte]);
+        while($row = $stmt->fetch())
+        {
+            if($row['Erreur']==1)
+            {
+                echo "La quantité en stock de l'item est invalide.";
+            }
+            else if($row['Erreur'] == 2)
+            {
+                echo "Vous n'avez pas les fonds nécessaire.";
+            }
+            else
+            {
+                echo "Modification réussie!";
+            }
+
+        }
     } catch (Exception $e){
         echo "Heyyyyyyy";
         exit;
