@@ -50,7 +50,7 @@
             }
 
             .buttonHeader{
-                width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;
+                width:150px; height:35px; font-size:15px; background-color:white; border:0px;
             }
 
             @media only screen and (max-width: 900px) {
