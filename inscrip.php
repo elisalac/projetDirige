@@ -27,9 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // chiffre le mot de passe
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     $membreIns = getMembreInscription();
+    
     if($membreIns['alias'] == $pseudo)
     {
         $message = "<p>L'alias est déjà utilisé</p>";
+    }
+    if($membreIns['courriel'] == $courriel)
+    {
+      $message = "<p>Le courriel est déjà utilisé</p>";
     }
     else
     {
