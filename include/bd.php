@@ -27,7 +27,6 @@ function InsertInscription($nom, $prenom, $alias, $mdp, $courriel, $class)
 
 
     try {
-        /*ferergv*/
         $nul = 'allo';
         $sql = 'CALL ajouterJoueur(?,?,?,?,?,?,?)';
         $stmt = $pdo->prepare($sql);

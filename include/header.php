@@ -50,7 +50,7 @@
             }
 
             .buttonHeader{
-                width:150px; height:35px; font-size:15px; background-color:#504aa5; border:0px;
+                width:150px; height:35px; font-size:15px; background-color:white; border:0px;
             }
 
             @media only screen and (max-width: 900px) {
@@ -102,7 +102,7 @@
                     </div>';
             }
             else{
-                echo '<div id="buttonRecherche" style="position:absolute; left:1300px; top:25px;">
+                echo '<div id="buttonRecherche" style="position:absolute; left:85vw; top:25px;">
                         <form action="index.php" method="post">
                             <input type="submit" value="Recherche" name="rechercheButton" class="buttonHeader">
                         </form> 
