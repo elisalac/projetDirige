@@ -58,31 +58,6 @@
                 grid-column-end: 4;
             }
 
-            /*.checkboxCSS{
-                display:inline-block;
-                width:25px;
-                height:19px;
-                margin: 0 5px -4px 0;
-             }
-            .checkboxCSS:before,
-            .checkboxCSS:after {
-                @include transition(all .3s ease-in-out);
-                content: "";
-                position: absolute;
-                z-index: 1;
-                background: transparent;
-                border: 2px solid white; 
-            }
-            .checkboxCSS:after {
-            z-index: 0;
-            border: none;
-            }
-            .checkboxCSS:checked,
-            .checkboxCSS:before {
-            @include transform(rotateY(180deg));
-            background: white;
-            }*/
-
             @media only screen and (min-width: 1800px) {
                 .listeItemGrid{
                     display: inline-grid;

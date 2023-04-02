@@ -52,8 +52,8 @@
             .buttonHeader {
             width:150px;
             height:50px;
-            --b: 3px;   /* border thickness */
-            --s: .45em; /* size of the corner */
+            --b: 3px;
+            --s: .45em;
             --color: white;
             
             padding: calc(.5em + var(--s)) calc(.9em + var(--s));
