@@ -3,8 +3,8 @@
     <head>
         <style>
             .dropdown {
-            display: inline-block;
-            position: relative;
+                display: inline-block;
+                position: relative;
             }
 
             #buttonProfil{
@@ -28,7 +28,6 @@
             background-color:#fff;
             border-radius:5px;
             box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-            z-index: 2;
             }
 
             .dropdown:hover .dropdown-options {
@@ -41,6 +40,7 @@
             padding: 5px;
             text-decoration: none;
             padding:20px 40px;
+            font-size:25px;
             }
 
             .dropdown-options a:hover {
@@ -48,42 +48,70 @@
             background-color: #ddd;
             border-radius:5px;
             }
+                        /* .dropdown-options {
+                display: none;
+                position: absolute;
+                overflow: auto;
+                background-color:#fff;
+                border-radius:5px;
+                box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+                z-index: 2;
+                color: black;
+            }
+
+            .dropdown:hover .dropdown-options {
+                display: block;
+            }
+
+            .dropdown-options a {
+            display: block;
+            color: black;
+            padding: 5px;
+            text-decoration: none;
+            padding:20px 40px;
+            }
+
+            .dropdown-options a:hover {
+                color: black;
+                background-color: #ddd;
+                border-radius:5px;
+            } */
 
             .buttonHeader {
-            width:150px;
-            height:50px;
-            --b: 3px;
-            --s: .45em;
-            --color: white;
-            
-            padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-            color: var(--color);
-            --_p: var(--s);
-            background:
-                conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-                var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-            transition: .3s linear, color 0s, background-color 0s;
-            outline: var(--b) solid #0000;
-            outline-offset: .6em;
-            font-size: 16px;
+                width:150px;
+                height:50px;
+                --b: 3px;
+                --s: .45em;
+                --color: white;
+                
+                padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+                color: var(--color);
+                --_p: var(--s);
+                background:
+                    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+                    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+                transition: .3s linear, color 0s, background-color 0s;
+                outline: var(--b) solid #0000;
+                outline-offset: .6em;
+                font-size: 16px;
 
-            border: 0;
+                border: 0;
 
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
             }
 
             .buttonHeader:hover,
             .buttonHeader:focus-visible{
-            --_p: 0px;
-            outline-color: var(--color);
-            outline-offset: .05em;
+                --_p: 0px;
+                outline-color: var(--color);
+                outline-offset: .05em;
             }
 
             .buttonHeader:active {
-            background: var(--color);
-            color: #fff;
+                background: var(--color);
+                color: #fff;
             }
 
             @media only screen and (max-width: 900px) {
