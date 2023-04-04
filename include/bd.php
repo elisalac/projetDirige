@@ -83,11 +83,11 @@ function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
         $sql = 'SELECT ModifierPanier(?,?,?) as Erreur';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idjoueur,$idItem,$nouvelleQte]);
-        while($row = $stmt->fetch())
+        while($row = $stmt->fetch()) 
         {
             if($row['Erreur']==1)
             {
-                echo "La quantité en stock de l'item est invalide.";
+                echo "La quantité en stock de l'item est trop bas!";
             }
             else if($row['Erreur'] == 2)
             {
