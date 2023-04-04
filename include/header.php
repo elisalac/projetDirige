@@ -127,7 +127,7 @@
             <?php
                 if(isset($_SESSION['id'])){
                     $membre = getMembre($_SESSION['id']);
-                    echo '<p>' . $membre['alias'] . '</p>';
+                    echo '<p>' . $membre['alias'] . " | Or: " . $membre['montantOr'] . " | Argent: ".$membre['montantArgent'].  " | Bronze: ".$membre['montantBronze']. '</p>';
                 }
             ?>
         </div>

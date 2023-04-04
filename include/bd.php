@@ -332,3 +332,15 @@ function getMembreInscription()
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
 }
+
+function setConnectionOn($idJoueur){
+    $pdo = getPdo();
+    $sql = 'UPDATE Joueurs SET flagConnect = 1 WHERE idJoueur=' . $idJoueur;
+    $stmt = $pdo->query($sql);
+}
+
+function setConnectionOff($idJoueur){
+    $pdo = getPdo();
+    $sql = 'UPDATE Joueurs SET flagConnect = 0 WHERE idJoueur=' . $idJoueur;
+    $stmt = $pdo->query($sql);
+}
