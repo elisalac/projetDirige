@@ -8,7 +8,9 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         if(isset($_POST['modifier']))
         {
-           $qteItem=$_POST['qteItem'];   
+           $qteItem=$_POST['qtePanier'];  
+           $idItem = $_POST['idItem'];
+           ModifierPanier($idJoueur,$idItem,$qteItem);
         }
         if(isset($_POST['delete']))
         {

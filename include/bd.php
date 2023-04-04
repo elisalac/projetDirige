@@ -80,7 +80,7 @@ function AjouterPanier($idItem, $idjoueur){
 function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
     $pdo = getPdo();
     try{
-        $sql = 'SELECT ModifierPanier(?,?) as Erreur';
+        $sql = 'SELECT ModifierPanier(?,?,?) as Erreur';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idjoueur,$idItem,$nouvelleQte]);
         while($row = $stmt->fetch())
@@ -92,6 +92,10 @@ function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
             else if($row['Erreur'] == 2)
             {
                 echo "Vous n'avez pas les fonds nécessaire.";
+            }
+            else if($row['Erreur'] ==3)
+            {
+                echo "Quantité invalide";
             }
             else
             {
