@@ -1,3 +1,7 @@
+<?php
+    require "include/bd.php";
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -142,9 +146,10 @@
         </div>
         <div style="position:absolute; left:60px; top:10px;">
             <?php
+                echo $_SESSION['id'];
                 if(isset($_SESSION['id'])){
-                    //$membre = getMembre($_SESSION['id']);
-                    //echo '<p>' . $membre['alias'] . '</p>';
+                    $membre = getMembre($_SESSION['id']);
+                    echo '<p>' . $membre['alias'] . '</p>';
                 }
             ?>
         </div>
