@@ -302,11 +302,6 @@ function GetPanierJoueur($idjoueur)
     return $stmt;
 }
 
-
-
-
-
-
 function AfficherInfoItem($idItem)
 {
     $pdo = getPdo();
@@ -324,7 +319,6 @@ function AfficherInventaireJoueur($idJoueur)
     $stmt->execute([$idJoueur]);
     return $stmt;
 }
-
 
 function getMembreInscription()
 {

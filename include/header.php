@@ -138,6 +138,15 @@
                     ?>
                 </div>
             </div>
+            
+        </div>
+        <div style="position:absolute; left:60px; top:10px;">
+            <?php
+                if(isset($_SESSION['id'])){
+                    //$membre = getMembre($_SESSION['id']);
+                    //echo '<p>' . $membre['alias'] . '</p>';
+                }
+            ?>
         </div>
         <?php
             if(isset($_SESSION['id'])){
