@@ -63,6 +63,37 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+    <style>
+      body{
+        text-align:center;
+        padding-bottom: 50%;
+      }
+      
+      input[type=text], input[type=password], input[type=email], select {
+        width: 250px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+
+      input[type=submit], button {
+        background-color: #3f3e53;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+      }
+      fieldset{
+        padding:20px;
+        margin:0;
+        display:inline-block;
+        zoom:1.0;/* ie6/7 hack for inline block */
+        vertical-align:middle;
+        width:fit-content;
+      }
+    </style>
   </head>
 <body>
 <h2>Inscription</h2>
@@ -94,11 +125,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <tr>
             <td>Classe:</td>
             <td>
+              <?php
+                if (!empty($_POST['classe'])) {
+                  $dropDownVal = $_POST['classe'];
+                } else {
+                    $dropDownVal = "";
+                }
+              ?>
             <select name="classe">
-                <option value="G" <?php if($_POST['classe'] == "G") echo 'selected="selected"'; ?>>Guerrier</option>
-                <option value="P"<?php if($_POST['classe'] == "P") echo 'selected="selected"'; ?>>Paladin</option>
-                <option value="B"<?php if($_POST['classe'] == "B") echo 'selected="selected"'; ?>>Bandit</option>
-                <option value="M"<?php if($_POST['classe'] == "M") echo 'selected="selected"'; ?>>Mage</option>
+                <option value="G" <?php if($dropDownVal == "G") echo 'selected="selected"'; ?>>Guerrier</option>
+                <option value="P"<?php if($dropDownVal == "P") echo 'selected="selected"'; ?>>Paladin</option>
+                <option value="B"<?php if($dropDownVal == "B") echo 'selected="selected"'; ?>>Bandit</option>
+                <option value="M"<?php if($dropDownVal == "M") echo 'selected="selected"'; ?>>Mage</option>
             </select>
             </td>
            
