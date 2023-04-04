@@ -55,19 +55,19 @@ function AjouterPanier($idItem, $idjoueur){
         {
             if($row['Erreur']==1)
             {
-                echo "La quantité en stock de l'item est invalide.";
+                echo '<script type = "text/javascript">toastr.error("Quantité invalide")</script>';
             }
             else if($row['Erreur'] == 2)
             {
-                echo "L'item n'est pas disponible en ce moment.";
+                echo '<script type = "text/javascript">toastr.error("Item indisponible!")</script>';
             }
             else if($row['Erreur'] == 3)
             {
-                echo "Vous n'avez pas les fonds nécessaire.";
+                echo '<script type = "text/javascript">toastr.error("Fonds insuffisant!")</script>';
             }
             else
             {
-                echo "Ajout fait avec succès!";
+                echo '<script type = "text/javascript">toastr.success("Ajout réussie!")</script>';
             }
 
         }
@@ -87,19 +87,19 @@ function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
         {
             if($row['Erreur']==1)
             {
-                echo "La quantité en stock de l'item est trop bas!";
+                echo '<script type = "text/javascript">toastr.error("Quantité stock insuffisante!")</script>';
             }
             else if($row['Erreur'] == 2)
             {
-                echo "Vous n'avez pas les fonds nécessaire.";
+                echo '<script type = "text/javascript">toastr.error("Fonds insuffisant!")</script>';
             }
             else if($row['Erreur'] ==3)
             {
-                echo "Quantité invalide";
+                echo '<script type = "text/javascript">toastr.error("Quantité invalide")</script>';
             }
             else
             {
-                echo "Modification réussie!";
+                echo '<script type = "text/javascript">toastr.success("Modification réussie!")</script>';
             }
 
         }

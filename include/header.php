@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+    require "include/bd.php"
+?><!DOCTYPE html>
 <html>
     <head>
         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
