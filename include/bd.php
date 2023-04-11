@@ -152,9 +152,9 @@ function membreValide($pseudo, $mdp)
         $stmt->execute([$pseudo]);
         $membre = $stmt->fetch();
         if (password_verify($mdp, $membre['mdp'])){
-            return $membre['idJoueur'];
+            return array($membre['idJoueur'],$mdp);
         } else{
-            return false;
+            return array(false);
         }
     } catch (Exception $e) {
         die("Erreur dans membreValide() - bd.php");
@@ -166,7 +166,11 @@ function getMembre($id)
         header('Location: connexion.php');
     }
     $pdo = getPdo();
-    $sql = "SELECT * FROM Joueurs WHERE idJoueur=$id";
+    $sql = "SELECT Joueurs.idJoueur,alias,typeJoueur,montantOr,montantArgent,montantBronze,flagConnect,typeJoueur,nom,prenom,courriel,mdp 
+    FROM Joueurs 
+    INNER JOIN Profil 
+    on Joueurs.idJoueur=Profil.IdJoueur 
+    WHERE Joueurs.idJoueur=$id";
     $stmt = $pdo->query($sql);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row;
