@@ -53,6 +53,34 @@
             background-color: #ddd;
             border-radius:5px;
             }
+                        /* .dropdown-options {
+                display: none;
+                position: absolute;
+                overflow: auto;
+                background-color:#fff;
+                border-radius:5px;
+                box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+                z-index: 2;
+                color: black;
+            }
+
+            .dropdown:hover .dropdown-options {
+                display: block;
+            }
+
+            .dropdown-options a {
+            display: block;
+            color: black;
+            padding: 5px;
+            text-decoration: none;
+            padding:20px 40px;
+            }
+
+            .dropdown-options a:hover {
+                color: black;
+                background-color: #ddd;
+                border-radius:5px;
+            } */
 
             .buttonHeader {
                 width:150px;
@@ -91,18 +119,13 @@
                 color: #fff;
             }
 
-            p{
-                color:white;
-                margin:20px;
-                font-size: 20px;
-            }
-
             @media only screen and (max-width: 900px) {
                 input[type=submit]{
                     width:100px;
                 }   
             }
         </style>
+        
     </head>
     <header style="height:75px; width:100%;">
         <div style="position:absolute; left:15px; top:10px;">
@@ -126,8 +149,13 @@
         <div style="position:absolute; left:60px; top:10px;">
             <?php
                 if(isset($_SESSION['id'])){
+<<<<<<< HEAD
+                    //$membre = getMembre($_SESSION['id']);
+                    //echo '<p>' . $membre['alias'] . '</p>';
+=======
                     $membre = getMembre($_SESSION['id']);
                     echo '<p>' . $membre['alias'] . " | Or: " . $membre['montantOr'] . " | Argent: ".$membre['montantArgent'].  " | Bronze: ".$membre['montantBronze']. '</p>';
+>>>>>>> 47247575156e71be99c72841b743631d279f4f05
                 }
             ?>
         </div>

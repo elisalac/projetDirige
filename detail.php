@@ -1,7 +1,6 @@
 <?php
     session_start();
     require "include/header.php";
-
     // faire une verification de c'est quelle item avant de pouvoir essayer c'est quoi mettre la fonctionm qui verifie ele id
     #foreach($item as $range)
     $idItem = $_GET["idItems"];
