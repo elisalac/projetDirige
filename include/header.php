@@ -149,13 +149,8 @@
         <div style="position:absolute; left:60px; top:10px;">
             <?php
                 if(isset($_SESSION['id'])){
-<<<<<<< HEAD
-                    //$membre = getMembre($_SESSION['id']);
-                    //echo '<p>' . $membre['alias'] . '</p>';
-=======
                     $membre = getMembre($_SESSION['id']);
                     echo '<p>' . $membre['alias'] . " | Or: " . $membre['montantOr'] . " | Argent: ".$membre['montantArgent'].  " | Bronze: ".$membre['montantBronze']. '</p>';
->>>>>>> 47247575156e71be99c72841b743631d279f4f05
                 }
             ?>
         </div>
