@@ -134,7 +134,7 @@
                 <div class="dropdown-options">
                     <?php
                         if(isset($_SESSION['id'])){
-                            //echo '<a href="profil.php">Modifier votre profil</a>';
+                            echo '<a href="profil.php">Modifier votre profil</a>';
                             //echo '<a href="stats.php">Statistiques</a>';
                             echo '<a href="logout.php">Déconnecter</a>';
                         }
