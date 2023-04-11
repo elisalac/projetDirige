@@ -93,6 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         vertical-align:middle;
         width:fit-content;
       }
+
+      header p{
+        color:white;
+                margin:20px;
+                font-size: 20px;
+      }
     </style>
   </head>
 <body>
