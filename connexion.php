@@ -16,14 +16,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $id = membreValide($alias, $mdp);
     if($id !== false){
       $membre = getMembre($id);
+      if($membre['flagConnect'] == 0){
         $_SESSION['alias']=$membre['alias'];
         $_SESSION['usagerValide']=true;
         $_SESSION['id']=$membre['idJoueur'];
         $_SESSION['motDePasse']=$membre['mdp'];
+        setConnectionOn($_SESSION['id']);
         header('Location:index.php');
         exit;
+      }
+      else{
+        $message = '<p style="color:red;">Compte déjà en utilisation</p>';
+      }
     } else {
-      $message = '<p style="color:red;">Données de connexion invalides';
+      $message = '<p style="color:red;">Données de connexion invalides</p>';
     }
   }
 }
