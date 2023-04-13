@@ -1,8 +1,8 @@
 <?php
 
 // formulaire et script d'inscription
-
 session_start();
+require "include/header.php";
 require_once "include/bd.php";
 
 
@@ -28,21 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
     $membreIns = getMembreInscription();
     
-    
-    if($membreIns['courriel'] == $courriel)
-    {
-      echo "<p>Le courriel est déjà utilisé</p>";
-    }
-    if($membreIns['alias'] == $pseudo)
-    {
-        echo "<p>L'alias est déjà utilisé</p>";
-    }
-    else if($membreIns['alias'] != $pseudo && $membreIns['courriel'] != $courriel)
-    {
-      InsertInscription($nom,$prenom,$pseudo,$mdp,$courriel,$classe);
-      header("Location: connexion.php");
-      exit;
-    }
     /*
     else
     {
@@ -100,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
   <fieldset>
     <legend>Veuillez remplir tous les champs!</legend>
-    <form action="inscrip.php" method="post">
+    <form action="profil.php" method="post">
       <table>
         <tr>
           <td>Pseudonyme</td>
