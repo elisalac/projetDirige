@@ -99,6 +99,10 @@
                 input[type=submit]{
                     width:100px;
                 }   
+
+                .infoJoueur{
+                    display: none;
+                }
             }
         </style>
         

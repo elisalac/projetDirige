@@ -96,8 +96,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
       header p{
         color:white;
-                margin:20px;
-                font-size: 20px;
+        margin:20px;
+        font-size: 20px;
       }
     </style>
   </head>
