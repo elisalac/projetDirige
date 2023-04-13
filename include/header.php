@@ -56,34 +56,6 @@
             background-color: #ddd;
             border-radius:5px;
             }
-                        /* .dropdown-options {
-                display: none;
-                position: absolute;
-                overflow: auto;
-                background-color:#fff;
-                border-radius:5px;
-                box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-                
-                color: black;
-            }
-
-            .dropdown:hover .dropdown-options {
-                display: block;
-            }
-
-            .dropdown-options a {
-            display: block;
-            color: black;
-            padding: 5px;
-            text-decoration: none;
-            padding:20px 40px;
-            }
-
-            .dropdown-options a:hover {
-                color: black;
-                background-color: #ddd;
-                border-radius:5px;
-            } */
 
             .buttonHeader {
                 width:150px;
@@ -140,6 +112,9 @@
                         if(isset($_SESSION['id'])){
                             echo '<a href="profil.php">Modifier votre profil</a>';
                             //echo '<a href="stats.php">Statistiques</a>';
+                            if(isAdmin($_SESSION['id']) == 1){
+                                echo '<a href="admin.php">Admin</a>';
+                            }
                             echo '<a href="logout.php">Déconnecter</a>';
                         }
                         else{
