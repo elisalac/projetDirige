@@ -90,7 +90,6 @@
             }
 
             .buttonHeader:active {
-                background: var(--color);
                 color: #fff;
             }
             
