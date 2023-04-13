@@ -42,6 +42,16 @@
             .inventaireDiv p{
                 margin-top:60px;
             }
+
+            .infoJoueur{
+                position:absolute; left:60px; top:10px;
+            }
+
+            .infoJoueur p{
+                color:white;
+                margin:20px;
+                font-size: 20px;
+            }
         </style>
     </head>
     <body>

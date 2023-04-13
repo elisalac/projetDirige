@@ -1,7 +1,5 @@
 <?php
     session_start();
-    require "include/header.php";
-    require "include/bd.php";
 
     // faire une verification de c'est quelle item avant de pouvoir essayer c'est quoi mettre la fonctionm qui verifie ele id
     #foreach($item as $range)
@@ -34,8 +32,20 @@
             u{
                 font-size: 22px;
             }
+            .infoJoueur{
+                position:absolute; left:60px; top:10px;
+            }
+
+            .infoJoueur p{
+                color:white;
+                margin:20px;
+                font-size: 20px;
+            }
         </style>
     </head>
+    <?php
+        require "include/header.php";
+    ?>
     <body>
         <?php
             /// Faire comme gestimage pour afficher les info de la table Items pour qu'il fusionne avec les info des items

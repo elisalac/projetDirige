@@ -32,7 +32,10 @@
             overflow: auto;
             background-color:#fff;
             border-radius:5px;
+            z-index: 2;
             box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+
+            color:black; 
             }
 
             .dropdown:hover .dropdown-options {
@@ -60,7 +63,7 @@
                 background-color:#fff;
                 border-radius:5px;
                 box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
-                z-index: 2;
+                
                 color: black;
             }
 
@@ -118,6 +121,7 @@
                 background: var(--color);
                 color: #fff;
             }
+            
 
             @media only screen and (max-width: 900px) {
                 input[type=submit]{
@@ -146,7 +150,7 @@
             </div>
             
         </div>
-        <div style="position:absolute; left:60px; top:10px;">
+        <div class="infoJoueur" style="position:absolute; left:60px; top:10px;">
             <?php
                 if(isset($_SESSION['id'])){
                     $membre = getMembre($_SESSION['id']);
