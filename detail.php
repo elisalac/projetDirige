@@ -6,8 +6,6 @@
     $idItem = $_GET["idItems"];
     $_SESSION['idItems'] = $idItem;
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>

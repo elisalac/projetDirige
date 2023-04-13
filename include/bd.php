@@ -348,3 +348,16 @@ function setConnectionOff($idJoueur){
     $sql = 'UPDATE Joueurs SET flagConnect = 0 WHERE idJoueur=' . $idJoueur;
     $stmt = $pdo->query($sql);
 }
+
+function isAdmin($idJoueur){
+    $pdo = getPdo();
+
+    try{
+        $sql = 'SELECT flagAdmin FROM Joueurs WHERE idJoueur = ?';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idJoueur]);
+        return $stmt;
+    } catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
