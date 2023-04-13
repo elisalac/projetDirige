@@ -356,7 +356,9 @@ function isAdmin($idJoueur){
         $sql = 'SELECT flagAdmin FROM Joueurs WHERE idJoueur = ?';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idJoueur]);
-        return $stmt;
+        while ($row = $stmt->fetch()){
+            return $row['flagAdmin'];
+        }
     } catch(Exception $e){
         echo $e->getMessage();
     }

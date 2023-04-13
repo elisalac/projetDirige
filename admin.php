@@ -2,7 +2,7 @@
     require "include/auth.php";
     require "include/header.php";
 
-    if(isAdmin($_SESSION['id']) == 0){
+    if(isAdmin($_SESSION['id']) != 1){
         header('Location: index.php');
     }
 ?>
