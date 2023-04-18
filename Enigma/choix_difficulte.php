@@ -29,7 +29,7 @@ if (!empty($_POST['enigme'])) {
     <h1>DARQUEST</h1>
     <fieldset>
         <legend>Veuillez choisir une difficulté</legend>
-        <form action="choix_difficulte.php" method="post">
+        <form action="question.php?" + <?php $idQuestion?> method="post">
             <select name="enigme">
                 <option value="F" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Facile</option>
                 <option value="M" <?php  if($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Moyen</option>
@@ -49,7 +49,22 @@ if(isset($_POST['enigme'])){
     {
         if($_POST['enigme'] == "F")
         {
-            //function $id = getQuestionFacile
+            $idQuestion = getQuestionFacile();
+        }
+        if($_POST['enigme'] == "M")
+        {
+            $idQuestion = getQuestionMoyen();
+        }
+        if($_POST['enigme'] == "D")
+        {
+            $idQuestion = getQuestionDifficile();
+
+
+        }
+        if($_POST['enigme'] == "A")
+        {
+            $idQuestion = getQuestionAleatoire();
+
 
         }
         
