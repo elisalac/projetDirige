@@ -23,11 +23,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $prenom   = $_POST['prenom'];
     $courriel = $_POST['courriel'];
     $classe = $_POST['classe'];
-
-    // chiffre le mot de passe
-    $mdp = password_hash($mdp, PASSWORD_DEFAULT);
-    $membreIns = getMembreInscription();
-    
+    $photo= "ALLO";
+    $erreur=ModifierJoueur($_SESSION['id'],$pseudo,$nom,$prenom,$courriel,$photo,$mdp,$classe);
+    if($erreur==1)
+    {
+       echo "t un imbecile";
+    }
+    if($erreur==2)
+    {
+      echo "t un imbecile";
+    }
+    if($erreur==0)
+    {
+      $_SESSION['alias']=$_POST['pseudo'];
+      $_SESSION['courriel']=$_POST['courriel'];
+      $_SESSION['prenom']= $_POST['prenom'];
+      $_SESSION['nom'] =$_POST['nom'];
+      $_SESSION['type']= $_POST['classe'];
+      $_SESSION['usagerValide']=true;
+      $_SESSION['motDePasse']=$_POST['mdp'];
+      // chiffre le mot de passe
+      $mdp = password_hash($mdp, PASSWORD_DEFAULT);
+      $membreIns = getMembreInscription();
+      ModifierJoueur($_SESSION['id'],$pseudo,$nom,$prenom,$courriel,$photo,$mdp,$classe);
+    }
     /*
     else
     {
