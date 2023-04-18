@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once "../include/bd.php";
+$idQuestion= "";
+if (!empty($_POST['enigme'])) {
+    $dropDownVal = $_POST['enigme'];
+} else {
+    $dropDownVal = "";
+}
 
 ?>
 <!DOCTYPE html>
@@ -11,6 +17,12 @@ require_once "../include/bd.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choisir une difficulté</title>
+    <style>
+         body{
+                background-color: #3f3e53;
+                
+            }
+    </style>
 </head>
 
 <body>
@@ -19,10 +31,10 @@ require_once "../include/bd.php";
         <legend>Veuillez choisir une difficulté</legend>
         <form action="choix_difficulte.php" method="post">
             <select name="enigme">
-                <option value="F" <?php echo 'selected="selected"'; ?>>Facile</option>
-                <option value="M" <?php echo 'selected="selected"'; ?>>Moyen</option>
-                <option value="D" <?php echo 'selected="selected"'; ?>>Difficile</option>
-                <option value="A" <?php echo 'selected="selected"'; ?>>Aléatoire</option>
+                <option value="F" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Facile</option>
+                <option value="M" <?php  if($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Moyen</option>
+                <option value="D" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Difficile</option>
+                <option value="A" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Aléatoire</option>
             </select>
             <tr>
                 <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
@@ -30,5 +42,20 @@ require_once "../include/bd.php";
         </form>
     </fieldset>
 </body>
+<?php
+if(isset($_POST['enigme'])){
+    
+    if(!empty($_POST['enigme']))
+    {
+        if($_POST['enigme'] == "F")
+        {
+            //function $id = getQuestionFacile
 
+        }
+        
+    }
+}
+require "../include/footerEnigma.php"
+
+?>
 </html>
