@@ -363,3 +363,17 @@ function isAdmin($idJoueur){
         echo $e->getMessage();
     }
 }
+
+function ModifierJoueur($idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typeJoueur) 
+{
+    try
+    {
+        $pdo=getPdo();
+        $sql = 'SELECT ModifierJoueur(?,?,?,?,?,?,?,?) as Erreur';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typeJoueur]);
+    }
+         catch (Exception $e) {
+        echo "Le compte n'a pu être créé, veuillez recommencer";
+    }
+}

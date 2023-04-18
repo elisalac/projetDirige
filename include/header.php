@@ -1,5 +1,6 @@
 <?php
     require "include/bd.php"
+    
 ?><!DOCTYPE html>
 <html>
     <head>
