@@ -373,6 +373,6 @@ function ModifierJoueur($idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typ
         $stmt->execute([$idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typeJoueur]);
         while($row = $stmt->fetch()) 
         {
-            echo $row['Erreur'];
+            return $row['Erreur'];
         }
 }
