@@ -444,3 +444,22 @@ function getQuestionAleatoire()
         return $row['question'];
     }
 }
+
+function AfficherReponses($idQuestion)
+{
+    $pdo = getPdo();
+    $sql = "SELECT  idRéponse,laReponse FROM Énigmes WHERE idÉnigmes = ".$idQuestion ;
+    echo '<form method ="post">';
+    echo '<fieldset>'; 
+    $stmt = $pdo->query($sql);
+    while($row = $stmt->fetch()) 
+    {
+        echo '<div>
+      <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"
+             checked>
+      <label for="huey">Huey</label>
+    </div>';
+    }
+    echo '</fieldset>';
+    echo '</form>';
+}
