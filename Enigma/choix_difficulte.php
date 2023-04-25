@@ -29,47 +29,23 @@ if (!empty($_POST['enigme'])) {
     <h1>DARQUEST</h1>
     <fieldset>
         <legend>Veuillez choisir une difficulté</legend>
-        <form action="question.php?idQuestion" + <?php $idQuestion?> method="post">
+        <form action="question.php" method="post">
             <select name="enigme">
                 <option value="F" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Facile</option>
                 <option value="M" <?php  if($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Moyen</option>
                 <option value="D" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Difficile</option>
                 <option value="A" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Aléatoire</option>
             </select>
+            <input type="hidden" name = "bruh" value = "<?php if(isset($_POST['Diff'])){echo $_POST['enigme'];} ?>">
             <tr>
-                <td colspan="2" style="text-align: center;"><input type="submit" value="Valider"></td>
+                <td colspan="2" style="text-align: center;"><input type="submit" value="Valider" name="Diff"></td>
             </tr>
         </form>
+        
     </fieldset>
 </body>
 <?php
-if(isset($_POST['enigme'])){
-    
-    if(!empty($_POST['enigme']))
-    {
-        if($_POST['enigme'] == "F")
-        {
-            $idQuestion = getQuestionFacile();
-        }
-        if($_POST['enigme'] == "M")
-        {
-            $idQuestion = getQuestionMoyen();
-        }
-        if($_POST['enigme'] == "D")
-        {
-            $idQuestion = getQuestionDifficile();
 
-
-        }
-        if($_POST['enigme'] == "A")
-        {
-            $idQuestion = getQuestionAleatoire();
-
-
-        }
-        
-    }
-}
 require "../include/footerEnigma.php"
 
 ?>

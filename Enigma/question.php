@@ -1,5 +1,5 @@
 <?php
-    
+    require_once "../include/bd.php"; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,27 @@
     </head>
     <body>
         <?php
-            echo $_POST['idQuestion'];
+        if(!empty($_POST['enigme']))
+        {
+            if($_POST['enigme'] == "F")
+            {
+                $idQuestion = getQuestionFacile();
+                
+            }
+            if($_POST['enigme'] == "M")
+            {
+                $idQuestion = getQuestionMoyen();
+            }
+            if($_POST['enigme'] == "D")
+            {
+                $idQuestion = getQuestionDifficile();
+            }
+            if($_POST['enigme'] == "A")
+            {
+                $idQuestion = getQuestionAleatoire();
+            }
+            echo $idQuestion;
+        }
         ?>
     </body>
     <?php

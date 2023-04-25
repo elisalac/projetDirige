@@ -381,36 +381,44 @@ function ModifierJoueur($idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typ
 function getQuestionFacile()
 {
     $pdo = getPdo();
-    $sql = "SELECT idÉnigmes FROM Énigmes WHERE difficulté = 'F' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT  idÉnigmes,question FROM Énigmes WHERE difficulté = 'F' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row;
+    while($row = $stmt->fetch()) 
+    {
+        return $row['question'];
+    }
 }
 
 
 function getQuestionMoyen()
 {
     $pdo = getPdo();
-    $sql = "SELECT idÉnigmes FROM Énigmes WHERE difficulté = 'M' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT  idÉnigmes,question FROM Énigmes WHERE difficulté = 'M' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row;
+    while($row = $stmt->fetch()) 
+    {
+        return $row['question'];
+    }
 }
 
 function getQuestionDifficile()
 {
     $pdo = getPdo();
-    $sql = "SELECT idÉnigmes FROM Énigmes WHERE difficulté = 'D' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT  idÉnigmes,question FROM Énigmes WHERE difficulté = 'D' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row;
+    while($row = $stmt->fetch()) 
+    {
+        return $row['question'];
+    }
 }
 
 function getQuestionAleatoire()
 {
     $pdo = getPdo();
-    $sql = "SELECT idÉnigmes FROM Énigmes WHERE flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT idÉnigmes,question FROM Énigmes WHERE flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row;
+    while($row = $stmt->fetch()) 
+    {
+        return $row['question'];
+    }
 }
