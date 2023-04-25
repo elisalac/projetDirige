@@ -119,7 +119,7 @@
                             //echo '<a href="stats.php">Statistiques</a>';
                             if(isAdmin($_SESSION['id']) == 1){
                                 echo '<a href="admin.php">Admin</a>';
-                                echo '<a href="Enigma/ajouter_question.php">Ajouter Question</a>';
+                                echo '<a href="ajouter_question.php">Ajouter Question</a>';
                             }
                             echo '<a href="logout.php">Déconnecter</a>';
                         }
