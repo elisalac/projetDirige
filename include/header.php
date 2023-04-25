@@ -115,6 +115,7 @@
                     <?php
                         if(isset($_SESSION['id'])){
                             echo '<a href="profil.php">Modifier votre profil</a>';
+                            echo '<a href="Enigma/choix_difficulte.php">Enigma</a>';
                             //echo '<a href="stats.php">Statistiques</a>';
                             if(isAdmin($_SESSION['id']) == 1){
                                 echo '<a href="admin.php">Admin</a>';

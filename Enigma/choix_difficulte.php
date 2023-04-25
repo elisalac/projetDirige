@@ -29,7 +29,7 @@ if (!empty($_POST['enigme'])) {
     <h1>DARQUEST</h1>
     <fieldset>
         <legend>Veuillez choisir une difficulté</legend>
-        <form action="question.php?" + <?php $idQuestion?> method="post">
+        <form action="question.php?idQuestion" + <?php $idQuestion?> method="post">
             <select name="enigme">
                 <option value="F" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Facile</option>
                 <option value="M" <?php  if($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Moyen</option>

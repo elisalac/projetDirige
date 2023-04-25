@@ -6,6 +6,10 @@
 
     if(isset($_POST['acheterButton'])){
     }
+
+    
+    $whereLoginType1 = "";
+    $whereLoginType2 = "";
 ?>
 <!DOCTYPE html>
 <html>
@@ -129,7 +133,7 @@
     <body>
         <div class="listeItemGrid">
             <?php
-                
+
                 $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ORDER BY typeItem';
                 if($_SERVER['REQUEST_METHOD'] == "POST"){
                     
@@ -412,6 +416,295 @@
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
                                 $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids DESC';
+                            }
+                        }
+                    }
+                }
+                if(isset($_SESSION['id'])){
+                    
+                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY typeItem';
+                    if($_SERVER['REQUEST_METHOD'] == "POST"){
+                        
+                        //Bouton tous items
+                        if(isset($_POST['tous'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY typeItem';
+                        }
+
+                        //Liste déroulante filtre
+                        if(!empty($_POST['filtre'])){
+                            if($_POST['filtre'] == "PrixAsc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                            }
+                            if($_POST['filtre'] == "PrixDesc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                            }
+                            if($_POST['filtre'] == "PoidsAsc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                            }
+                            if($_POST['filtre'] == "PoidsDesc"){
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                            }
+                        }
+
+                        //Checkbox type items
+                        //1 type
+                        if(isset($_POST['checkboxArmes'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmures'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxPotions'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+
+                        //2 types
+                        if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxPotions'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+
+                        //3 types
+                        if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
+                            }
+                        }
+                        if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids, prixUnitaire';
+                            if(!empty($_POST['filtre'])){
+                                if($_POST['filtre'] == "PrixAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire';
+                                }
+                                if($_POST['filtre'] == "PrixDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY prixUnitaire DESC';
+                                }
+                                if($_POST['filtre'] == "PoidsAsc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids';
+                                }
+                                if($_POST['filtre'] == "PoidsDesc"){
+                                    $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" AND Inventaire.idJoueur = ' + $_SESSION['id'] + ' ORDER BY poids DESC';
+                                }
                             }
                         }
                     }
