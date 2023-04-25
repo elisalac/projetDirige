@@ -496,14 +496,3 @@ try{
   }
 }
 
-
-function getID()
-{
-    $pdo = getPdo();
-    $sql = "SELECT LAST_INSERT_ID() as id"; 
-    $stmt = $pdo->query($sql);
-    while($row = $stmt->fetch()) 
-    {
-        return ($row['id']);
-    }
-}
