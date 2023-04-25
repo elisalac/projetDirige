@@ -407,7 +407,7 @@ function getQuestionFacile()
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
-        return $row['question'];
+        return array($row['idÉnigmes'],$row['question']);
     }
 }
 
@@ -419,7 +419,7 @@ function getQuestionMoyen()
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
-        return $row['question'];
+        return array($row['idÉnigmes'],$row['question']);
     }
 }
 
@@ -430,7 +430,7 @@ function getQuestionDifficile()
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
-        return $row['question'];
+        return array($row['idÉnigmes'],$row['question']);
     }
 }
 
@@ -441,14 +441,14 @@ function getQuestionAleatoire()
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
-        return $row['question'];
+        return array($row['idÉnigmes'],$row['question']);
     }
 }
 
 function AfficherReponses($idQuestion)
 {
     $pdo = getPdo();
-    $sql = "SELECT  idRéponse,laReponse FROM Énigmes WHERE idÉnigmes = ".$idQuestion ;
+    $sql = "SELECT  idRéponse,laReponse FROM Réponses WHERE idÉnigmes = ".$idQuestion ;
     echo '<form method ="post">';
     echo '<fieldset>'; 
     $stmt = $pdo->query($sql);
@@ -457,9 +457,10 @@ function AfficherReponses($idQuestion)
         echo '<div>
       <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"
              checked>
-      <label for="huey">Huey</label>
+      <label for="rep">'.$row['laReponse'].'</label>
     </div>';
     }
     echo '</fieldset>';
+    echo '<input type="submit" name="reponse" value="Soumettre">';
     echo '</form>';
 }

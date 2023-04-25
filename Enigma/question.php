@@ -44,8 +44,10 @@
                 {
                     $idQuestion = getQuestionAleatoire();
                 }
-                echo '<p>' . $idQuestion . '</p>';
+                echo '<p>' . $idQuestion[1] . '</p>';
+                AfficherReponses( $idQuestion[0]);
             }
+            
             ?>
         </div>
     </body>
