@@ -464,3 +464,33 @@ function AfficherReponses($idQuestion)
     echo '</fieldset>';
     echo '</form>';
 }
+
+
+function AjouterQuestion($difficulte,$question)
+{
+  $pdo = getPdo();
+try{
+  $sql = "INSERT INTO Énigmes (difficulté, question) VALUES (?, ?)";
+  $stmt= $pdo->prepare($sql);
+  $stmt->execute([$difficulte,$question]);
+  $last = $pdo->lastInsertId();
+  return $last;
+}catch (Exception $e) {
+    die("Erreur dans ajouterQuestion() - bd.php");
+  }
+}
+
+
+function AjouterRéponse($reponse,$estBonne,$idQuestion)
+{
+  $pdo = getPdo();
+try{
+  $sql = "INSERT INTO Réponses (laReponse, estBonne, idÉnigmes) VALUES (?,?,?)";
+  $stmt= $pdo->prepare($sql);
+  $stmt->execute([$reponse,$estBonne,$idQuestion]);
+  $last = $pdo->lastInsertId();
+  return $last;
+}catch (Exception $e) {
+    die("Erreur dans ajouterRéponses() - bd.php");
+  }
+}
