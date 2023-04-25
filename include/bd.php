@@ -448,7 +448,20 @@ function getQuestionAleatoire()
 function AfficherReponses($idQuestion)
 {
     $pdo = getPdo();
-    $sql = "SELECT  idRéponse,laReponse FROM Réponses WHERE idÉnigmes = ".$idQuestion ;
+    $sql = "SELECT  idRéponse,laReponse FROM Réponses WHERE idÉnigmes = ".$idQuestion;
+    $repondu = false;
+    $chek= "";
+    $disabled = "";
+    if(isset($_POST['reponse'])){
+        $repondu = true;
+        $_SESSION['repondu'] = $repondu;
+    }
+    if(isset($_POST["rep"]))
+    {
+        $chek = "checked='checked'";
+    }
+    if($repondu) $disabled =  "disabled";
+
     echo '<form method ="post">';
     echo '<fieldset>'; 
     $stmt = $pdo->query($sql);
@@ -457,15 +470,13 @@ function AfficherReponses($idQuestion)
         echo '<div class="divReponse">
             <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"
                     checked>
+            <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"'.$chek . $disabled .'>
             <label for="rep">'.$row['laReponse'].'</label>
         </div>';
     }
-    echo '<input type="submit" name="reponse" value="Soumettre">';
-    echo '</fieldset>';
-    echo '</form>';
+
+
 }
-
-
 function AjouterQuestion($difficulte,$question)
 {
   $pdo = getPdo();
