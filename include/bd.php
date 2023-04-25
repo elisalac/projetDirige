@@ -473,8 +473,6 @@ try{
   $sql = "INSERT INTO Énigmes (difficulté, question) VALUES (?, ?)";
   $stmt= $pdo->prepare($sql);
   $stmt->execute([$difficulte,$question]);
-  $last = $pdo->lastInsertId();
-  return $last;
 }catch (Exception $e) {
     die("Erreur dans ajouterQuestion() - bd.php");
   }
@@ -499,7 +497,7 @@ try{
 function getID()
 {
     $pdo = getPdo();
-    $sql = "SELECT LAST_INSERT_ID() as Énigmes"; 
+    $sql = "SELECT LAST_INSERT_ID() as id"; 
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
