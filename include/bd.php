@@ -494,3 +494,15 @@ try{
     die("Erreur dans ajouterRéponses() - bd.php");
   }
 }
+
+
+function getID()
+{
+    $pdo = getPdo();
+    $sql = "SELECT LAST_INSERT_ID() as Énigmes"; 
+    $stmt = $pdo->query($sql);
+    while($row = $stmt->fetch()) 
+    {
+        return ($row['id']);
+    }
+}
