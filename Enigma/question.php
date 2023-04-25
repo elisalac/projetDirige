@@ -15,7 +15,9 @@
         </style>
     </head>
     <body>
-        
+        <?php
+            echo $_POST['idQuestion'];
+        ?>
     </body>
     <?php
         require "../include/footerEnigma.php"
