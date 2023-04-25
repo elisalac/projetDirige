@@ -460,10 +460,7 @@ function AfficherReponses($idQuestion)
     {
         $chek = "checked='checked'";
     }
-    if($repondu) $disabled =  "disabled";
-
-    echo '<form method ="post">';
-    echo '<fieldset>'; 
+    if($repondu) $disabled =  "disabled"; 
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
@@ -472,8 +469,6 @@ function AfficherReponses($idQuestion)
             <label for="rep">'.$row['laReponse'].'</label>
         </div>';
     }
-
-
 }
 function AjouterQuestion($difficulte,$question)
 {
