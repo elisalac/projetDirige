@@ -17,13 +17,18 @@
                 color: white;
                 font-size: x-large;
             }
-            div{
+            #divQuestion{
                 margin-top: 30vh;
+            }
+            .divReponse{
+                margin:20px;
+                color:white;
+                font-size: 20px;
             }
         </style>
     </head>
     <body>
-        <div>
+        <div id="divQuestion">
             <?php
             if(!empty($_POST['enigme']))
             {

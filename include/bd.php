@@ -454,13 +454,13 @@ function AfficherReponses($idQuestion)
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
-        echo '<div>
-      <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"
-             checked>
-      <label for="rep">'.$row['laReponse'].'</label>
-    </div>';
+        echo '<div class="divReponse">
+            <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"
+                    checked>
+            <label for="rep">'.$row['laReponse'].'</label>
+        </div>';
     }
-    echo '</fieldset>';
     echo '<input type="submit" name="reponse" value="Soumettre">';
+    echo '</fieldset>';
     echo '</form>';
 }
