@@ -470,6 +470,7 @@ function AfficherReponses($idQuestion)
         </div>';
     }
 }
+
 function AjouterQuestion($difficulte,$question)
 {
   $pdo = getPdo();
@@ -490,8 +491,6 @@ try{
   $sql = "INSERT INTO Réponses (laReponse, estBonne, idÉnigmes) VALUES (?,?,?)";
   $stmt= $pdo->prepare($sql);
   $stmt->execute([$reponse,$estBonne,$idQuestion]);
-  $last = $pdo->lastInsertId();
-  return $last;
 }catch (Exception $e) {
     die("Erreur dans ajouterRéponses() - bd.php");
   }

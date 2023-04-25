@@ -42,25 +42,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             AjouterQuestion('D',$question);
             $idQuestion = getID();
        }
-       if (isset($_POST["bonneReponse1"])) {
+       if (($_POST["bonneReponse1"])!=null) {
         AjouterRéponse($reponse1,$correcte,$idQuestion);
         AjouterRéponse($reponse2,$estFaux,$idQuestion);
         AjouterRéponse($reponse3,$estFaux,$idQuestion);
         AjouterRéponse($reponse4,$estFaux,$idQuestion);
     }
-    if (isset($_POST["bonneReponse2"])) {
+    if (($_POST["bonneReponse2"])!=null) {
         AjouterRéponse($reponse1,$estFaux,$idQuestion);
         AjouterRéponse($reponse2,$correcte,$idQuestion);
         AjouterRéponse($reponse3,$estFaux,$idQuestion);
         AjouterRéponse($reponse4,$estFaux,$idQuestion);
     } 
-    if (isset($_POST["bonneReponse3"])) {
+    if (($_POST["bonneReponse3"])!=null) {
         AjouterRéponse($reponse1,$estFaux,$idQuestion);
         AjouterRéponse($reponse2,$estFaux,$idQuestion);
         AjouterRéponse($reponse3,$correcte,$idQuestion);
         AjouterRéponse($reponse4,$estFaux,$idQuestion);
     } 
-    if (isset($_POST["bonneReponse4"])) {
+    if (($_POST["bonneReponse4"])!=null) {
         
         AjouterRéponse($reponse1,$estFaux,$idQuestion);
         AjouterRéponse($reponse2,$estFaux,$idQuestion);
