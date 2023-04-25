@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         $correcte = 1;
+        $estFaux = 0;
         // Récupérer les données du formulaire
         $question = $_POST["question"];
         $reponse1 = $_POST["reponse1"];
@@ -29,21 +30,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        if($_POST['enigme']=='F')
        {
             AjouterQuestion('F',$question);
+            $idQuestion = getID();
        }
        if($_POST['enigme']=='M')
        {
             AjouterQuestion('M',$question);
+            $idQuestion = getID();
        }
        if($_POST['enigme']=='D')
        {
             AjouterQuestion('D',$question);
+            $idQuestion = getID();
        }
        if (isset($_POST["bonneReponse1"])) {
-        AjouterRéponse($reponse1,$correcte,$question);
-    } else {
-        echo "Veuillez sélectionner la réponse correcte.";
+        AjouterRéponse($reponse1,$correcte,$idQuestion);
+        AjouterRéponse($reponse2,$estFaux,$idQuestion);
+        AjouterRéponse($reponse3,$estFaux,$idQuestion);
+        AjouterRéponse($reponse4,$estFaux,$idQuestion);
     }
-       
+    if (isset($_POST["bonneReponse2"])) {
+        AjouterRéponse($reponse1,$estFaux,$idQuestion);
+        AjouterRéponse($reponse2,$correcte,$idQuestion);
+        AjouterRéponse($reponse3,$estFaux,$idQuestion);
+        AjouterRéponse($reponse4,$estFaux,$idQuestion);
+    } 
+    if (isset($_POST["bonneReponse3"])) {
+        AjouterRéponse($reponse1,$estFaux,$idQuestion);
+        AjouterRéponse($reponse2,$estFaux,$idQuestion);
+        AjouterRéponse($reponse3,$correcte,$idQuestion);
+        AjouterRéponse($reponse4,$estFaux,$idQuestion);
+    } 
+    if (isset($_POST["bonneReponse4"])) {
+        
+        AjouterRéponse($reponse1,$estFaux,$idQuestion);
+        AjouterRéponse($reponse2,$estFaux,$idQuestion);
+        AjouterRéponse($reponse3,$estFaux,$idQuestion);
+        AjouterRéponse($reponse4,$correcte,$idQuestion);
+    }  else {
+        echo "Veuillez sélectionner la réponse correcte.";
+    }    
         // Afficher un message de confirmation
         echo "Merci d'avoir soumis votre question.";
         exit;
