@@ -13,6 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      && !empty($_POST["reponse2"]) && !empty($_POST["reponse3"])
       && !empty($_POST["reponse4"])) {
 
+
+        $correcte = 1;
         // Récupérer les données du formulaire
         $question = $_POST["question"];
         $reponse1 = $_POST["reponse1"];
@@ -20,13 +22,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $reponse3 = $_POST["reponse3"];
         $reponse4 = $_POST["reponse4"];
 
+        
         // Vérifier la réponse correcte
-        if (!empty($_POST["correcte"])) {
-            $correcte = $_POST["correcte"];
-        } else {
-            echo "Veuillez sélectionner la réponse correcte.";
-        }
+        
 
+       if($_POST['enigme']=='F')
+       {
+            AjouterQuestion('F',$question);
+       }
+       if($_POST['enigme']=='M')
+       {
+            AjouterQuestion('M',$question);
+       }
+       if($_POST['enigme']=='D')
+       {
+            AjouterQuestion('D',$question);
+       }
+       if (isset($_POST["bonneReponse1"])) {
+        AjouterRéponse($reponse1,$correcte,$question);
+    } else {
+        echo "Veuillez sélectionner la réponse correcte.";
+    }
+       
         // Afficher un message de confirmation
         echo "Merci d'avoir soumis votre question.";
         exit;
@@ -50,16 +67,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <tr>
             <td>Sélectionner la difficulté de la question:</td>
             <?php
-            if (!empty($_POST['classe'])) {
-                $dropDownVal = $_POST['classe'];
+            if (!empty($_POST['enigme'])) {
+                $difficulteEnigme = $_POST['enigme'];
             } else {
-                $dropDownVal = "";
+                $difficulteEnigme = "";
             }
             ?>
             <select name="enigme">
-                <option value="F" <?php if ($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Facile</option>
-                <option value="M" <?php if ($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Moyen</option>
-                <option value="D" <?php if ($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Difficile</option>
+                <option value="F" <?php if ($difficulteEnigme == "F") echo 'selected="selected"'; ?>>Facile</option>
+                <option value="M" <?php if ($difficulteEnigme == "M") echo 'selected="selected"'; ?>>Moyen</option>
+                <option value="D" <?php if ($difficulteEnigme == "D") echo 'selected="selected"'; ?>>Difficile</option>
             </select>
         </tr>
         <br>
@@ -72,19 +89,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="reponse1">Réponse A:</label>
         <input type="text" id="reponse1" name="reponse1">
-        <input type="radio" id="reponse1" name="bonneReponse" value="1">
+        <input type="radio" id="bonneReponse1" name="bonneReponse" value="1">
         <br>
         <label for="reponse2">Réponse B:</label>
         <input type="text" id="reponse2" name="reponse2">
-        <input type="radio" id="reponse2" name="bonneReponse" value="2">
+        <input type="radio" id="bonneReponse2" name="bonneReponse" value="2">
         <br>
         <label for="reponse3">Réponse C:</label>
         <input type="text" id="reponse3" name="reponse3">
-        <input type="radio" id="reponse3" name="bonneReponse" value="3">
+        <input type="radio" id="bonneReponse3" name="bonneReponse" value="3">
         <br>
         <label for="reponse4">Réponse D:</label>
         <input type="text" id="reponse4" name="reponse4">
-        <input type="radio" id="reponse4" name="bonneReponse" value="4">
+        <input type="radio" id="bonneReponse4" name="bonneReponse" value="4">
         <br>
         <input type="submit" value="Envoyer">
     </form>
