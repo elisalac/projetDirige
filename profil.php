@@ -3,7 +3,6 @@
 // formulaire et script d'inscription
 session_start();
 require "include/header.php";
-require_once "include/bd.php";
 
 
 // affiché au bas du formulaire

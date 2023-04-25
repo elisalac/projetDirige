@@ -371,11 +371,33 @@ function ModifierJoueur($idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typ
         $sql = 'SELECT ModifierJoueur(?,?,?,?,?,?,?,?) as Erreur';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typeJoueur]);
-        while($row = $stmt->fetch()) 
-        {
-            return $row['Erreur'];
-        }
+   try
+   {
+       $pdo=getPdo();
+       $sql='UPDATE Profil P
+       JOIN Joueurs J ON P.idJoueur = J.idJoueur
+       SET P.nom = ?, P.prenom = ?, P.courriel = ?, P.imageProfil = ?, P.mdp = ?, J.alias = ?, J.typeJoueur = ?
+       WHERE P.idJoueur = ?';
+       $stmt = $pdo->prepare($sql);
+       $stmt->execute([$nom,$prenom,$courriel,$photo,$mdp,$alias,$typeJoueur,$idJoueur]);
+       return true;
+   }
+   catch (PDOException $e) {
+    if ($e->errorInfo[1] == 1062) {
+        $error_message = $e->getMessage();
+        if (strpos($error_message, 'alias') !== false|| strpos($error_message, 'courriel') !== false) {
+            echo  "t fkin cave";
+            return false;
+        } 
+    } else {
+      return false;
+    }
+}                                               
 }
+
+
+
+
 
 
 function getQuestionFacile()
