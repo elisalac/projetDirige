@@ -11,33 +11,43 @@
         <style>
             body{
                 background-color: #3f3e53;
+                text-align: center;
+            }
+            p{
+                color: white;
+                font-size: x-large;
+            }
+            div{
+                margin-top: 30vh;
             }
         </style>
     </head>
     <body>
-        <?php
-        if(!empty($_POST['enigme']))
-        {
-            if($_POST['enigme'] == "F")
+        <div>
+            <?php
+            if(!empty($_POST['enigme']))
             {
-                $idQuestion = getQuestionFacile();
-                
+                if($_POST['enigme'] == "F")
+                {
+                    $idQuestion = getQuestionFacile();
+                    
+                }
+                if($_POST['enigme'] == "M")
+                {
+                    $idQuestion = getQuestionMoyen();
+                }
+                if($_POST['enigme'] == "D")
+                {
+                    $idQuestion = getQuestionDifficile();
+                }
+                if($_POST['enigme'] == "A")
+                {
+                    $idQuestion = getQuestionAleatoire();
+                }
+                echo '<p>' . $idQuestion . '</p>';
             }
-            if($_POST['enigme'] == "M")
-            {
-                $idQuestion = getQuestionMoyen();
-            }
-            if($_POST['enigme'] == "D")
-            {
-                $idQuestion = getQuestionDifficile();
-            }
-            if($_POST['enigme'] == "A")
-            {
-                $idQuestion = getQuestionAleatoire();
-            }
-            echo $idQuestion;
-        }
-        ?>
+            ?>
+        </div>
     </body>
     <?php
         require "../include/footerEnigma.php"
