@@ -468,8 +468,6 @@ function AfficherReponses($idQuestion)
     while($row = $stmt->fetch()) 
     {
         echo '<div class="divReponse">
-            <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"
-                    checked>
             <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"'.$chek . $disabled .'>
             <label for="rep">'.$row['laReponse'].'</label>
         </div>';
