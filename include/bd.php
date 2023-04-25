@@ -484,15 +484,15 @@ try{
 }
 
 
-function AjouterRéponse($reponse,$estBonne,$idQuestion)
+function AjouterRéponse($reponse,$estBonne)
 {
   $pdo = getPdo();
 try{
-  $sql = "INSERT INTO Réponses (laReponse, estBonne, idÉnigmes) VALUES (?,?,?)";
+  $sql = "INSERT INTO Réponses (laReponse, estBonne, idÉnigmes) VALUES (?,?,(select LAST_INSERT_ID()))";
   $stmt= $pdo->prepare($sql);
-  $stmt->execute([$reponse,$estBonne,$idQuestion]);
+  $stmt->execute([$reponse,$estBonne]);
 }catch (Exception $e) {
-    die("Erreur dans ajouterRéponses() - bd.php");
+    echo $e->getMessage();
   }
 }
 

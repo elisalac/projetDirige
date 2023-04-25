@@ -30,45 +30,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        if($_POST['enigme']=='F')
        {
             AjouterQuestion('F',$question);
-            $idQuestion = getID();
        }
        if($_POST['enigme']=='M')
        {
             AjouterQuestion('M',$question);
-            $idQuestion = getID();
        }
        if($_POST['enigme']=='D')
        {
             AjouterQuestion('D',$question);
-            $idQuestion = getID();
        }
-       if (($_POST["bonneReponse1"])!=null) {
-        AjouterRéponse($reponse1,$correcte,$idQuestion);
-        AjouterRéponse($reponse2,$estFaux,$idQuestion);
-        AjouterRéponse($reponse3,$estFaux,$idQuestion);
-        AjouterRéponse($reponse4,$estFaux,$idQuestion);
+
+       
+       if (isset($_POST["bonneReponse"]) == "1") {
+        AjouterRéponse($reponse1,$correcte);
+        AjouterRéponse($reponse2,$estFaux);
+        AjouterRéponse($reponse3,$estFaux);
+        AjouterRéponse($reponse4,$estFaux);
     }
-    if (($_POST["bonneReponse2"])!=null) {
-        AjouterRéponse($reponse1,$estFaux,$idQuestion);
-        AjouterRéponse($reponse2,$correcte,$idQuestion);
-        AjouterRéponse($reponse3,$estFaux,$idQuestion);
-        AjouterRéponse($reponse4,$estFaux,$idQuestion);
+    if (isset($_POST["bonneReponse2"])) {
+        AjouterRéponse($reponse1,$estFaux);
+        AjouterRéponse($reponse2,$correcte);
+        AjouterRéponse($reponse3,$estFaux);
+        AjouterRéponse($reponse4,$estFaux);
     } 
-    if (($_POST["bonneReponse3"])!=null) {
-        AjouterRéponse($reponse1,$estFaux,$idQuestion);
-        AjouterRéponse($reponse2,$estFaux,$idQuestion);
-        AjouterRéponse($reponse3,$correcte,$idQuestion);
-        AjouterRéponse($reponse4,$estFaux,$idQuestion);
+    if (isset($_POST["bonneReponse3"])) {
+        AjouterRéponse($reponse1,$estFaux);
+        AjouterRéponse($reponse2,$estFaux);
+        AjouterRéponse($reponse3,$correcte);
+        AjouterRéponse($reponse4,$estFaux);
     } 
-    if (($_POST["bonneReponse4"])!=null) {
+    if (isset($_POST["bonneReponse4"])) {
         
-        AjouterRéponse($reponse1,$estFaux,$idQuestion);
-        AjouterRéponse($reponse2,$estFaux,$idQuestion);
-        AjouterRéponse($reponse3,$estFaux,$idQuestion);
-        AjouterRéponse($reponse4,$correcte,$idQuestion);
-    }  else {
+        AjouterRéponse($reponse1,$estFaux);
+        AjouterRéponse($reponse2,$estFaux);
+        AjouterRéponse($reponse3,$estFaux);
+        AjouterRéponse($reponse4,$correcte);
+    }
+    
+    else
+    {
         echo "Veuillez sélectionner la réponse correcte.";
     }    
+    
         // Afficher un message de confirmation
         echo "Merci d'avoir soumis votre question.";
         exit;
