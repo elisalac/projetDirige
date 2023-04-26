@@ -466,7 +466,7 @@ function AfficherReponses($idQuestion)
     {
         echo '<div class="divReponse">
             <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"'.$chek . $disabled .'>
-            <label for="rep">'.$row['laReponse'].'</label>
+            <label for="'.$row['idRéponse'].'">'.$row['laReponse'].'</label>
         </div>';
     }
 }
