@@ -34,43 +34,40 @@
     <body>
         <div id = "divQuestion">
             <?php
-            if(isset($_SESSION['repondu']))
+            if(!empty($_POST['enigme']))
             {
-                AfficherReponses($_SESSION['idQues']);
-            }
-            else{
-                if(!empty($_POST['enigme']))
+                if($_POST['enigme'] == "F")
                 {
-                    if($_POST['enigme'] == "F")
-                    {
-                        $idQuestion = getQuestionFacile();
-                        
-                    }
-                    if($_POST['enigme'] == "M")
-                    {
-                        $idQuestion = getQuestionMoyen();
-                    }
-                    if($_POST['enigme'] == "D")
-                    {
-                        $idQuestion = getQuestionDifficile();
-                    }
-                    if($_POST['enigme'] == "A")
-                    {
-                        $idQuestion = getQuestionAleatoire();
-                    }
-                    echo '<p>' . $idQuestion[1] . '</p>';
-                    $_SESSION['idQues'] = $idQuestion[0];
-
-                    echo '<form action="question.php" method ="post">';
-                    echo '<fieldset>';
-                    AfficherReponses( $idQuestion[0]);
-                    echo '<input type="submit" name="reponse" value="Soumettre">';
-                    echo '</fieldset>';
-                    echo '</form>';
+                    $idQuestion = getQuestionFacile();
+                    
                 }
+                if($_POST['enigme'] == "M")
+                {
+                    $idQuestion = getQuestionMoyen();
+                }
+                if($_POST['enigme'] == "D")
+                {
+                    $idQuestion = getQuestionDifficile();
+                }
+                if($_POST['enigme'] == "A")
+                {
+                    $idQuestion = getQuestionAleatoire();
+                }
+                echo '<p>' . $idQuestion[1] . '</p>';
+                $_SESSION['idQues'] = $idQuestion[0];
+
+                echo '<form action="question.php" method ="post">';
+                echo '<fieldset>';
+                AfficherReponses( $idQuestion[0]);
+                echo '<input type="submit" name="reponse" value="Soumettre">';
+                echo '</fieldset>';
+                echo '</form>';
             }
             
-            
+            if(isset($_POST['reponse']))
+            {
+                CheckerReponse($_POST['rep']);
+            }
             ?>
         </div>
     </body>

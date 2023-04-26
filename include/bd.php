@@ -394,31 +394,25 @@ function ModifierJoueur($idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typ
     }
 }                                               
 }
-
-
-
-
-
-
 function getQuestionFacile()
 {
     $pdo = getPdo();
-    $sql = "SELECT  idÉnigmes,question FROM Énigmes WHERE difficulté = 'F' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT idÉnigmes,question,difficulté FROM Énigmes WHERE difficulté = 'F' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
+        $_SESSION['diff'] = $row['difficulté'];
         return array($row['idÉnigmes'],$row['question']);
     }
 }
-
-
 function getQuestionMoyen()
 {
     $pdo = getPdo();
-    $sql = "SELECT  idÉnigmes,question FROM Énigmes WHERE difficulté = 'M' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT idÉnigmes,question,difficulté FROM Énigmes WHERE difficulté = 'M' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
+        $_SESSION['diff'] = $row['difficulté'];
         return array($row['idÉnigmes'],$row['question']);
     }
 }
@@ -426,10 +420,11 @@ function getQuestionMoyen()
 function getQuestionDifficile()
 {
     $pdo = getPdo();
-    $sql = "SELECT  idÉnigmes,question FROM Énigmes WHERE difficulté = 'D' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT idÉnigmes,question,difficulté FROM Énigmes WHERE difficulté = 'D' AND flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
+        $_SESSION['diff'] = $row['difficulté'];
         return array($row['idÉnigmes'],$row['question']);
     }
 }
@@ -437,10 +432,11 @@ function getQuestionDifficile()
 function getQuestionAleatoire()
 {
     $pdo = getPdo();
-    $sql = "SELECT idÉnigmes,question FROM Énigmes WHERE flagFait=0 ORDER BY RAND() LIMIT 1"; 
+    $sql = "SELECT idÉnigmes,question,difficulté FROM Énigmes WHERE flagFait=0 ORDER BY RAND() LIMIT 1"; 
     $stmt = $pdo->query($sql);
     while($row = $stmt->fetch()) 
     {
+        $_SESSION['diff'] = $row['difficulté'];
         return array($row['idÉnigmes'],$row['question']);
     }
 }
@@ -465,7 +461,7 @@ function AfficherReponses($idQuestion)
     while($row = $stmt->fetch()) 
     {
         echo '<div class="divReponse">
-            <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['laReponse'].'"'.$chek . $disabled .'>
+            <input type="radio" id='.$row['idRéponse'].' name="rep" value="'.$row['idRéponse'].'"'.$chek . $disabled .'>
             <label for="'.$row['idRéponse'].'">'.$row['laReponse'].'</label>
         </div>';
     }
@@ -477,7 +473,6 @@ function AjouterQuestion($difficulte,$question)
 try{
   $sql = "INSERT INTO Énigmes (difficulté, question) VALUES (?, ?)";
   $stmt= $pdo->prepare($sql);
-  $_SESSION['diff'] = $difficulte;
   $stmt->execute([$difficulte,$question]);
   $sql2 = "SELECT LAST_INSERT_ID() as wtv";
   $stmt2 = $pdo->query($sql2);
@@ -504,40 +499,49 @@ try{
 function CheckerReponse($idrep)
 {
     $pdo = getPdo();
-    try{
-      $sql = "SELECT estBonne FROM Réponses WHERE idRponse = $idrep";
+    $id = $_SESSION['id'];
+    $diff =$_SESSION['diff'];
+    $quest = $_SESSION['idQues'];
+    //try{
+      $sql = "SELECT estBonne FROM Réponses WHERE idRéponse = $idrep";
       $stmt2 = $pdo->query($sql);
       while($row = $stmt2->fetch()) 
       {
         $value = $row['estBonne'];
       }
+      
       if($value == 1)
       {
         switch ($_SESSION['diff'])
         {
             case 'F':
                 $sql2 = "UPDATE Joueurs SET montantBronze = montantBronze +10 where idJoueur = ".$_SESSION['id'];
+                $stmt = $pdo->query($sql2);
                 break;
             case 'M':
                 $sql2 = "UPDATE Joueurs SET montantArgent = montantArgent +10 where idJoueur = ".$_SESSION['id'];
+                $stmt = $pdo->query($sql2);
                 break;
             case 'D':
                 $sql2 = "UPDATE Joueurs SET montantOr = montantOr +10 where idJoueur = ".$_SESSION['id'];
+                $stmt = $pdo->query($sql2);
                 break;
         }
-        $stmt = $pdo->query($sql2);
-        $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi values(?,?,?,?)";
+
+        $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi) values (?,?,?,?)";
         $stmt3= $pdo->prepare($sql3);
-        $stmt3->execute([$_SESSION['id'],$_SESSION['diff'],$_SESSION['IdQuestCur'],1]);
+        $stmt3->execute([$id,$diff,$quest,1]);
+        echo "Réussie";
       }
       else if($value == 0)
       {
-        $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi values(?,?,?,?)";
+        $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi) values(?,?,?,?)";
         $stmt3= $pdo->prepare($sql3);
-        $stmt3->execute([$_SESSION['id'],$_SESSION['diff'],$_SESSION['IdQuestCur'],0]);
+        $stmt3->execute([$id,$diff,$quest,0]);
+        echo"Non Réussie";
       }
-    }catch (Exception $e) {
-        die("Erreur dans ajouterQuestion() - bd.php");
-      }
+    //}catch (Exception $e) {
+       // die("Erreur dans ChecherReponse() - bd.php");
+     // }
 }
 
