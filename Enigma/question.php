@@ -61,7 +61,7 @@
                     echo '<p>' . $idQuestion[1] . '</p>';
                     $_SESSION['idQues'] = $idQuestion[0];
 
-                    echo '<form method ="post">';
+                    echo '<form action="question.php" method ="post">';
                     echo '<fieldset>';
                     AfficherReponses( $idQuestion[0]);
                     echo '<input type="submit" name="reponse" value="Soumettre">';

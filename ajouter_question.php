@@ -41,33 +41,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
        }
 
         
-        if (isset($_POST["bonneReponse"]) == "1") {
+        if(!isset($_POST["bonneReponse"])){
+            echo "Veuillez sélectionner la réponse correcte.";
+        }  
+        if ($_POST["bonneReponse"] == 1) {
             AjouterRéponse($reponse1,$correcte);
             AjouterRéponse($reponse2,$estFaux);
             AjouterRéponse($reponse3,$estFaux);
             AjouterRéponse($reponse4,$estFaux);
         }
-        if (isset($_POST["bonneReponse2"])) {
+        if ($_POST["bonneReponse"] == 2) {
             AjouterRéponse($reponse1,$estFaux);
             AjouterRéponse($reponse2,$correcte);
             AjouterRéponse($reponse3,$estFaux);
             AjouterRéponse($reponse4,$estFaux);
         } 
-        if (isset($_POST["bonneReponse3"])) {
+        if ($_POST["bonneReponse"] == 3) {
             AjouterRéponse($reponse1,$estFaux);
             AjouterRéponse($reponse2,$estFaux);
             AjouterRéponse($reponse3,$correcte);
             AjouterRéponse($reponse4,$estFaux);
         } 
-        if (isset($_POST["bonneReponse4"])) {
+        if ($_POST["bonneReponse"] == 4) {
             
             AjouterRéponse($reponse1,$estFaux);
             AjouterRéponse($reponse2,$estFaux);
             AjouterRéponse($reponse3,$estFaux);
             AjouterRéponse($reponse4,$correcte);
-        } else{
-            echo "Veuillez sélectionner la réponse correcte.";
-        }    
+        }   
     
         // Afficher un message de confirmation
         echo "Merci d'avoir soumis votre question.";
