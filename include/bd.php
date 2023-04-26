@@ -532,13 +532,37 @@ function CheckerReponse($idrep)
         $stmt3= $pdo->prepare($sql3);
         $stmt3->execute([$id,$diff,$quest,1]);
         echo "Réussie";
+
+        if($diff == 'D' )
+        { 
+            $sql4 = "UPDATE Joueurs set streak=streak+1 where idJoueur=?";
+            $stmt4= $pdo->prepare($sql4);
+            $stmt4->execute([$id]);
+
+            $sql1 = "SELECT streak from Joueurs where idJoueur=".$id;
+            $stmt28 = $pdo->query($sql1);    
+            while($row = $stmt28->fetch())
+            {
+                if($row['streak']==5)
+              {
+                  $sql5="UPDATE Joueurs set typeJoueur='M' where idJoueur=?";
+                  $stmt3= $pdo->prepare($sql5);
+                  $stmt3->execute([$id]);
+                  echo "Hey man ur officially a mage";
+              }
+            }
+        }
+
       }
       else if($value == 0)
       {
         $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi) values(?,?,?,?)";
         $stmt3= $pdo->prepare($sql3);
         $stmt3->execute([$id,$diff,$quest,0]);
-        echo"Non Réussie";
+        $sql6="UPDATE Joueurs set streak=0 where idJoueur=?";
+        $stmt4= $pdo->prepare($sql6);
+        $stmt4->execute([$id]);
+        echo"Non Réussie";;
       }
     //}catch (Exception $e) {
        // die("Erreur dans ChecherReponse() - bd.php");
