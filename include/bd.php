@@ -477,6 +477,7 @@ function AjouterQuestion($difficulte,$question)
 try{
   $sql = "INSERT INTO Énigmes (difficulté, question) VALUES (?, ?)";
   $stmt= $pdo->prepare($sql);
+  $_SESSION['diff'] = $difficulte;
   $stmt->execute([$difficulte,$question]);
   $sql2 = "SELECT LAST_INSERT_ID() as wtv";
   $stmt2 = $pdo->query($sql2);
@@ -489,7 +490,6 @@ try{
   }
 }
 
-
 function AjouterRéponse($reponse,$estBonne)
 {
   $pdo = getPdo();
@@ -500,5 +500,44 @@ try{
 }catch (Exception $e) {
     echo $e->getMessage();
   }
+}
+function CheckerReponse($idrep)
+{
+    $pdo = getPdo();
+    try{
+      $sql = "SELECT estBonne FROM Réponses WHERE idRponse = $idrep";
+      $stmt2 = $pdo->query($sql);
+      while($row = $stmt2->fetch()) 
+      {
+        $value = $row['estBonne'];
+      }
+      if($value == 1)
+      {
+        switch ($_SESSION['diff'])
+        {
+            case 'F':
+                $sql2 = "UPDATE Joueurs SET montantBronze = montantBronze +10 where idJoueur = ".$_SESSION['id'];
+                break;
+            case 'M':
+                $sql2 = "UPDATE Joueurs SET montantArgent = montantArgent +10 where idJoueur = ".$_SESSION['id'];
+                break;
+            case 'D':
+                $sql2 = "UPDATE Joueurs SET montantOr = montantOr +10 where idJoueur = ".$_SESSION['id'];
+                break;
+        }
+        $stmt = $pdo->query($sql2);
+        $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi values(?,?,?,?)";
+        $stmt3= $pdo->prepare($sql3);
+        $stmt3->execute([$_SESSION['id'],$_SESSION['diff'],$_SESSION['IdQuestCur'],1]);
+      }
+      else if($value == 0)
+      {
+        $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi values(?,?,?,?)";
+        $stmt3= $pdo->prepare($sql3);
+        $stmt3->execute([$_SESSION['id'],$_SESSION['diff'],$_SESSION['IdQuestCur'],0]);
+      }
+    }catch (Exception $e) {
+        die("Erreur dans ajouterQuestion() - bd.php");
+      }
 }
 
