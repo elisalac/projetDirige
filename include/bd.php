@@ -478,6 +478,12 @@ try{
   $sql = "INSERT INTO Énigmes (difficulté, question) VALUES (?, ?)";
   $stmt= $pdo->prepare($sql);
   $stmt->execute([$difficulte,$question]);
+  $sql2 = "SELECT LAST_INSERT_ID() as wtv";
+  $stmt2 = $pdo->query($sql2);
+  while($row = $stmt2->fetch()) 
+  {
+    $_SESSION['IdQuestCur'] = $row['wtv'];
+  }
 }catch (Exception $e) {
     die("Erreur dans ajouterQuestion() - bd.php");
   }
@@ -488,7 +494,7 @@ function AjouterRéponse($reponse,$estBonne)
 {
   $pdo = getPdo();
 try{
-  $sql = "INSERT INTO Réponses (laReponse, estBonne, idÉnigmes) VALUES (?,?,(select LAST_INSERT_ID()))";
+  $sql = "INSERT INTO Réponses (laReponse, estBonne, idÉnigmes) VALUES (?,?,".$_SESSION['IdQuestCur'].")";
   $stmt= $pdo->prepare($sql);
   $stmt->execute([$reponse,$estBonne]);
 }catch (Exception $e) {
