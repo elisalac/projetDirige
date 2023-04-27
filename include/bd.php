@@ -180,6 +180,20 @@ function MoyenneEtoiles($idItem){
 
 }
 
+function AfficherNbInventaire($idJoueur, $idItem){
+    $pdo = getPdo();
+    try{
+        $sql = "SELECT qteInventaire FROM Inventaire WHERE idJoueur = ? AND idItems = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idJoueur, $idItem]);    
+        while ($row = $stmt->fetch()){
+              return $row['qteInventaire'];
+        }    
+    } catch (Exception $e){
+        echo $e->getMessage();
+    }
+}
+
 //Fonctions afficher items index
 function AfficherItems($statement)
 {
@@ -212,7 +226,7 @@ function AfficherItems($statement)
         //}
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
         if(isset($_SESSION['id'])){
-            echo '<p> Nombre en inventaire: ' . $row['qteInventaire'] . '</p>';
+            echo '<p> Nombre en inventaire: ' . AfficherNbInventaire($_SESSION['id'], $row['idItems']) . '</p>';
         }
         echo '<div class="containerButton">';
         if(isset($_SESSION['id'])){
