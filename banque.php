@@ -8,7 +8,9 @@
         $message = "";
         if(isset($_POST["demanderPiece"]))
         {
+            // Verifier il lui reste combien de demandes(3)
 
+            // Si c'est égal a 0 envoyer un message d'erreur
         }
     }
 ?>
