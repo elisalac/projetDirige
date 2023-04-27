@@ -570,4 +570,51 @@ function CheckerReponse($idrep)
        // die("Erreur dans ChecherReponse() - bd.php");
      // }
 }
+function DemanderArgent($id)
+{
+    $pdo = getPdo();
+    try{
+      $sql = "INSERT INTO Demandes (idJoueur) VALUES (?)";
+      $stmt= $pdo->prepare($sql);
+      $stmt->execute([$id]);
+    }catch (Exception $e) {
+        echo $e->getMessage();
+      }
+}
+function CheckerDemande($id)
+{
+    $id=$_SESSION['id'];
 
+   $pdo = getPdo();
+   $stmt= getMembre($id);
+   $nbDemande=0;
+   
+   $sql7 = "SELECT nbDemande from Joueurs where idJoueur=".$id;
+   $stmt28 = $pdo->query($sql7);    
+    foreach($stmt28 as $row)
+    {
+        $nbDemande= $row['nbDemande'];
+    }
+
+    switch ($nbDemande)
+        {
+            case 0:
+                DemanderArgent($_SESSION['id']);
+                $sql0 = "UPDATE Joueurs SET montantOr = montantOr +10,nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
+                $stmt0 = $pdo->query($sql0);
+                break;
+            case 1:
+                $sql1 = "UPDATE Joueurs SET montantArgent = montantArgent+10,nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
+                $stmt1 = $pdo->query($sql1);
+ 
+                break;
+            case 2:
+                $sql2 = "UPDATE Joueurs SET montantBronze = montantBronze +10,nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
+                $stmt2 = $pdo->query($sql2);
+                break;
+            
+            case 3:
+                echo "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
+                break;
+        }
+}

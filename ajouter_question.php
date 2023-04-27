@@ -115,6 +115,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
     <h1>Création de question pour Enigma</h1>
     <form action="ajouter_question.php" method="post">
         <table>
