@@ -133,295 +133,289 @@
     <body>
         <div class="listeItemGrid">
             <?php
-                $whereLoginType1 = "";
-                $whereLoginType2 = "";
-                if(isset($_SESSION['id'])){
-                    $whereLoginType1 = "WHERE Inventaire.idJoueur = " . $_SESSION['id'];
-                    $whereLoginType2 = "Inventaire.idJoueur = " . $_SESSION['id'];
-                }
 
-                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ' . $whereLoginType1 . ' ORDER BY typeItem';
+                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items ORDER BY typeItem';
                 if($_SERVER['REQUEST_METHOD'] == "POST"){
                     
                     //Bouton tous items
                     if(isset($_POST['tous'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ' . $whereLoginType1 . ' ORDER BY typeItem';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items ORDER BY typeItem';
                     }
 
                     //Liste déroulante filtre
                     if(!empty($_POST['filtre'])){
                         if($_POST['filtre'] == "PrixAsc"){
-                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ' . $whereLoginType1 . ' ORDER BY prixUnitaire';
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items ORDER BY prixUnitaire';
                         }
                         if($_POST['filtre'] == "PrixDesc"){
-                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ' . $whereLoginType1 . ' ORDER BY prixUnitaire DESC';
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items ORDER BY prixUnitaire DESC';
                         }
                         if($_POST['filtre'] == "PoidsAsc"){
-                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ' . $whereLoginType1 . ' ORDER BY poids';
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items ORDER BY poids';
                         }
                         if($_POST['filtre'] == "PoidsDesc"){
-                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems ' . $whereLoginType1 . ' ORDER BY poids DESC';
+                            $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items ORDER BY poids DESC';
                         }
                     }
 
                     //Checkbox type items
                     //1 type
                     if(isset($_POST['checkboxArmes'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmures'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxPotions'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
 
                     //2 types
                     if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxPotions'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" ' . $whereLoginType2 . 'ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" OR typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" OR typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" OR typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" OR typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="P" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
 
                     //3 types
                     if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
                                 $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="P" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
                     if(isset($_POST['checkboxArmes']) && isset($_POST['checkboxArmures']) && isset($_POST['checkboxPotions']) && isset($_POST['checkboxSorts'])){
-                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids, prixUnitaire';
+                        $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids, prixUnitaire';
                         if(!empty($_POST['filtre'])){
                             if($_POST['filtre'] == "PrixAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire';
                             }
                             if($_POST['filtre'] == "PrixDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY prixUnitaire DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY prixUnitaire DESC';
                             }
                             if($_POST['filtre'] == "PoidsAsc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids';
                             }
                             if($_POST['filtre'] == "PoidsDesc"){
-                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Inventaire.qteInventaire, Items.prixUnitaire, Items.typeItem FROM Items LEFT OUTER JOIN Inventaire ON Items.idItems = Inventaire.idItems WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ' . $whereLoginType2 . ' ORDER BY poids DESC';
+                                $sql = 'SELECT Items.idItems, Items.image, Items.nom, Items.qteStock, Items.prixUnitaire, Items.typeItem FROM Items WHERE typeItem="A" OR typeItem="R" OR typeItem="P" OR typeItem="S" ORDER BY poids DESC';
                             }
                         }
                     }
