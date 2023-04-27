@@ -8,7 +8,7 @@
         $message = "";
         if(isset($_POST["demanderPiece"]))
         {
-            
+
         }
     }
 ?>
@@ -20,7 +20,7 @@
                 background-color: #3f3e53;
             }
             p{
-                font-size: 50px;
+                
                 text-align: center;
                 color:white;
             }
@@ -50,7 +50,7 @@
     </head>
     <body>
         <hr>
-        <p>Demande de pièces à l'admin</p>
+        <h1>Demande de pièces à l'admin</h1>
         <div class="legendPiece">
             <p>1ère demande = 10 Or</p>
             <p>2ème demande = 10 Argent</p>
