@@ -84,30 +84,62 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>Formulaire de question</title>
+    <style>
+        body{
+            background-color: #3f3e53;
+            text-align: center;
+        }
+        
+        .infoJoueur{
+                position:absolute; left:60px; top:10px;
+            }
+
+        .infoJoueur p{
+            color:white;
+            margin:20px;
+            font-size: 20px;
+        }
+
+        h1, td, label{
+            color:white;
+        }
+
+        h1{
+            margin-top:20vh;
+        }
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 
 <body>
     <h1>Création de question pour Enigma</h1>
     <form action="ajouter_question.php" method="post">
-    <tr>
-            <td>Sélectionner la difficulté de la question:</td>
-            <?php
-            if (!empty($_POST['enigme'])) {
-                $difficulteEnigme = $_POST['enigme'];
-            } else {
-                $difficulteEnigme = "";
-            }
-            ?>
-            <select name="enigme">
-                <option value="F" <?php if ($difficulteEnigme == "F") echo 'selected="selected"'; ?>>Facile</option>
-                <option value="M" <?php if ($difficulteEnigme == "M") echo 'selected="selected"'; ?>>Moyen</option>
-                <option value="D" <?php if ($difficulteEnigme == "D") echo 'selected="selected"'; ?>>Difficile</option>
-            </select>
-        </tr>
+        <table>
+            <tr>
+                <td>Sélectionner la difficulté de la question:</td>
+                <td>
+                    <?php
+                    if (!empty($_POST['enigme'])) {
+                        $difficulteEnigme = $_POST['enigme'];
+                    } else {
+                        $difficulteEnigme = "";
+                    }
+                    ?>
+                    <select name="enigme">
+                        <option value="F" <?php if ($difficulteEnigme == "F") echo 'selected="selected"'; ?>>Facile</option>
+                        <option value="M" <?php if ($difficulteEnigme == "M") echo 'selected="selected"'; ?>>Moyen</option>
+                        <option value="D" <?php if ($difficulteEnigme == "D") echo 'selected="selected"'; ?>>Difficile</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
         <br>
         <br>
 
-        <label for="question">Écrivez votre question :</label><br>
+        <label for="question">Écrivez votre question :</label><br><br>
         <textarea id="question" name="question" rows="4" cols="50"></textarea><br><br>
 
        
@@ -115,19 +147,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="reponse1">Réponse A:</label>
         <input type="text" id="reponse1" name="reponse1">
         <input type="radio" id="bonneReponse1" name="bonneReponse" value="1">
-        <br>
+        <br><br>
         <label for="reponse2">Réponse B:</label>
         <input type="text" id="reponse2" name="reponse2">
         <input type="radio" id="bonneReponse2" name="bonneReponse" value="2">
-        <br>
+        <br><br>
         <label for="reponse3">Réponse C:</label>
         <input type="text" id="reponse3" name="reponse3">
         <input type="radio" id="bonneReponse3" name="bonneReponse" value="3">
-        <br>
+        <br><br>
         <label for="reponse4">Réponse D:</label>
         <input type="text" id="reponse4" name="reponse4">
         <input type="radio" id="bonneReponse4" name="bonneReponse" value="4">
-        <br>
+        <br><br>
         <input type="submit" value="Envoyer">
     </form>
 </body>

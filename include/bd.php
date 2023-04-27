@@ -531,7 +531,8 @@ function CheckerReponse($idrep)
         $sql3 = "INSERT INTO Statistiques (idJoueur,difficulté,idQuestion,flagRéussi) values (?,?,?,?)";
         $stmt3= $pdo->prepare($sql3);
         $stmt3->execute([$id,$diff,$quest,1]);
-        echo "Réussie";
+        echo "<p>Réussie!!!</p>";
+        echo "<img src='../images/Z6d5.gif'>";
 
         if($diff == 'D' )
         { 
@@ -562,7 +563,8 @@ function CheckerReponse($idrep)
         $sql6="UPDATE Joueurs set streak=0 where idJoueur=?";
         $stmt4= $pdo->prepare($sql6);
         $stmt4->execute([$id]);
-        echo"Non Réussie";;
+            echo"<p>Non Réussie :(</p>";
+            echo "<img src='../images/fail.gif'>";
       }
     //}catch (Exception $e) {
        // die("Erreur dans ChecherReponse() - bd.php");

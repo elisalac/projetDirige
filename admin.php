@@ -63,6 +63,16 @@
                 background: #555; 
             }
 
+            .infoJoueur{
+                position:absolute; left:60px; top:10px;
+            }
+
+            .infoJoueur p{
+                color:white;
+                margin:20px;
+                font-size: 20px;
+            }
+
             @media only screen and (max-width: 1700px) {
                 .demandeDiv{
                 border:1px solid white;

@@ -64,6 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
       body{
         text-align:center;
         padding-bottom: 50%;
+        background-color: #3f3e53;
       }
       
       input[type=text], input[type=password], input[type=email], select {
@@ -80,7 +81,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
-        border: none;
       }
       fieldset{
         padding:20px;
@@ -89,6 +89,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         zoom:1.0;/* ie6/7 hack for inline block */
         vertical-align:middle;
         width:fit-content;
+      }
+
+      .infoJoueur{
+          position:absolute; left:60px; top:10px;
+      }
+
+      .infoJoueur p{
+          color:white;
+          margin:20px;
+          font-size: 20px;
+      }
+
+      h2, td, legend{
+        color:white;
       }
     </style>
   </head>

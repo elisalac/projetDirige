@@ -29,6 +29,9 @@
                 color:white;
                 font-size: 20px;
             }
+            .divResultat p{
+                margin:20px;
+            }
         </style>
     </head>
     <body>
