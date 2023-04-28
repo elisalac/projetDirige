@@ -111,6 +111,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-left: auto;
             margin-right: auto;
         }
+        input[type=submit], button {
+        background-color: #3f3e53;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+      }
     </style>
 </head>
 

@@ -5,6 +5,8 @@
     if(isAdmin($_SESSION['id']) != 1){
         header('Location: index.php');
     }
+
+    
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,6 +75,21 @@
                 font-size: 20px;
             }
 
+            table{
+                width:100%;
+            }
+
+            td{
+                padding:15px;
+                border-bottom:1px white solid;
+            }
+
+            input[type=submit], button {
+                background-color: #3f3e53;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+            }
             @media only screen and (max-width: 1700px) {
                 .demandeDiv{
                 border:1px solid white;
@@ -87,6 +104,11 @@
             }
         </style>
     </head>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
     <body>
         <hr>
         <div class="legendPiece">
@@ -95,7 +117,39 @@
             <p>3ème demand = 10 Bronze</p>
         </div>
         <div class="demandeDiv">
-            
+            <table>
+                <?php
+                
+                    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                        $idJoueur = $_POST['idJoueur'];
+                        $arrayInfo = AfficherAliasEtDemande($_POST['idJoueur']);
+
+                        if(isset($_POST['buttonAccepter'])){
+                            $idJoueur = $_POST['idJoueur'];
+                            ApprouverDemande($idJoueur);
+                        }
+                    
+                        if(isset($_POST['buttonRefuser'])){
+                            $idJoueur = $_POST['idJoueur'];
+                            RefuserDemande($idJoueur);
+                        }
+                    }
+                    
+                    $dataDemandes = AfficherDemande();
+                    while($demande = $dataDemandes->fetch()){
+                        $arrayInfo = AfficherAliasEtDemande($demande['idJoueur']);
+                        echo "<tr class='bottom-border'>";
+                            echo "<td style='padding-left:40px'>Alias: " . $arrayInfo[0] . "</td>";
+                            echo "<td>Numéro de demande: " . $arrayInfo[1] . "</td>";
+                            echo "<form method='post'>";
+                            echo "<td style='width:5%;'><button type='submit' value='". $demande['idJoueur']."' name='buttonAccepter'>Accepter</button></td>";
+                            echo "<td><button type='submit' value='". $demande['idJoueur']."' name='buttonRefuser'>Refuser</button></td>";
+                            echo '<input type="hidden" name="idJoueur" value='.$demande['idJoueur'].'/>';
+                            echo "</form>";
+                        echo "</tr>";
+                    }
+                ?>
+            </table>
         </div>
     </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "../include/auth.php";
 require_once "../include/bd.php";
 $idQuestion= "";
 if (!empty($_POST['enigme'])) {
@@ -19,9 +20,16 @@ if (!empty($_POST['enigme'])) {
     <title>Choisir une difficulté</title>
     <style>
          body{
-                background-color: #3f3e53;
-                
-            }
+            background-color: #3f3e53;
+            color:white;
+            text-align:center;
+        }
+        input[type=submit], button {
+            background-color: #3f3e53;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+        }
     </style>
 </head>
 
@@ -30,12 +38,12 @@ if (!empty($_POST['enigme'])) {
     <fieldset>
         <legend>Veuillez choisir une difficulté</legend>
         <form action="question.php" method="post">
-            <select name="enigme">
+            <select name="enigme" style="margin:20px;">
                 <option value="F" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Facile</option>
                 <option value="M" <?php  if($dropDownVal == "PrixDesc") echo 'selected="selected"'; ?>>Moyen</option>
                 <option value="D" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Difficile</option>
                 <option value="A" <?php  if($dropDownVal == "PrixDesc")echo 'selected="selected"'; ?>>Aléatoire</option>
-            </select>
+            </select><br>
             <input type="hidden" name = "bruh" value = "<?php if(isset($_POST['Diff'])){echo $_POST['enigme'];} ?>">
             <tr>
                 <td colspan="2" style="text-align: center;"><input type="submit" value="Valider" name="Diff"></td>

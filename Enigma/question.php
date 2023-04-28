@@ -1,5 +1,5 @@
 <?php
-    require_once "../include/bd.php"; 
+    require_once "../include/bd.php";
     session_start();
 ?>
 <!DOCTYPE html>
@@ -31,6 +31,12 @@
             }
             .divResultat p{
                 margin:20px;
+            }
+            input[type=submit], button {
+                background-color: #3f3e53;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
             }
         </style>
     </head>

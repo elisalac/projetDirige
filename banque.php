@@ -19,9 +19,14 @@
         <style>
             body{
                 background-color: #3f3e53;
+                text-align:center;
             }
             p{
-
+                text-align: center;
+                color:white;
+            }
+            h1{
+                margin-top:25vh;
                 text-align: center;
                 color:white;
             }
@@ -46,7 +51,12 @@
                 font-size: 17px;
             }
 
-
+            input[type=submit], button {
+            background-color: #3f3e53;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+        }
         </style>
     </head>
     <script>

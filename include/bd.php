@@ -614,21 +614,117 @@ function CheckerDemande($id)
         {
             case 0:
                 DemanderArgent($_SESSION['id']);
-                $sql0 = "UPDATE Joueurs SET montantOr = montantOr +10,nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
+                $sql0 = "UPDATE Joueurs SET nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
                 $stmt0 = $pdo->query($sql0);
                 break;
             case 1:
-                $sql1 = "UPDATE Joueurs SET montantArgent = montantArgent+10,nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
+                DemanderArgent($_SESSION['id']);
+                $sql1 = "UPDATE Joueurs SET nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
                 $stmt1 = $pdo->query($sql1);
  
                 break;
             case 2:
-                $sql2 = "UPDATE Joueurs SET montantBronze = montantBronze +10,nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
+                DemanderArgent($_SESSION['id']);
+                $sql2 = "UPDATE Joueurs SET nbDemande=nbDemande+1 where idJoueur = ".$_SESSION['id'];
                 $stmt2 = $pdo->query($sql2);
                 break;
             
             case 3:
-                echo "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
+                echo "Vous ne pouvez pas dépasser le nombre de demande";
                 break;
         }
+}
+
+function AfficherDemande(){
+    $pdo = getPdo();
+
+    try{
+        $sql = "SELECT idJoueur, statusDemande, idDemande FROM Demandes";
+        $stmt = $pdo->query($sql);
+        return $stmt;
+    } catch (Exception $e){
+        echo $e->getMessage();
+    }
+}
+
+function ApprouverDemande($id){
+    $pdo = getPdo();
+    
+    $nbDemande=0;
+   
+    $sql7 = "SELECT nbDemande from Joueurs where idJoueur= ?";
+    $stmt28 = $pdo->prepare($sql7);    
+    $stmt28->execute([$id]);
+    foreach($stmt28 as $row)
+    {
+        $nbDemande= $row['nbDemande'];
+    }
+
+    switch ($nbDemande)
+        {
+            case 1:
+                $sql0 = "UPDATE Joueurs SET montantOr = montantOr +10 where idJoueur = ?";
+                $stmt0 = $pdo->prepare($sql0);
+                $stmt0->execute([$id]);
+                $sqlDelete1 = "DELETE FROM Demandes WHERE idJoueur = ?";
+                $stmtDelete1= $pdo->prepare($sqlDelete1);
+                $stmtDelete1->execute([$id]);
+                break;
+            case 2:
+                $sql1 = "UPDATE Joueurs SET montantArgent = montantArgent+10 where idJoueur = ?";
+                $stmt1 = $pdo->prepare($sql1);
+                $stmt1->execute([$id]);
+                $sqlDelete2 = "DELETE FROM Demandes WHERE idJoueur = ?";
+                $stmtDelete2= $pdo->prepare($sqlDelete2);
+                $stmtDelete2->execute([$id]);
+                break;
+            case 3:
+                $sql2 = "UPDATE Joueurs SET montantBronze = montantBronze +10 where idJoueur = ?";
+                $stmt2 = $pdo->prepare($sql2);
+                $stmt2->execute([$id]);
+                $sqlDelete3 = "DELETE FROM Demandes WHERE idJoueur = ?";
+                $stmtDelete3= $pdo->prepare($sqlDelete3);
+                $stmtDelete3->execute([$id]);
+                break;
+            
+            default:
+                echo "Vous ne pouvez pas dépasser le nombre de demande";
+                break;
+        }
+} 
+
+function RefuserDemande($id){
+    $pdo = getPdo();
+    try{
+        $sqlDelete = "DELETE FROM Demandes WHERE idJoueur = ?";
+        $stmtDelete= $pdo->prepare($sqlDelete);
+        $stmtDelete->execute([$id]);
+        $infoArray = AfficherAliasEtDemande($id);
+        if($infoArray[1] > 0 && $infoArray[1] <= 3){
+            $sql1 = "UPDATE Joueurs SET nbDemande=nbDemande-1 where idJoueur = ?";
+            $stmt1 = $pdo->prepare($sql1);
+            $stmt1->execute([$id]);
+        } else{
+            echo "Erreur";
+        }
+    } catch (Exception $e){
+        echo $e-getMessage();
+    }
+}
+
+function AfficherAliasEtDemande($id){
+    $pdo = getPdo();
+
+    try{
+        $sql = "SELECT alias, nbDemande FROM Joueurs WHERE idJoueur = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$id]);
+ 
+        while($row = $stmt->fetch()) 
+        {
+            return array($row['alias'],$row['nbDemande']);
+        }
+    } catch (Exception $e){
+        echo $e->getMessage();
+    }
 }
