@@ -588,6 +588,10 @@ function DemanderArgent($id)
 {
     $pdo = getPdo();
     try{
+        
+        $sql23 = "UPDATE Joueurs SET demandeActive=1 where idJoueur = ".$_SESSION['id'];
+        $stmt23 = $pdo->query($sql23);
+
       $sql = "INSERT INTO Demandes (idJoueur) VALUES (?)";
       $stmt= $pdo->prepare($sql);
       $stmt->execute([$id]);
@@ -604,13 +608,22 @@ function CheckerDemande($id)
    $nbDemande=0;
    
    $sql7 = "SELECT nbDemande from Joueurs where idJoueur=".$id;
-   $stmt28 = $pdo->query($sql7);    
+   $stmt28 = $pdo->query($sql7);  
+   
+   
+   $sql11 = "SELECT demandeActive from Joueurs where idJoueur=".$id;
+   $stmt29 = $pdo->query($sql11);
+   while($row=$stmt29->fetch())
+   {
+    $demandeactive = $row['demandeActive'];
+   }   
     foreach($stmt28 as $row)
     {
         $nbDemande= $row['nbDemande'];
     }
-
-    switch ($nbDemande)
+    if($demandeactive == 0)
+    {
+        switch ($nbDemande)
         {
             case 0:
                 DemanderArgent($_SESSION['id']);
@@ -633,6 +646,12 @@ function CheckerDemande($id)
                 echo "Vous ne pouvez pas dépasser le nombre de demande";
                 break;
         }
+    }
+    else
+    {
+        echo 'Vous avez déjà une demande en cours!';
+    }
+    
 }
 
 function AfficherDemande(){
@@ -669,6 +688,8 @@ function ApprouverDemande($id){
                 $sqlDelete1 = "DELETE FROM Demandes WHERE idJoueur = ?";
                 $stmtDelete1= $pdo->prepare($sqlDelete1);
                 $stmtDelete1->execute([$id]);
+                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ".$_SESSION['id'];
+                $stmt0 = $pdo->query($sql0);
                 break;
             case 2:
                 $sql1 = "UPDATE Joueurs SET montantArgent = montantArgent+10 where idJoueur = ?";
@@ -677,6 +698,8 @@ function ApprouverDemande($id){
                 $sqlDelete2 = "DELETE FROM Demandes WHERE idJoueur = ?";
                 $stmtDelete2= $pdo->prepare($sqlDelete2);
                 $stmtDelete2->execute([$id]);
+                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ".$_SESSION['id'];
+                $stmt0 = $pdo->query($sql0);
                 break;
             case 3:
                 $sql2 = "UPDATE Joueurs SET montantBronze = montantBronze +10 where idJoueur = ?";
@@ -685,6 +708,8 @@ function ApprouverDemande($id){
                 $sqlDelete3 = "DELETE FROM Demandes WHERE idJoueur = ?";
                 $stmtDelete3= $pdo->prepare($sqlDelete3);
                 $stmtDelete3->execute([$id]);
+                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ".$_SESSION['id'];
+                $stmt0 = $pdo->query($sql0);
                 break;
             
             default:
