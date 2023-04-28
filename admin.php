@@ -137,7 +137,11 @@
                     
                     $dataDemandes = AfficherDemande();
                     while($demande = $dataDemandes->fetch()){
+                        
                         $arrayInfo = AfficherAliasEtDemande($demande['idJoueur']);
+                        if($arrayInfo[1] <= 0 || $arrayInfo[1] > 3){
+                            echo "Erreur de demande";
+                        }
                         echo "<tr class='bottom-border'>";
                             echo "<td style='padding-left:40px'>Alias: " . $arrayInfo[0] . "</td>";
                             echo "<td>Numéro de demande: " . $arrayInfo[1] . "</td>";
