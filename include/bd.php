@@ -400,7 +400,7 @@ function ModifierJoueur($idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typ
     if ($e->errorInfo[1] == 1062) {
         $error_message = $e->getMessage();
         if (strpos($error_message, 'alias') !== false|| strpos($error_message, 'courriel') !== false) {
-            echo  "t fkin cave";
+            echo  "L'alias ou le courriel est invalide!";
             return false;
         } 
     } else {
@@ -708,7 +708,7 @@ function RefuserDemande($id){
             echo "Erreur";
         }
     } catch (Exception $e){
-        echo $e-getMessage();
+        echo $e->getMessage();
     }
 }
 
