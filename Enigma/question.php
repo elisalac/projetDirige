@@ -38,6 +38,15 @@
                 padding: 14px 20px;
                 margin: 8px 0;
             }
+            .infoJoueur{
+                position:absolute; left:60px; top:10px;
+            }
+
+            .infoJoueur p{
+                color:white;
+                margin:20px;
+                font-size: 20px;
+            }
         </style>
     </head>
     <body>
@@ -80,6 +89,14 @@
             ?>
         </div>
     </body>
+    <div class="infoJoueur" style="position:absolute; left:60px; top:10px;">
+            <?php
+                if(isset($_SESSION['id'])){
+                    $membre = getMembre($_SESSION['id']);
+                    echo '<p>' . $membre['alias'] . " | Or: " . $membre['montantOr'] . " | Argent: ".$membre['montantArgent'].  " | Bronze: ".$membre['montantBronze']. '</p>';
+                }
+            ?>
+    </div>
     <?php
         require "../include/footerEnigma.php"
     ?>
