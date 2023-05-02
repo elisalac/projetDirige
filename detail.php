@@ -53,6 +53,7 @@
             
             $infoItem = AfficherInfoItem($idItem);
             $item = "";
+            $nbInventaire = 0;
             while($row = $infoItem->fetch())
             {
                 echo "<hr>";
@@ -61,7 +62,8 @@
                 echo "<p style='font-size:23px'>". $row['nom'] . "</p>";
                 echo "<p><u>Quantité en stock:</u> ". $row['qteStock'] . "</p>";
                 if(isset($_SESSION['id'])){
-                    echo '<p><u>Nombre en inventaire:</u> ' . AfficherNbInventaire($_SESSION['id'], $row['idItems']) . '</p>';
+                    $nbInventaire = AfficherNbInventaire($_SESSION['id'], $row['idItems']);
+                    echo '<p><u>Nombre en inventaire:</u> ' . $nbInventaire . '</p>';
                 }
                 echo "<p><u>Prix:</u> ". $row['prixUnitaire'] . " Or</p>";
                 echo "<p><u>Poids:</u> ". $row['poids'] . " lbs</p>";
