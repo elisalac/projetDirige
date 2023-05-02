@@ -197,7 +197,7 @@ function AfficherNbInventaire($idJoueur, $idItem){
 //Fonctions afficher items index
 function AfficherItems($statement)
 {
-    
+    $nbInventaire = 0;
     while ($row = $statement->fetch()){
         if(isset($_POST[$row['idItems'].'Ajouter'])){
             AjouterPanier($row['idItems'], $_SESSION['id']);
@@ -226,7 +226,8 @@ function AfficherItems($statement)
         //}
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
         if(isset($_SESSION['id'])){
-            echo '<p> Nombre en inventaire: ' . AfficherNbInventaire($_SESSION['id'], $row['idItems']) . '</p>';
+            $nbInventaire = AfficherNbInventaire($_SESSION['id'], $row['idItems']);
+            echo '<p> Nombre en inventaire: ' . $nbInventaire . '</p>';
         }
         echo '<div class="containerButton">';
         if(isset($_SESSION['id'])){
@@ -245,7 +246,7 @@ function AfficherItems($statement)
                 echo '</div>';
             }
         }
-        if(AfficherNbInventaire($_SESSION['id'], $row['idItems']) != 0 && isset($_SESSION['id'])){
+        if($nbInventaire != 0 && isset($_SESSION['id'])){
             echo '<div class="vendreContainerButton">';
             echo '<form method="post">';
             echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
