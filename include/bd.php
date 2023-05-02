@@ -516,7 +516,7 @@ function CheckerReponse($idrep)
     $id = $_SESSION['id'];
     $diff =$_SESSION['diff'];
     $quest = $_SESSION['idQues'];
-    //try{
+    try{
       $sql = "SELECT estBonne FROM Réponses WHERE idRéponse = $idrep";
       $stmt2 = $pdo->query($sql);
       while($row = $stmt2->fetch()) 
@@ -564,7 +564,7 @@ function CheckerReponse($idrep)
                   $stmt3= $pdo->prepare($sql5);
                   $stmt3->execute([$id]);
                   echo "Hey man ur officially a mage";
-                  echo '<script type = "text/javascript">toastr.success("Vous êtes devenus un mage!")</script>';
+                  echo '<script type = "text/javascript">toastr.success("Vous êtes devenus un mage!w")</script>';
                   
               }
             }
@@ -582,9 +582,9 @@ function CheckerReponse($idrep)
             echo"<p>Non Réussie :(</p>";
             echo "<img src='../images/fail.gif'>";
       }
-    //}catch (Exception $e) {
-       // die("Erreur dans ChecherReponse() - bd.php");
-     // }
+    }catch (Exception $e) {
+        die("Erreur dans ChecherReponse() - bd.php");
+     }
 }
 function DemanderArgent($id)
 {
