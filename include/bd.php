@@ -104,7 +104,7 @@ function ModifierPanier($idjoueur,$idItem,$nouvelleQte){
 
         }
     } catch (Exception $e){
-        echo "Heyyyyyyy";
+        echo '<script type = "text/javascript">toastr.error("Une erreur s/est produite!")</script>';
         exit;
     }
 }
@@ -117,7 +117,7 @@ function PayerPanier($idJoueur)
         $stmt->bindParam(1, $idJoueur, PDO::PARAM_INT);
         $stmt->execute();
     } catch (Exception $e){
-        echo "Heyyyyyyy";
+        echo '<script type = "text/javascript">toastr.error("Une erreur s/est produite!")</script>';
         exit;
     }
 }
@@ -130,7 +130,7 @@ function RetirerPanier($idjoueur,$idItem){
         $stmt->bindParam(2, $idItem, PDO::PARAM_INT);
         $stmt->execute();
     } catch (Exception $e){
-        echo "Heyyyyyyy";
+        echo '<script type = "text/javascript">toastr.error("Une erreur s/est produite!")</script>';
         exit;
     }
 }
@@ -400,7 +400,7 @@ function ModifierJoueur($idJoueur,$alias,$nom,$prenom,$courriel,$photo,$mdp,$typ
     if ($e->errorInfo[1] == 1062) {
         $error_message = $e->getMessage();
         if (strpos($error_message, 'alias') !== false|| strpos($error_message, 'courriel') !== false) {
-            echo  "L'alias ou le courriel est invalide!";
+            echo '<script type = "text/javascript">toastr.error("L/alias ou le courriel est invalide!")</script>';
             return false;
         } 
     } else {
@@ -564,6 +564,8 @@ function CheckerReponse($idrep)
                   $stmt3= $pdo->prepare($sql5);
                   $stmt3->execute([$id]);
                   echo "Hey man ur officially a mage";
+                  echo '<script type = "text/javascript">toastr.success("Vous êtes devenus un mage!")</script>';
+                  
               }
             }
         }
