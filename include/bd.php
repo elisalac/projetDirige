@@ -688,8 +688,9 @@ function ApprouverDemande($id){
                 $sqlDelete1 = "DELETE FROM Demandes WHERE idJoueur = ?";
                 $stmtDelete1= $pdo->prepare($sqlDelete1);
                 $stmtDelete1->execute([$id]);
-                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ".$_SESSION['id'];
-                $stmt0 = $pdo->query($sql0);
+                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ?";
+                $stmt0 = $pdo->prepare($sql0);
+                $stmt0->execute([$id]);
                 break;
             case 2:
                 $sql1 = "UPDATE Joueurs SET montantArgent = montantArgent+10 where idJoueur = ?";
@@ -698,8 +699,9 @@ function ApprouverDemande($id){
                 $sqlDelete2 = "DELETE FROM Demandes WHERE idJoueur = ?";
                 $stmtDelete2= $pdo->prepare($sqlDelete2);
                 $stmtDelete2->execute([$id]);
-                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ".$_SESSION['id'];
-                $stmt0 = $pdo->query($sql0);
+                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ?";
+                $stmt0 = $pdo->prepare($sql0);
+                $stmt0->execute([$id]);
                 break;
             case 3:
                 $sql2 = "UPDATE Joueurs SET montantBronze = montantBronze +10 where idJoueur = ?";
@@ -708,8 +710,10 @@ function ApprouverDemande($id){
                 $sqlDelete3 = "DELETE FROM Demandes WHERE idJoueur = ?";
                 $stmtDelete3= $pdo->prepare($sqlDelete3);
                 $stmtDelete3->execute([$id]);
-                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ".$_SESSION['id'];
-                $stmt0 = $pdo->query($sql0);
+                $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ?";
+                $stmt0 = $pdo->prepare($sql0);
+                $stmt0->execute([$id]);
+               
                 break;
             
             default:
@@ -726,6 +730,9 @@ function RefuserDemande($id){
         $stmtDelete->execute([$id]);
         $infoArray = AfficherAliasEtDemande($id);
         if($infoArray[1] > 0 && $infoArray[1] <= 3){
+            $sql0 = "UPDATE Joueurs SET demandeActive=0 where idJoueur = ?";
+                $stmt0 = $pdo->prepare($sql0);
+                $stmt0->execute([$id]);
             $sql1 = "UPDATE Joueurs SET nbDemande=nbDemande-1 where idJoueur = ?";
             $stmt1 = $pdo->prepare($sql1);
             $stmt1->execute([$id]);
