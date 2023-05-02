@@ -245,13 +245,13 @@ function AfficherItems($statement)
                 echo '</div>';
             }
         }
-        //if($row['qteInventaire'] != 0 && isset($_SESSION['id'])){
-        //    echo '<div class="vendreContainerButton">';
-        //    echo '<form method="post">';
-        //    echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
-        //    echo '</form>';
-        //    echo '</div>';
-        //}
+        if(AfficherNbInventaire($_SESSION['id'], $row['idItems']) != 0 && isset($_SESSION['id'])){
+            echo '<div class="vendreContainerButton">';
+            echo '<form method="post">';
+            echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+            echo '</form>';
+            echo '</div>';
+        }
         echo '</div>';
         echo '<p> Prix: ' . $row['prixUnitaire'] . ' Or</p>';
         echo '</article>';
