@@ -517,7 +517,7 @@ function CheckerReponse($idrep)
     $id = $_SESSION['id'];
     $diff =$_SESSION['diff'];
     $quest = $_SESSION['idQues'];
-    //try{
+    try{
       $sql = "SELECT estBonne FROM Réponses WHERE idRéponse = $idrep";
       $stmt2 = $pdo->query($sql);
       while($row = $stmt2->fetch()) 
@@ -564,7 +564,6 @@ function CheckerReponse($idrep)
                   $sql5="UPDATE Joueurs set typeJoueur='M' where idJoueur=?";
                   $stmt3= $pdo->prepare($sql5);
                   $stmt3->execute([$id]);
-                  echo "Hey man ur officially a mage";
                   echo '<script type = "text/javascript">toastr.success("Vous êtes devenus un mage!")</script>';
                   
               }
@@ -583,9 +582,9 @@ function CheckerReponse($idrep)
             echo"<p>Non Réussie :(</p>";
             echo "<img src='../images/fail.gif'>";
       }
-    //}catch (Exception $e) {
-       // die("Erreur dans ChecherReponse() - bd.php");
-     // }
+    }catch (Exception $e) {
+        die("Erreur dans ChecherReponse() - bd.php");
+     }
 }
 function DemanderArgent($id)
 {
@@ -646,13 +645,13 @@ function CheckerDemande($id)
                 break;
             
             case 3:
-                echo "Vous ne pouvez pas dépasser le nombre de demande";
+                echo '<script type = "text/javascript">toastr.error("Vous ne pouvez pas dépasser le nombre de demande")</script>';
                 break;
         }
     }
     else
     {
-        echo 'Vous avez déjà une demande en cours!';
+        echo '<script type = "text/javascript">toastr.warning("Vous avez déjà une demande en cours!")</script>';
     }
     
 }
@@ -720,7 +719,8 @@ function ApprouverDemande($id){
                 break;
             
             default:
-                echo "Vous ne pouvez pas dépasser le nombre de demande";
+            echo '<script type = "text/javascript">toastr.error("Vous ne pouvez pas dépasser le nombre de demande")</script>';
+                
                 break;
         }
 } 
@@ -740,7 +740,7 @@ function RefuserDemande($id){
             $stmt1 = $pdo->prepare($sql1);
             $stmt1->execute([$id]);
         } else{
-            echo "Erreur";
+            echo '<script type = "text/javascript">toastr.error("Un problème est survenu lors du refus de demande")</script>';
         }
     } catch (Exception $e){
         echo $e->getMessage();
