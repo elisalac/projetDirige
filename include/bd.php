@@ -763,3 +763,22 @@ function AfficherAliasEtDemande($id){
         echo $e->getMessage();
     }
 }
+
+
+function AfficherQuestionTotal($flag,$id)
+{
+    $pdo = getPdo();
+    $sql = "SELECT COUNT(*) FROM Statistiques WHERE flagRéussi = ? and idJoueur = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$flag,$id]);
+    return $stmt;
+}
+
+function AfficherQuestionTotalParDifficulte($flag,$typeDifficulte,$id)
+{
+    $pdo = getPdo();
+    $sql = "SELECT COUNT(*) FROM Statistiques WHERE flagRéussi = ? and difficulté = ? and idJoueur = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$flag,$typeDifficulte,$id]);
+    return $stmt;
+}
