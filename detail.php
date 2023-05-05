@@ -124,6 +124,11 @@
                 echo '<div class="vendreContainerButton">';
                 echo '<form method="post">';
                 echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                echo '<input type="submit" value="Commentaire" name="commenter" style="width:75px; height:35px; font-size:15px;background-color:#504aa5; border:0px;">';
+                if(isset($_POST['commenter']))
+                {
+                    AjouterCommentaire()
+                }
                 echo '</form>';
                 echo '</div>';
             }
