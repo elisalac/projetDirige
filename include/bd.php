@@ -221,9 +221,7 @@ function AfficherItems($statement)
         echo '<img src="images/Items/' . $row['image'] . '" style="max-width: 200px; max-height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
         //$nbEtoile = MoyenneEtoiles();
-        //for($i = 0; $i < 4; $i++){
-        //    echo '<img src="images/etoiles/" style="">';
-        //}
+        //echo '<img src="$nbEtoile" style="">';
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
         if(isset($_SESSION['id'])){
             $nbInventaire = AfficherNbInventaire($_SESSION['id'], $row['idItems']);
