@@ -796,3 +796,8 @@ function AfficherQuestionTotalParDifficulte($flag,$typeDifficulte,$id)
         }
     
 }
+function AjouterÉvaluations($contenu,$idJoueur,$idItem,$nbEtoiles)
+{
+    $pdo = getPdo();
+    $sql="INSERT INTO Évaluations (commentaire,idItem,idQuestion,flagRéussi) values(?,?,?,?)"
+}
