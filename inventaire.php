@@ -66,6 +66,7 @@
                     echo "<img src='images/Items/". $row['image'] ."' width='200' height='150'>";
                     echo "<p><u>Nom de l'item:</u> ". $row['nom'] . "</p>";
                     echo "<p><u>Quantité dans l'inventaire:</u> ". $row['qteInventaire'] . "</p>";
+                    echo "<button type='submit' value='' name='buttonVendre'>Vendre</button>";
                     echo "</div>";
                     echo '</a>';
                 }
