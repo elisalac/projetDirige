@@ -66,8 +66,31 @@ if (!empty($_POST['enigme'])) {
                 <td colspan="2" style="text-align: center;"><input type="submit" value="Valider" name="Diff"></td>
             </tr>
         </form>
-        
     </fieldset>
+    <br>
+        <br>
+        <br>
+        <fieldset>
+            <legend>Statistiques</legend>
+            <?php
+            $questionReussi = AfficherQuestionTotal(1,$_SESSION['id']);
+            
+            $questionRater = AfficherQuestionTotal(0,$_SESSION['id']);
+            $enigmeFacile = AfficherQuestionTotalParDifficulte(1,'F',$_SESSION['id']);
+            $enigmeMoyen = AfficherQuestionTotalParDifficulte(1,'M',$_SESSION['id']);
+            $enigmeDifficile = AfficherQuestionTotalParDifficulte(1,'D',$_SESSION['id']);
+            
+
+            echo "<p>Énigmes réussis: ". $questionReussi ."</p>";
+            echo "<p>Énigmes non réussis: ". $questionRater ."</p>";
+            echo "<p>Énigmes faciles: ". $enigmeFacile ."</p>";
+            echo "<p>Énigmes moyens: ". $enigmeMoyen ."</p>";
+            echo "<p>Énigmes difficiles: ". $enigmeDifficile ."</p>";
+
+            ?>
+
+        </fieldset>
+
 </body>
 <?php
 
