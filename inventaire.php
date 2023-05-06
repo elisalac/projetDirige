@@ -15,7 +15,7 @@
             .inventaireDiv{
                 margin-top:10px;
                 display: grid;
-                grid-template-columns: 1fr 2fr 2fr;
+                grid-template-columns: 1fr 2fr 2fr 1fr;
                 width:100%;
                 border:1px white solid;
                 text-align:center;
@@ -61,12 +61,17 @@
                 $itemInv = AfficherInventaireJoueur($idJoueur);
                 while($row = $itemInv->fetch())
                 {
+                    if(isset($_POST['vendreButton'])){
+                        VendreItemInventaire($_SESSION['id'], $row['idItems']);
+                    }
                     echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
                     echo "<div class='inventaireDiv'>";
                     echo "<img src='images/Items/". $row['image'] ."' width='200' height='150'>";
                     echo "<p><u>Nom de l'item:</u> ". $row['nom'] . "</p>";
                     echo "<p><u>Quantité dans l'inventaire:</u> ". $row['qteInventaire'] . "</p>";
-                    echo "<button type='submit' value='' name='buttonVendre'>Vendre</button>";
+                    echo '<form method="post">';
+                    echo '<input type="submit" value="Vendre" name="vendreButton" style="margin-top:55px; width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                    echo '</form>';
                     echo "</div>";
                     echo '</a>';
                 }

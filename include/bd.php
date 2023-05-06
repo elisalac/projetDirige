@@ -202,6 +202,9 @@ function AfficherItems($statement)
         if(isset($_POST[$row['idItems'].'Ajouter'])){
             AjouterPanier($row['idItems'], $_SESSION['id']);
         }
+        if(isset($_POST['vendreButton'])){
+            VendreItemInventaire($_SESSION['id'], $row['idItems']);
+        }
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
         if($row['typeItem'] == 'S'){
             echo '<article style = "border: solid lightgreen 1px;
@@ -799,5 +802,28 @@ function AfficherQuestionTotalParDifficulte($flag,$typeDifficulte,$id)
 function AjouterÉvaluations($contenu,$idJoueur,$idItem,$nbEtoiles)
 {
     $pdo = getPdo();
-    $sql="INSERT INTO Évaluations (commentaire,idItem,idQuestion,flagRéussi) values(?,?,?,?)"
+    $sql="INSERT INTO Évaluations (commentaire,idItem,idQuestion,flagRéussi) values(?,?,?,?)";
+}
+
+function VendreItemInventaire($idJoueur, $idItem){
+    $pdo = getPdo();
+    try{
+        $sql = 'SELECT VendreItem(?,?) as Erreur';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idJoueur,$idItem]);
+        while($row = $stmt->fetch()) 
+        {
+            if($row['Erreur'] > 1 || $row['Erreur'] < 1)
+            {
+                echo '<script type = "text/javascript">toastr.error("Peut pas vendre!")</script>';
+            }
+            else
+            {
+                echo '<script type = "text/javascript">toastr.success("Vente réussie!")</script>';
+            }
+
+        }
+    } catch(Exception $e){
+        echo $e->getMessage();
+    }
 }
