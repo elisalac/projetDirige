@@ -202,7 +202,7 @@ function AfficherItems($statement)
         if(isset($_POST[$row['idItems'].'Ajouter'])){
             AjouterPanier($row['idItems'], $_SESSION['id']);
         }
-        if(isset($_POST['vendreButton'])){
+        if(isset($_POST[$row['idItems'].'Vendre'])){
             VendreItemInventaire($_SESSION['id'], $row['idItems']);
         }
         echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
@@ -250,7 +250,7 @@ function AfficherItems($statement)
         if($nbInventaire != 0 && isset($_SESSION['id'])){
             echo '<div class="vendreContainerButton">';
             echo '<form method="post">';
-            echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+            echo '<input type="submit" value="Vendre" name="'. $row['idItems'].'Vendre" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
             echo '</form>';
             echo '</div>';
         }

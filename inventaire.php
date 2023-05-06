@@ -61,7 +61,7 @@
                 $itemInv = AfficherInventaireJoueur($idJoueur);
                 while($row = $itemInv->fetch())
                 {
-                    if(isset($_POST['vendreButton'])){
+                    if(isset($_POST[$row['idItems'].'Vendre'])){
                         VendreItemInventaire($_SESSION['id'], $row['idItems']);
                     }
                     echo '<a href="http://167.114.152.54/~darquest2/detail.php?idItems=' . $row['idItems'] . '">';
@@ -70,7 +70,7 @@
                     echo "<p><u>Nom de l'item:</u> ". $row['nom'] . "</p>";
                     echo "<p><u>Quantité dans l'inventaire:</u> ". $row['qteInventaire'] . "</p>";
                     echo '<form method="post">';
-                    echo '<input type="submit" value="Vendre" name="vendreButton" style="margin-top:55px; width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
+                    echo '<input type="submit" value="Vendre" name="'. $row['idItems'].'Vendre" style="margin-top:55px; width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">';
                     echo '</form>';
                     echo "</div>";
                     echo '</a>';

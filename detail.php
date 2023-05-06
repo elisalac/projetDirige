@@ -56,7 +56,7 @@
             $nbInventaire = 0;
             while($row = $infoItem->fetch())
             {
-                if(isset($_POST['vendreButton'])){
+                if(isset($_POST[$row['idItems'].'Vendre'])){
                     VendreItemInventaire($_SESSION['id'], $row['idItems']);
                 }
                 echo "<hr>";
@@ -126,7 +126,7 @@
             if($nbInventaire != 0 && isset($_SESSION['id'])){
                 echo '<div class="vendreContainerButton">';
                 echo '<form method="post">';
-                echo '<input type="submit" value="Vendre" name="vendreButton" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;"><br><br>';
+                echo '<input type="submit" value="Vendre" name="'. $row['idItems'].'Vendre" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;"><br><br>';
                 echo '<input type="submit" value="Commentaire" name="commenter" style="width:100px; height:35px; font-size:15px;background-color:#504aa5; border:0px;">';
                 if(isset($_POST['commenter']))
                 {
