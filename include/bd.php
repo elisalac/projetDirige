@@ -847,7 +847,7 @@ function VendreItemInventaire($idJoueur, $idItem){
 function GetTotalEtoile($idItem){
     $pdo = getPdo();
     try{
-        $sql = 'SELECT COUNT(*) as total FROM Évaluation WHERE idItem = ?';
+        $sql = 'SELECT COUNT(*) as total FROM Évaluations WHERE idItem = ?';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idItem]);
         while($row = $stmt->fetch()){
@@ -861,7 +861,7 @@ function GetTotalEtoile($idItem){
 function GetNbEtoiles($idItem, $nbEtoiles){
     $pdo = getPdo();
     try{
-        $sql = 'SELECT COUNT(*) as total FROM Évaluation WHERE idItem = ? AND nbÉtoiles = ?';
+        $sql = 'SELECT COUNT(*) as total FROM Évaluations WHERE idItem = ? AND nbÉtoiles = ?';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idItem, $nbEtoiles]);
         while($row = $stmt->fetch()){
@@ -873,6 +873,7 @@ function GetNbEtoiles($idItem, $nbEtoiles){
 }
 
 function diagramme($idItem){
+    define("LARGEUR_MAX", 800);
     $nbEtoiles1 = GetNbEtoiles($idItem, 1);
     $nbEtoiles2 = GetNbEtoiles($idItem, 2);
     $nbEtoiles3 = GetNbEtoiles($idItem, 3);
@@ -886,37 +887,48 @@ function diagramme($idItem){
     echo "        <td>".$nbEtoiles1."</td>\n";
     echo "        <td>" . (int)($nbEtoiles1 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
-        . "width:" . (int)($nbEtoiles1 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+        . "width:" . (int)($nbEtoiles1 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>1</td>\n";
+    echo "        <td>2</td>\n";
     echo "        <td>".$nbEtoiles2."</td>\n";
     echo "        <td>" . (int)($nbEtoiles2 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
-        . "width:" . (int)($nbEtoiles2 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+        . "width:" . (int)($nbEtoiles2 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>1</td>\n";
+    echo "        <td>3</td>\n";
     echo "        <td>".$nbEtoiles3."</td>\n";
     echo "        <td>" . (int)($nbEtoiles3 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
-        . "width:" . (int)($nbEtoiles3 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+        . "width:" . (int)($nbEtoiles3 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>1</td>\n";
+    echo "        <td>4</td>\n";
     echo "        <td>".$nbEtoiles4."</td>\n";
     echo "        <td>" . (int)($nbEtoiles4 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
-        . "width:" . (int)($nbEtoiles4 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+        . "width:" . (int)($nbEtoiles4 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>1</td>\n";
+    echo "        <td>5</td>\n";
     echo "        <td>".$nbEtoiles5."</td>\n";
     echo "        <td>" . (int)($nbEtoiles5 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
-        . "width:" . (int)($nbEtoiles5 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+        . "width:" . (int)($nbEtoiles5 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
     echo "      </tr>\n";
     echo "<tr class=\"total\"><td>Total</td><td>$totalEtoile</td><td></td><td></td>"
         . "</tr>\n";
     echo "</table>\n";
+}
+
+function DeleteCommentaire($idComm){
+    $pdo = getPdo();
+    try{
+        $sql = 'DELETE FROM Évaluations WHERE idCommentaire = ?';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idComm]);
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }
 }
