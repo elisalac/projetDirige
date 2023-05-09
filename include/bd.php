@@ -177,6 +177,15 @@ function getMembre($id)
 }
 
 function MoyenneEtoiles($idItem){
+    $pdo = getPdo();
+    $sql = "SELECT AVG(nbÉtoiles) as Moyenne FROM Évaluations WHERE idItem = ? GROUP BY idItem";
+    $stmt = $pdo ->prepare($sql);
+    $stmt -> execute([$idItem]);
+    while($row = $stmt->fetch())
+    {
+        echo round($row['Moyenne'],1);
+         echo '<img src="images/etoiles/etoile1.png" style="width:40px;height:40px;">';
+    }
 
 }
 
@@ -223,8 +232,8 @@ function AfficherItems($statement)
         }
         echo '<img src="images/Items/' . $row['image'] . '" style="max-width: 200px; max-height: 150px; border:1px white">';
         echo '<p>' . $row['nom'] . '</p>';
-        //$nbEtoile = MoyenneEtoiles();
-        //echo '<img src="$nbEtoile" style="">';
+        MoyenneEtoiles($row['idItems']);
+       
         echo '<p> Nombre en stock: ' . $row['qteStock'] . '</p>';
         if(isset($_SESSION['id'])){
             $nbInventaire = AfficherNbInventaire($_SESSION['id'], $row['idItems']);
