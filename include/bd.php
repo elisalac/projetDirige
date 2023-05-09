@@ -183,8 +183,8 @@ function MoyenneEtoiles($idItem){
     $stmt -> execute([$idItem]);
     while($row = $stmt->fetch())
     {
+        echo '<img src="images/etoiles/etoile1.png" style="width:40px;height:40px;">';
         echo round($row['Moyenne'],1);
-         echo '<img src="images/etoiles/etoile1.png" style="width:40px;height:40px;">';
     }
 
 }
@@ -890,41 +890,41 @@ function diagramme($idItem){
     $nbEtoiles5 = GetNbEtoiles($idItem, 5);
     $totalEtoile = GetTotalEtoile($idItem);
 
-    echo "<table>\n";
+    echo "<table style='border:1px white solid;padding:10px;margin-left:auto;margin-right:auto; margin-bottom:25px'>\n";
     echo "      <tr>\n";
-    echo "        <td>1</td>\n";
+    echo '<td><img src="images/etoiles/etoile1.png" style="width:40px;height:40px;"></td>';
     echo "        <td>".$nbEtoiles1."</td>\n";
-    echo "        <td>" . (int)($nbEtoiles1 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
         . "width:" . (int)($nbEtoiles1 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
+    echo "        <td>" . (int)($nbEtoiles1 / $totalEtoile * 100) . "%</td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>2</td>\n";
+    echo '<td><img src="images/etoiles/etoile2.png" style="width:50px;height:40px;"></td>';
     echo "        <td>".$nbEtoiles2."</td>\n";
-    echo "        <td>" . (int)($nbEtoiles2 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
         . "width:" . (int)($nbEtoiles2 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
+    echo "        <td>" . (int)($nbEtoiles2 / $totalEtoile * 100) . "%</td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>3</td>\n";
+    echo '<td><img src="images/etoiles/etoile3.png" style="width:60px;height:40px;"></td>';
     echo "        <td>".$nbEtoiles3."</td>\n";
-    echo "        <td>" . (int)($nbEtoiles3 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
         . "width:" . (int)($nbEtoiles3 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
+    echo "        <td>" . (int)($nbEtoiles3 / $totalEtoile * 100) . "%</td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>4</td>\n";
+    echo '<td><img src="images/etoiles/etoile4.png" style="width:80px;height:40px;"></td>';
     echo "        <td>".$nbEtoiles4."</td>\n";
-    echo "        <td>" . (int)($nbEtoiles4 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
         . "width:" . (int)($nbEtoiles4 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
+    echo "        <td>" . (int)($nbEtoiles4 / $totalEtoile * 100) . "%</td>\n";
     echo "      </tr>\n";
     echo "      <tr>\n";
-    echo "        <td>5</td>\n";
+    echo '<td><img src="images/etoiles/etoiles5.png" style="width:110px;height:40px;"></td>';
     echo "        <td>".$nbEtoiles5."</td>\n";
-    echo "        <td>" . (int)($nbEtoiles5 / $totalEtoile * 100) . "%</td>\n";
     echo "        <td><div style=\"background-color:#ffc700;"
         . "width:" . (int)($nbEtoiles5 * (LARGEUR_MAX / $totalEtoile)) . "px\">&nbsp;</div></td>\n";
+    echo "        <td>" . (int)($nbEtoiles5 / $totalEtoile * 100) . "%</td>\n";
     echo "      </tr>\n";
     echo "<tr class=\"total\"><td>Total</td><td>$totalEtoile</td><td></td><td></td>"
         . "</tr>\n";
@@ -937,6 +937,20 @@ function DeleteCommentaire($idComm){
         $sql = 'DELETE FROM Évaluations WHERE idCommentaire = ?';
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$idComm]);
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
+
+function getAlias($idJoueur){
+    $pdo = getPdo();
+    try{
+        $sql = 'SELECT alias FROM Joueurs WHERE idJoueur = ?';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idJoueur]);
+        while($row = $stmt->fetch()){
+            return $row['alias'];
+        }
     }catch(Exception $e){
         echo $e->getMessage();
     }

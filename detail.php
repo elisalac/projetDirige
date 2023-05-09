@@ -41,46 +41,57 @@
             }
             
             *{
-    margin: 0;
-    padding: 0;
-}
-.rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
-}
-.rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-}
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
-}
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-.rate > input:checked ~ label {
-    color: #ffc700;    
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
+                margin: 0;
+                padding: 0;
+            }
+            .rate {
+                float: left;
+                height: 46px;
+                padding: 0 10px;
+                margin-left: 44vw;
+            }
+            .rate:not(:checked) > input {
+                position:absolute;
+                top:-9999px;
+            }
+            .rate:not(:checked) > label {
+                float:right;
+                width:1em;
+                overflow:hidden;
+                white-space:nowrap;
+                cursor:pointer;
+                font-size:30px;
+                color:#ccc;
+            }
+            .rate:not(:checked) > label:before {
+                content: '★ ';
+            }
+            .rate > input:checked ~ label {
+                color: #ffc700;    
+            }
+            .rate:not(:checked) > label:hover,
+            .rate:not(:checked) > label:hover ~ label {
+                color: #deb217;  
+            }
+            .rate > input:checked + label:hover,
+            .rate > input:checked + label:hover ~ label,
+            .rate > input:checked ~ label:hover,
+            .rate > input:checked ~ label:hover ~ label,
+            .rate > label:hover ~ input:checked ~ label {
+                color: #c59b08;
+            }
 
-/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+            #sectionComm{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                border:1px white solid;
+                margin-bottom: 10px;
+                margin-left: 50px;
+                margin-right: 50px;
+            }
+            #supprimerComm{
+                margin-top:10px;
+            } 
         </style>
         <script>
     if ( window.history.replaceState ) {
@@ -187,12 +198,15 @@
                     DeleteCommentaire($id);
                 }
             }
-            diagramme($idItem);
-
             if($nbInventaire != 0 && isset($_SESSION['id'])){
                 echo '<div class="vendreContainerButton">';
                 echo '<form method="post">';
                 echo '<input type="submit" value="Vendre" name="'. $row['idItems'].'Vendre" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;"><br><br>';
+                echo '</form>';
+                echo '<form method="post">';
+                echo'<br><strong><label for="commentaire">Commentaire:</label></strong>
+                <br>
+                <textarea class="commentBox" placeholder="Partager votre pensée :)" name="commentaire" id="" cols="75" rows="10"></textarea><br><br>';
                 echo ' <div class="rate">
                 <input type="radio" id="star5" name="rate" value="5" />
                 <label for="star5" title="text">5 stars</label>
@@ -204,27 +218,30 @@
                 <label for="star2" title="text">2 stars</label>
                 <input type="radio" id="star1" name="rate" value="1" />
                 <label for="star1" title="text">1 star</label>
-              </div>';
-              echo '<form action="" method="POST">
-              <strong><label for="commentaire">Commentaire:</label></strong>
-              <br>
-              <textarea class="commentBox" placeholder="Partager votre pensée :)" name="commentaire" id="" cols="50" rows="5"></textarea>
-              <input type="submit" value="Commentaire" name="commenter" style="width:100px; height:35px; font-size:15px;background-color:#504aa5; border:0px;">
+              </div><br><br>
+              <br><input type="submit" value="Commentaire" name="commenter" style="width:100px; height:35px; font-size:15px;background-color:#504aa5; border:0px; margin-bottom:50px;">
             </form>';
                
                 echo '</form>';
                 echo '</div>';
             }
+            
+            diagramme($idItem);
             $commentaires= AfficherÉvaluations($idItem);
             foreach($commentaires as $commentaire)
             {
                 $idJoueur = $_SESSION['id'];
-                echo "<p>Id:".$commentaire['idJoueur']." ".$commentaire['commentaire']." Stars:".$commentaire['nbÉtoiles']."</p><br>";
-                if($commentaire['idJoueur'] == $idJoueur || isAdmin($idJoueur)){
-                    echo "<form method='POST'>";
-                        echo '<button type="submit" id="supprimerComm" name="delete" value="' . $commentaire['idCommentaire'] . '">Supprimer</button>';
-                    echo "</form>";
-                }
+
+                echo "<div id='sectionComm'>
+                    <p>Alias: ".getAlias($commentaire['idJoueur'])."</p>
+                    <p>Commentaire: ".$commentaire['commentaire']."</p>
+                    <p>Stars: ".$commentaire['nbÉtoiles']."</p>";
+                    if($commentaire['idJoueur'] == $idJoueur || isAdmin($idJoueur)){
+                        echo "<form method='POST'>";
+                            echo '<button type="submit" id="supprimerComm" name="delete" value="' . $commentaire['idCommentaire'] . '" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;">Supprimer</button>';
+                        echo "</form>";
+                    }
+                echo "</div>";
             }
         ?>
     </body>
