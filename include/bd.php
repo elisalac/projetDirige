@@ -843,3 +843,80 @@ function VendreItemInventaire($idJoueur, $idItem){
         echo $e->getMessage();
     }
 }
+
+function GetTotalEtoile($idItem){
+    $pdo = getPdo();
+    try{
+        $sql = 'SELECT COUNT(*) as total FROM Évaluation WHERE idItem = ?';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem]);
+        while($row = $stmt->fetch()){
+            return $row['total'];
+        }
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
+
+function GetNbEtoiles($idItem, $nbEtoiles){
+    $pdo = getPdo();
+    try{
+        $sql = 'SELECT COUNT(*) as total FROM Évaluation WHERE idItem = ? AND nbÉtoiles = ?';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$idItem, $nbEtoiles]);
+        while($row = $stmt->fetch()){
+            return $row['total'];
+        }
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
+
+function diagramme($idItem){
+    $nbEtoiles1 = GetNbEtoiles($idItem, 1);
+    $nbEtoiles2 = GetNbEtoiles($idItem, 2);
+    $nbEtoiles3 = GetNbEtoiles($idItem, 3);
+    $nbEtoiles4 = GetNbEtoiles($idItem, 4);
+    $nbEtoiles5 = GetNbEtoiles($idItem, 5);
+    $totalEtoile = GetTotalEtoile($idItem);
+
+    echo "<table>\n";
+    echo "      <tr>\n";
+    echo "        <td>1</td>\n";
+    echo "        <td>".$nbEtoiles1."</td>\n";
+    echo "        <td>" . (int)($nbEtoiles1 / $totalEtoile * 100) . "%</td>\n";
+    echo "        <td><div style=\"background-color:#ffc700;"
+        . "width:" . (int)($nbEtoiles1 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+    echo "      </tr>\n";
+    echo "      <tr>\n";
+    echo "        <td>1</td>\n";
+    echo "        <td>".$nbEtoiles2."</td>\n";
+    echo "        <td>" . (int)($nbEtoiles2 / $totalEtoile * 100) . "%</td>\n";
+    echo "        <td><div style=\"background-color:#ffc700;"
+        . "width:" . (int)($nbEtoiles2 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+    echo "      </tr>\n";
+    echo "      <tr>\n";
+    echo "        <td>1</td>\n";
+    echo "        <td>".$nbEtoiles3."</td>\n";
+    echo "        <td>" . (int)($nbEtoiles3 / $totalEtoile * 100) . "%</td>\n";
+    echo "        <td><div style=\"background-color:#ffc700;"
+        . "width:" . (int)($nbEtoiles3 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+    echo "      </tr>\n";
+    echo "      <tr>\n";
+    echo "        <td>1</td>\n";
+    echo "        <td>".$nbEtoiles4."</td>\n";
+    echo "        <td>" . (int)($nbEtoiles4 / $totalEtoile * 100) . "%</td>\n";
+    echo "        <td><div style=\"background-color:#ffc700;"
+        . "width:" . (int)($nbEtoiles4 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+    echo "      </tr>\n";
+    echo "      <tr>\n";
+    echo "        <td>1</td>\n";
+    echo "        <td>".$nbEtoiles5."</td>\n";
+    echo "        <td>" . (int)($nbEtoiles5 / $totalEtoile * 100) . "%</td>\n";
+    echo "        <td><div style=\"background-color:#ffc700;"
+        . "width:" . (int)($nbEtoiles5 * ($totalEtoile/100)) . "vw\">&nbsp;</div></td>\n";
+    echo "      </tr>\n";
+    echo "<tr class=\"total\"><td>Total</td><td>$totalEtoile</td><td></td><td></td>"
+        . "</tr>\n";
+    echo "</table>\n";
+}
