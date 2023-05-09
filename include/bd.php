@@ -802,9 +802,17 @@ function AfficherQuestionTotalParDifficulte($flag,$typeDifficulte,$id)
 function AjouterÉvaluations($contenu,$idJoueur,$idItem,$nbEtoiles)
 {
     $pdo = getPdo();
-    $sql="INSERT INTO Évaluations (commentaire,idItem,idQuestion,flagRéussi) values(?,?,?,?)";
+    $sql="INSERT INTO Évaluations (commentaire,idItem,idJoueur,nbÉtoiles) values(?,?,?,?)";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$id]);
 }
-
+function AfficherÉvaluations()
+{
+    $pdo = getPdo();
+    $sql="SELECT * FROM Évaluations";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$id]);
+}
 function VendreItemInventaire($idJoueur, $idItem){
     $pdo = getPdo();
     try{
