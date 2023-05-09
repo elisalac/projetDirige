@@ -803,15 +803,15 @@ function AjouterÉvaluations($contenu,$idJoueur,$idItem,$nbEtoiles)
 {
     $pdo = getPdo();
     $sql="INSERT INTO Évaluations (commentaire,idItem,idJoueur,nbÉtoiles) values(?,?,?,?)";
-    $stmt= $pdo->prepare($sql);
-    $stmt->execute([$id]);
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$contenu,$idItem,$idJoueur,$nbEtoiles,]);
 }
-function AfficherÉvaluations()
+function AfficherÉvaluations($idItem)
 {
     $pdo = getPdo();
-    $sql="SELECT * FROM Évaluations";
+    $sql="SELECT * FROM Évaluations WHERE idItem = ?";
     $stmt= $pdo->prepare($sql);
-    $stmt->execute([$id]);
+    $stmt->execute([$idItem]);
 }
 function VendreItemInventaire($idJoueur, $idItem){
     $pdo = getPdo();
