@@ -819,6 +819,7 @@ function AfficherÉvaluations($idItem)
     $sql="SELECT * FROM Évaluations WHERE idItem = ?";
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$idItem]);
+    return $stmt;
 }
 function VendreItemInventaire($idJoueur, $idItem){
     $pdo = getPdo();

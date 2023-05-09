@@ -82,6 +82,11 @@
 
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
         </style>
+        <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
     </head>
     <?php
         require "include/header.php";
@@ -184,25 +189,34 @@
               echo '<form action="" method="POST">
               <strong><label for="commentaire">Commentaire:</label></strong>
               <br>
-              <textarea class="commentBox" placeholder="Partager votre pensée :)" name="commentaire" id="" cols="100" rows="10"></textarea>
-              <div>
-                <p><span class="erreur"><?= $message ?></span></p>
-              </div>
-              <input class="button-89" type="submit" name="ajouter" value="Poster votre commentaire">
+              <textarea class="commentBox" placeholder="Partager votre pensée :)" name="commentaire" id="" cols="50" rows="5"></textarea>
+              <input type="submit" value="Commentaire" name="commenter" style="width:100px; height:35px; font-size:15px;background-color:#504aa5; border:0px;">
             </form>';
-                echo '<input type="submit" value="Commentaire" name="commenter" style="width:100px; height:35px; font-size:15px;background-color:#504aa5; border:0px;">';
+                
                 if(isset($_POST['commenter']))
                 {
-                    AjouterÉvaluations($_POST['commentaire'],$_SESSION['id'], $idItem, $_POST['rate']);
+                    if(strlen($_POST['commentaire'])>200 || strlen($_POST['commentaire']) ==0)
+                    {
+                        echo '<script type = "text/javascript">toastr.error("Le commentaire doit être entre 1 et 200 caractères!")</script>';
+                    }
+                    else{
+                        AjouterÉvaluations($_POST['commentaire'],$_SESSION['id'], $idItem, $_POST['rate']);
+                    }
                     
                 }
                 echo '</form>';
                 echo '</div>';
             }
+            $commentaires= AfficherÉvaluations($idItem);
+            foreach($commentaires as $commentaire)
+            {
+                //if($_SESSION['id']==$commentaire['idJoueur']){
+
+                    echo "Id:".$commentaire['idJoueur']." ".$commentaire['commentaire']." Stars:".$commentaire['nbÉtoiles']."<br>";
+
+               // }
+
+            }
         ?>
-
-
-
-
     </body>
 </html>
