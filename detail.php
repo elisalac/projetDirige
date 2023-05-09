@@ -39,6 +39,48 @@
                 margin:20px;
                 font-size: 20px;
             }
+            
+            *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
         </style>
     </head>
     <?php
@@ -127,14 +169,40 @@
                 echo '<div class="vendreContainerButton">';
                 echo '<form method="post">';
                 echo '<input type="submit" value="Vendre" name="'. $row['idItems'].'Vendre" style="width:75px; height:35px; font-size:15px; background-color:#504aa5; border:0px;"><br><br>';
+                echo ' <div class="rate">
+                <input type="radio" id="star5" name="rate" value="5" />
+                <label for="star5" title="text">5 stars</label>
+                <input type="radio" id="star4" name="rate" value="4" />
+                <label for="star4" title="text">4 stars</label>
+                <input type="radio" id="star3" name="rate" value="3" />
+                <label for="star3" title="text">3 stars</label>
+                <input type="radio" id="star2" name="rate" value="2" />
+                <label for="star2" title="text">2 stars</label>
+                <input type="radio" id="star1" name="rate" value="1" />
+                <label for="star1" title="text">1 star</label>
+              </div>';
+              echo '<form action="" method="POST">
+              <strong><label for="commentaire">Commentaire:</label></strong>
+              <br>
+              <textarea class="commentBox" placeholder="Partager votre pensée :)" name="commentaire" id="" cols="100" rows="10"></textarea>
+              <div>
+                <p><span class="erreur"><?= $message ?></span></p>
+              </div>
+              <input class="button-89" type="submit" name="ajouter" value="Poster votre commentaire">
+            </form>';
                 echo '<input type="submit" value="Commentaire" name="commenter" style="width:100px; height:35px; font-size:15px;background-color:#504aa5; border:0px;">';
                 if(isset($_POST['commenter']))
                 {
                     AjouterCommentaire();
+                    
                 }
                 echo '</form>';
                 echo '</div>';
             }
         ?>
+
+
+
+
     </body>
 </html>
