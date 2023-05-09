@@ -193,7 +193,7 @@
                 echo '<input type="submit" value="Commentaire" name="commenter" style="width:100px; height:35px; font-size:15px;background-color:#504aa5; border:0px;">';
                 if(isset($_POST['commenter']))
                 {
-                    AjouterCommentaire();
+                    AjouterÉvaluations($_POST['commentaire'],$_SESSION['id'], $idItem, $_POST['rate']);
                     
                 }
                 echo '</form>';
