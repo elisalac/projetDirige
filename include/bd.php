@@ -801,10 +801,17 @@ function AfficherQuestionTotalParDifficulte($flag,$typeDifficulte,$id)
 }
 function AjouterÉvaluations($contenu,$idJoueur,$idItem,$nbEtoiles)
 {
-    $pdo = getPdo();
-    $sql="INSERT INTO Évaluations (commentaire,idItem,idJoueur,nbÉtoiles) values(?,?,?,?)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$contenu,$idItem,$idJoueur,$nbEtoiles,]);
+    try{
+        $pdo = getPdo();
+        $sql="INSERT INTO Évaluations (commentaire,idItem,idJoueur,nbÉtoiles) values(?,?,?,?)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$contenu,$idItem,$idJoueur,$nbEtoiles,]);
+    }
+    catch(Exception $e)
+    {
+        echo '<script type = "text/javascript">toastr.error("Une erreur s\'est produite!")</script>';
+    }
+    
 }
 function AfficherÉvaluations($idItem)
 {
